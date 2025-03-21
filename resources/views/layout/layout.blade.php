@@ -135,8 +135,8 @@
                 @endif
 
                 <!-- Content Table -->
-                <div class="col-lg-12">
-                    <div class="card shadow mb-5">
+                <div class="col-lg-15">
+                    <div class="card shadow mb-3">
                         <div class="card-header py-3">
                             <h6 class="m-10 font-weight-bold text-primary">Dokumen Semua Divisi</h6>
                             <div class="d-flex gap-2 mt-3">
@@ -193,9 +193,8 @@
                                         </td>
                                         @if (Auth()->user()->role=='admin')
                                         <td>
-                                            <a href="#" class="icon" title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="icon" title="Unduh Dokumen"><i class="fas fa-download"></i></a>
-                                            <a href="#" class="icon" title="Unduh Dokumen"><i class="fas fa-download"></i></a>
+                                            <a href="#" class="icon" title="Edit Dokumen"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="icon" title="Hapus Dokumen"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                         @endif
                                     </tr>
