@@ -84,12 +84,11 @@
                                                         <a href="#" class="icon" title="Unduh Dokumen"><i
                                                                 class="fas fa-download"></i></a>
                                                     </td>
-                                                    <td> <a href="#" class="icon" title="Lihat Detail"><i
-                                                        class="fas fa-eye"></i></a>
-                                                <a href="#" class="icon" title="Unduh Dokumen"><i
-                                                        class="fas fa-download"></i></a>
-                                                <a href="#" class="icon" title="Unduh Dokumen"><i
-                                                        class="fas fa-download"></i></a>
+                                                    <td> 
+                                                <a href="#" class="icon" title="Edit Dokumen"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <a href="#" class="icon" title="Hapus Dokumen"><i
+                                                        class="fas fa-trash-alt"></i></a>
                                             </td>
                                                 </tr>
                                             @endforeach
