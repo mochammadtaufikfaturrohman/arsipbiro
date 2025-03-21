@@ -25,6 +25,12 @@
         <select name="Kategori" class="form-control" required>
             <option value="Arsip Dinamis">Arsip Dinamis</option>
             <option value="Arsip Statis">Arsip Statis</option>
+            <option value="Arsip Dinamis">Arsip Vital</option>
+            <option value="Arsip Statis">Arsip Fisik</option>
+            <option value="Arsip Dinamis">Arsip Permanen</option>
+            <option value="Arsip Dinamis">Arsip Retensi Jangka Pendek</option>
+            <option value="Arsip Statis">Arsip Retensi Jangka Panjang</option>
+            <option value="Arsip Statis">Arsip Elektronik</option>
         </select>
     </div>
     <div class="form-group">
