@@ -18,5 +18,22 @@ class YandasController extends Controller
         {
             return view('yandas.create');
         }
+
+    
+        public function store(Request $request)
+        {
+            $request->validate([
+                'No_Arsip' => 'required|integer|unique:yandas,No_Arsip',
+                'Nama_Lembaga' => 'required|string|max:255',
+                'Tanggal' => 'required|date',
+                'Kegiatan' => 'required|string',
+                'Keterangan' => 'nullable|string',
+                'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
+            ]);
+    
+            Yandas::create($request->all());
+    
+            return redirect()->route('yandas.create')->with('success', 'Data Yandas berhasil disimpan.');
+        }
     
     }
