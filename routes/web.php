@@ -47,6 +47,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('yandas', YandasController::class);
+    Route::get('/yandas/download/{id}', [YandasController::class, 'download'])->name('yandas.download');
+
 });
 Route::get('/yandas', [YandasController::class, 'index'])->name('yandas');
+ 
 require __DIR__.'/auth.php';

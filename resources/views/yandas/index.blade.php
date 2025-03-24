@@ -76,7 +76,7 @@
                                     </thead>
                                     <tbody>
                                         @if (isset($yandas) && $yandas->count() > 0)
-                                            @foreach ($yandas as $item)
+                                            @foreach ($yandas as $item) 
                                                 <tr>
                                                     <td>{{ $item->No_Arsip }}</td>
                                                     <td>{{ $item->Nama_Lembaga }}</td>
@@ -86,15 +86,17 @@
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td> <a href="#" class="icon" title="Lihat Detail"><i
                                                                 class="fas fa-eye"></i></a>
-                                                        <a href="#" class="icon" title="Unduh Dokumen"><i
-                                                                class="fas fa-download"></i></a>
+                                                                <a href="{{ route('yandas.download', $item->id) }}" class="icon" title="Unduh Dokumen">
+                                                                    <i class="fas fa-download"></i>
                                                     </td>
-                                                    <td> 
-                                                <a href="#" class="icon" title="Edit Dokumen"><i
-                                                        class="fas fa-edit"></i></a>
-                                                <a href="#" class="icon" title="Hapus Dokumen"><i
-                                                        class="fas fa-trash-alt"></i></a>
-                                            </td>
+                                                    <td>
+                                                        <a href="{{ route('yandas.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                        <form action="{{ route('yandas.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         @else

@@ -54,3 +54,10 @@
   });
 
 })(jQuery); // End of use strict
+$(document).on('submit', 'form', function (e) {
+  if ($(this).find('button[type=submit]').hasClass('btn-danger')) {
+      if (!confirm('Yakin ingin menghapus?')) {
+          e.preventDefault();
+      }
+  }
+});
