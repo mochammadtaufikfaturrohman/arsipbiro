@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tu', function (Blueprint $table) {
+        Schema::table('npd', function (Blueprint $table) {
             $table->string('Dokumen')->nullable()->after('Kategori'); // Menambahkan kolom Dokumen
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tu', function (Blueprint $table) {
+        Schema::table('npd', function (Blueprint $table) {
             $table->dropColumn('Dokumen'); // Menghapus kolom Dokumen jika rollback
         });
     }
