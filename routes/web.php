@@ -45,11 +45,21 @@ Route::get('/bms', [BmsController::class, 'index'])->name('bms');
 // menampilkan isi table
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+//yandascrud
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('yandas', YandasController::class);
     Route::get('/yandas/download/{id}', [YandasController::class, 'download'])->name('yandas.download');
 
 });
 Route::get('/yandas', [YandasController::class, 'index'])->name('yandas');
+ 
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('tu', TuController::class);
+    Route::get('/tu/download/{id}', [TuController::class, 'download'])->name('tu.download');
+  
+    Route::get('/tu/create', [TuController::class, 'createForm'])->name('tu.create');
+
+});
+Route::get('/tu', [TuController::class, 'index'])->name('tu');
  
 require __DIR__.'/auth.php';
