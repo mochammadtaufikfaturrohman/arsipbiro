@@ -53,6 +53,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 Route::get('/yandas', [YandasController::class, 'index'])->name('yandas');
  
+//npdcrud
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('tu', TuController::class);
     Route::get('/tu/download/{id}', [TuController::class, 'download'])->name('tu.download');
@@ -61,5 +62,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 });
 Route::get('/tu', [TuController::class, 'index'])->name('tu');
+ 
+ 
+// npd CRUD
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('npd', NpdController::class);
+    Route::get('/npd/download/{id}', [NpdController::class, 'download'])->name('npd.download');
+    Route::get('/npd/create', [NpdController::class, 'create'])->name('npd.create');
+});
+Route::get('/npd', [NpdController::class, 'index'])->name('npd');
  
 require __DIR__.'/auth.php';
