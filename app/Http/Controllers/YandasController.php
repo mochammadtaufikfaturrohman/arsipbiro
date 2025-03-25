@@ -60,11 +60,13 @@ class YandasController extends Controller
             'Kegiatan' => 'required|string',
             'Keterangan' => 'nullable|string',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
-            'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'      ]);
+            'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'
+        ]);
 
         Yandas::create($request->all());
 
-        return redirect()->route('yandas.index')->with('success', 'Data Yandas berhasil disimpan.');
+        // Mengarahkan ke rute 'yandas' dengan pesan sukses
+        return redirect()->route('yandas')->with('success', 'Data Yandas berhasil disimpan.');
     }
 
     public function edit($id)
@@ -87,13 +89,16 @@ class YandasController extends Controller
         $yandas = Yandas::findOrFail($id);
         $yandas->update($request->all());
 
-        return redirect()->route('yandas.index')->with('success', 'Data Yandas berhasil diperbarui.');
+        // Mengarahkan ke rute 'yandas' dengan pesan sukses
+        return redirect()->route('yandas')->with('success', 'Data Yandas berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $yandas = Yandas::findOrFail($id);
         $yandas->delete();
-        return redirect()->route('yandas.index')->with('success', 'Data berhasil dihapus');
+
+        // Mengarahkan ke rute 'yandas' dengan pesan sukses
+        return redirect()->route('yandas')->with('success', 'Data berhasil dihapus.');
     }
 }
