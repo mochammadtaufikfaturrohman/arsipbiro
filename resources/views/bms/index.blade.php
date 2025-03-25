@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                 </form>
-
+                                <a href="{{ route('bms.create') }}" class="add-button">Tambah Arsip</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -80,25 +80,27 @@
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td> <a href="#" class="icon" title="Lihat Detail"><i
-                                                                class="fas fa-eye"></i></a>
-                                                        <a href="#" class="icon" title="Unduh Dokumen"><i
-                                                                class="fas fa-download"></i></a>
-                                                    </td>
-                                                    <td> 
-                                                <a href="#" class="icon" title="Edit Dokumen"><i
-                                                        class="fas fa-edit"></i></a>
-                                                <a href="#" class="icon" title="Hapus Dokumen"><i
-                                                        class="fas fa-trash-alt"></i></a>
+                                                        class="fas fa-eye"></i></a>
+                                                        <a href="{{ route('bms.download', $item->id) }}" class="icon" title="Unduh Dokumen">
+                                                            <i class="fas fa-download"></i>
                                             </td>
-                                                </tr>
-                                            @endforeach
-                                        @else
-                                            <tr>
-                                                <td colspan="7" class="text-center">Tidak ada data</td>
-                                            </tr>
-                                        @endif
-                                    </tbody>
-                                </table>
+                                            <td>
+                                                <a href="{{ route('bms.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <form action="{{ route('bms.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="7" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
                             </div>
                             {{ $bms->links() }}
                         </div>
