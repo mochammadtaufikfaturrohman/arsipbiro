@@ -53,7 +53,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 Route::get('/yandas', [YandasController::class, 'index'])->name('yandas');
  
-//npdcrud
+//tucrud
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('tu', TuController::class);
     Route::get('/tu/download/{id}', [TuController::class, 'download'])->name('tu.download');
@@ -71,5 +71,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/npd/create', [NpdController::class, 'create'])->name('npd.create');
 });
 Route::get('/npd', [NpdController::class, 'index'])->name('npd');
+ 
+// bms CRUD
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('bms', BmsController::class);
+    Route::get('/bms/download/{id}', [BmsController::class, 'download'])->name('bms.download');
+    Route::get('/bms/create', [BmsController::class, 'create'])->name('bms.create');
+});
+Route::get('/bms', [BmsController::class, 'index'])->name('bms');
  
 require __DIR__.'/auth.php';
