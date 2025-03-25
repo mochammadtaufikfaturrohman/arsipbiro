@@ -172,9 +172,9 @@
                                         <th>Keterangan</th>
                                         <th>Kategori</th>
                                         <th>Dokumen</th>
-                                        @if (Auth()->user()->role=='admin')
+                                        {{-- @if (Auth()->user()->role=='admin')
                                         <th>Aksi</th>
-                                        @endif
+                                        @endif --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -191,12 +191,12 @@
                                             <a href="#" class="icon" title="Lihat Detail"><i class="fas fa-eye"></i></a>
                                             <a href="#" class="icon" title="Unduh Dokumen"><i class="fas fa-download"></i></a>
                                         </td>
-                                        @if (Auth()->user()->role=='admin')
+                                        {{-- @if (Auth()->user()->role=='admin')
                                         <td>
                                             <a href="#" class="icon" title="Edit Dokumen"><i class="fas fa-edit"></i></a>
                                             <a href="#" class="icon" title="Hapus Dokumen"><i class="fas fa-trash-alt"></i></a>
                                         </td>
-                                        @endif
+                                        @endif --}}
                                     </tr>
                                     @endforeach
                                     @endforeach

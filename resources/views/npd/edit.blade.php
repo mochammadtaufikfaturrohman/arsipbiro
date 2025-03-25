@@ -22,10 +22,17 @@
         <option value="Arsip Dinamis" {{ $npd->Kategori == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
         <option value="Arsip Statis" {{ $npd->Kategori == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
         <option value="Arsip Vital" {{ $npd->Kategori == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
-        <option value="Arsip Permanen" {{ $npd->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
-        <option value="Arsip Retensi Jangka Pendek" {{ $npd->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
-        <option value="Arsip Retensi Jangka Panjang" {{ $npd->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
-        <option value="Arsip Elektronik" {{ $npd->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+        <option value="Arsip Permanen" {{ $npd->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen
+        </option>
+        <option value="Arsip Fisik" {{ $npd->Kategori == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
+        <option value="Arsip Retensi Jangka Pendek"
+            {{ $npd->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek
+        </option>
+        <option value="Arsip Retensi Jangka Panjang"
+            {{ $npd->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang
+        </option>
+        <option value="Arsip Elektronik" {{ $npd->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik
+        </option>
     </select>
 
     <div>
@@ -33,7 +40,7 @@
         <input type="file" name="dokumen" accept=".pdf,.doc,.docx">
     </div>
 
-    @if($npd->dokumen)
+    @if ($npd->dokumen)
         <p>Dokumen saat ini: <a href="{{ route('npd.download', $npd->id) }}">Unduh</a></p>
     @endif
 

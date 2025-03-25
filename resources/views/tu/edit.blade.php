@@ -23,9 +23,14 @@
         <option value="Arsip Statis" {{ $tu->Kategori == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
         <option value="Arsip Vital" {{ $tu->Kategori == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
         <option value="Arsip Permanen" {{ $tu->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
-        <option value="Arsip Retensi Jangka Pendek" {{ $tu->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
-        <option value="Arsip Retensi Jangka Panjang" {{ $tu->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
-        <option value="Arsip Elektronik" {{ $tu->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+        <option value="Arsip Fisik" {{ $tu->Kategori == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
+        <option value="Arsip Retensi Jangka Pendek"
+            {{ $tu->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
+        <option value="Arsip Retensi Jangka Panjang"
+            {{ $tu->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang
+        </option>
+        <option value="Arsip Elektronik" {{ $tu->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik
+        </option>
     </select>
 
     <div>
@@ -33,7 +38,7 @@
         <input type="file" name="dokumen" accept=".pdf,.doc,.docx">
     </div>
 
-    @if($tu->dokumen)
+    @if ($tu->dokumen)
         <p>Dokumen saat ini: <a href="{{ route('tu.download', $tu->id) }}">Unduh</a></p>
     @endif
 

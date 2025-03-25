@@ -87,27 +87,31 @@
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td> <a href="#" class="icon" title="Lihat Detail"><i
-                                                        class="fas fa-eye"></i></a>
-                                                        <a href="{{ route('tu.download', $item->id) }}" class="icon" title="Unduh Dokumen">
+                                                                class="fas fa-eye"></i></a>
+                                                        <a href="{{ route('tu.download', $item->id) }}" class="icon"
+                                                            title="Unduh Dokumen">
                                                             <i class="fas fa-download"></i>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('tu.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                <form action="{{ route('tu.destroy', $item->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @else
-                                    <tr>
-                                        <td colspan="7" class="text-center">Tidak ada data</td>
-                                    </tr>
-                                @endif
-                            </tbody>
-                        </table>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('tu.edit', $item->id) }}"
+                                                            class="btn btn-warning btn-sm">Edit</a>
+                                                        <form action="{{ route('tu.destroy', $item->id) }}"
+                                                            method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="7" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                             {{ $tu->links() }}
                         </div>

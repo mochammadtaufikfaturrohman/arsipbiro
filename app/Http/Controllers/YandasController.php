@@ -21,7 +21,7 @@ class YandasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'No_Arsip' => 'required|integer|unique:yandas,No_Arsip',
+            'No_Arsip' => 'required|string|unique:yandas,No_Arsip',
             'Nama_Lembaga' => 'required|string|max:255',
             'Tanggal' => 'required|date',
             'Kegiatan' => 'required|string',
