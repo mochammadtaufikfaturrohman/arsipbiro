@@ -10,6 +10,7 @@ class YandasController extends Controller
     public function index()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         public function index()
         {
             $yandas = yandas::paginate(1); // Mengambil semua data dari model Tu
@@ -44,6 +45,10 @@ class YandasController extends Controller
         $yandas = Yandas::paginate(10);
         return view('yandas.index', compact('yandas'));
 >>>>>>> c266d06 (crud menambah id)
+=======
+        $yandas = Yandas::paginate(10);
+        return view('yandas.index', compact('yandas'));
+>>>>>>> 3edd82452d57fd468fccfead9280c41403f75892
     }
 
     public function create()
