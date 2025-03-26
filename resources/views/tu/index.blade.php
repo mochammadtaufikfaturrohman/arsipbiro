@@ -57,7 +57,8 @@
                                         </div>
                                     </div>
                                 </form>
-                                <a href="{{ route('tu.create') }}" class="add-button">Tambah Arsip</a>
+                                <a href="{{ route('tu.create') }}" class="btn btn-sm text-white font-semibold px-4 py-2 rounded shadow no-underline focus:outline-none"
+                                style="background-color: #0c885a; border-color: #0c885a;">Tambah Arsip</a>
                             </div>
 
                         </div>
