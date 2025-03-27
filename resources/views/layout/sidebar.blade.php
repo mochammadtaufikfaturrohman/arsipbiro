@@ -59,7 +59,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
     @if (Auth()->user()->role == 'admin')
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapsePages">
+            <a class="nav-link collapsed" href="{{ route('admin.index') }}" aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Admin</span>
             </a>

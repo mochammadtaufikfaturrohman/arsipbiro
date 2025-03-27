@@ -51,8 +51,12 @@
                                         </div>
                                     </div>
                                 </form>
-                                <a href="{{ route('bms.create') }}" class="btn btn-sm text-white font-semibold px-4 py-2 rounded shadow no-underline focus:outline-none"
-                                style="background-color: #0c885a; border-color: #0c885a;">Tambah Arsip</a>
+                                @if (Auth()->user()->role == 'admin')
+                                    <button type="button" class="btn btn-success"
+                                        data-bs-toggle="modal"data-bs-target="#tambahArsipModal">
+                                        Tambah Arsip
+                                    </button>
+                                @endif
                             </div>
                         </div>
                         <div class="card-body">
@@ -67,7 +71,9 @@
                                             <th>Keterangan</th>
                                             <th>Kategori</th>
                                             <th>Dokumen</th>
+                                            @if (Auth()->user()->role == 'admin')
                                             <th>Aksi</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -86,17 +92,19 @@
                                                             title="Unduh Dokumen">
                                                             <i class="fas fa-download"></i>
                                                     </td>
-                                                    <td>
-                                                        <a href="{{ route('bms.edit', $item->id) }}"
-                                                            class="btn btn-warning btn-sm">Edit</a>
-                                                        <form action="{{ route('bms.destroy', $item->id) }}"
-                                                            method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                                onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                                        </form>
-                                                    </td>
+                                                    @if (Auth()->user()->role == 'admin')
+                                                        <td>
+                                                            <a href="{{ route('bms.edit', $item->id) }}"
+                                                                class="btn btn-warning btn-sm">Edit</a>
+                                                            <form action="{{ route('bms.destroy', $item->id) }}"
+                                                                method="POST" style="display:inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                                    onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                                            </form>
+                                                        </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @else
@@ -115,12 +123,30 @@
             @include ('layout.footer')
         </div>
 
+        <!-- Modal Tambah Arsip -->
+        <div class="modal fade" id="tambahArsipModal" tabindex="-1" aria-labelledby="tambahArsipModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="tambahArsipModalLabel">Tambah Arsip Baru</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+                    </div>
+                    <div class="modal-body">
+                        @include('bms.create')
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 
         <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
         <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
+        <!-- Bootstrap 5.1 Bundle dengan Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,3 @@
-<div class="container">
-    <h2>Tambah Arsip Baru</h2>
-
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -63,4 +60,3 @@
         <button type="submit" class="btn btn-primary">Simpan Arsip</button>
 
     </form>
-</div>
