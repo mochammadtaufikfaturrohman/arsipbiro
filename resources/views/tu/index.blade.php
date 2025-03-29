@@ -40,16 +40,20 @@
                                     <option value="arsip dinamis">Arsip Elektronik</option>
                                     <option value="arsip statis">Arsip Fisik</option>
                                 </select>
-                                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <form
+                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-white border-0 small" placeholder="Search for...">
+                                        <input type="text" class="form-control bg-white border-0 small"
+                                            placeholder="Search for...">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button"><i class="fas fa-search fa-sm"></i></button>
+                                            <button class="btn btn-primary" type="button"><i
+                                                    class="fas fa-search fa-sm"></i></button>
                                         </div>
                                     </div>
                                 </form>
                                 @if (Auth()->user()->role == 'admin')
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahArsipModal">Tambah Arsip</button>
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#tambahArsipModal">Tambah Arsip</button>
                                 @endif
                             </div>
                         </div>
@@ -66,7 +70,7 @@
                                             <th>Kategori</th>
                                             <th>Dokumen</th>
                                             @if (Auth()->user()->role == 'admin')
-                                            <th>Aksi</th>
+                                                <th>Aksi</th>
                                             @endif
                                         </tr>
                                     </thead>
@@ -81,20 +85,26 @@
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td>
-                                                        <a href="#" class="icon" title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                                                        <a href="{{ route('tu.download', $item->id) }}" class="icon" title="Unduh Dokumen">
+                                                        <a href="#" class="btn btn-primary btn-sm"
+                                                            title="Lihat Detail"><i class="fas fa-eye"></i></a>
+                                                        <a href="{{ route('tu.download', $item->id) }}"
+                                                            class="btn btn-primary btn-sm" title="Unduh Dokumen">
                                                             <i class="fas fa-download"></i>
                                                         </a>
                                                     </td>
                                                     @if (Auth()->user()->role == 'admin')
-                                                    <td>
-                                                        <a href="{{ route('tu.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                        <form action="{{ route('tu.destroy', $item->id) }}" method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                                        </form>
-                                                    </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-warning btn-sm"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#editArsipModal{{ $item->id }}">
+                                                                Edit
+                                                            </button>
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#hapusModal">Hapus</button>
+                                                            </form>
+                                                            </form>
+                                                        </td>
                                                     @endif
                                                 </tr>
                                             @endforeach
@@ -114,27 +124,76 @@
             @include ('layout.footer')
         </div>
 
-    <!-- Modal Tambah Arsip -->
-    <div class="modal fade" id="tambahArsipModal" tabindex="-1" aria-labelledby="tambahArsipModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="tambahArsipModalLabel">Tambah Arsip Baru</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
-                </div>
-                <div class="modal-body">
-                    @include('tu.create')
+        <!-- Awal Modal Delete -->
+        <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        Apakah Anda yakin ingin menghapus data ini?
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ route('tu.destroy', $item->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button"class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit"class="btn btn-danger">Hapus</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        {{-- Akhir Modal Delete --}}
 
-    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        <!-- Modal Awal Tambah Arsip -->
+        <div class="modal fade" id="tambahArsipModal" tabindex="-1" aria-labelledby="tambahArsipModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="tambahArsipModalLabel">Tambah Arsip Baru</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close">x</button>
+                    </div>
+                    <div class="modal-body">
+                        @include('tu.create')
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Akhir Tambah Arsip -->
 
-    <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Modal Edit Arsip -->
+        @foreach ($tu as $item)
+            <div class="modal fade" id="editArsipModal{{ $item->id }}" tabindex="-1"
+                aria-labelledby="editArsipModalLabel{{ $item->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="editArsipModalLabel{{ $item->id }}">Edit Data</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close">x</button>
+                        </div>
+                        <div class="modal-body">
+                            @include ('tu.edit')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        <!-- Akhir Modal Edit Arsip -->
+
+
+        <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+
+        <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+        <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

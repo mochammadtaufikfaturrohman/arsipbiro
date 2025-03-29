@@ -188,8 +188,8 @@
                                         <td>{{ $item->Keterangan }}</td>
                                         <td>{{ $item->Kategori }}</td>
                                         <td>
-                                            <a href="#" class="icon" title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="icon" title="Unduh Dokumen"><i class="fas fa-download"></i></a>
+                                            <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-primary btn-sm" title="Unduh Dokumen"><i class="fas fa-download"></i></a>
                                         </td>
                                         {{-- @if (Auth()->user()->role=='admin')
                                         <td>

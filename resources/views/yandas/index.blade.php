@@ -76,7 +76,7 @@
                                             <th>Kategori</th>
                                             <th>Dokumen</th>
                                             @if (Auth()->user()->role == 'admin')
-                                            <th>Aksi</th>
+                                                <th>Aksi</th>
                                             @endif
                                         </tr>
                                     </thead>
@@ -90,24 +90,25 @@
                                                     <td>{{ $item->Kegiatan }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
-                                                    <td> <a href="#" class="icon" title="Lihat Detail"><i
-                                                                class="fas fa-eye"></i></a>
+                                                    <td> <a href="#" class="btn btn-primary btn-sm"
+                                                            title="Lihat Detail"><i class="fas fa-eye"></i></a>
                                                         <a href="{{ route('yandas.download', $item->id) }}"
-                                                            class="icon" title="Unduh Dokumen">
-                                                            <i class="fas fa-download"></i>
+                                                            class="btn btn-primary btn-sm" title="Unduh Dokumen"><i
+                                                                class="fas fa-download"></i></a>
                                                     </td>
-                                                    @if (Auth()->user()->role== 'admin')
-                                                    <td>
-                                                        <a href="{{ route('yandas.edit', $item->id) }}"
-                                                            class="btn btn-warning btn-sm">Edit</a>
-                                                        <form action="{{ route('yandas.destroy', $item->id) }}"
-                                                            method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
+                                                    @if (Auth()->user()->role == 'admin')
+                                                        <td>
+                                                            {{-- <a href="{{ route('yandas.edit', $item->id) }}"
+                                                                class="btn btn-warning btn-sm" data-bs-toggle="modal"data-bs-target="#editArsipModal">Edit</a> --}}
+                                                            <button type="button" class="btn btn-warning btn-sm"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#editArsipModal{{ $item->id }}">
+                                                                Edit </button>
                                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                                onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                                        </form>
-                                                    </td>
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#hapusModal">Hapus</button>
+                                                            </form>
+                                                        </td>
                                                     @endif
                                                 </tr>
                                             @endforeach
@@ -126,6 +127,29 @@
             </div>
             @include ('layout.footer')
         </div>
+        <!-- Awal Modal Delete -->
+        <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        Apakah Anda yakin ingin menghapus data ini?
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ route('yandas.destroy', $item->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button"class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit"class="btn btn-danger">Hapus</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Akhir Modal Delete --}}
 
         <!-- Modal Tambah Arsip -->
         <div class="modal fade" id="tambahArsipModal" tabindex="-1" aria-labelledby="tambahArsipModalLabel"
@@ -134,14 +158,38 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="tambahArsipModalLabel">Tambah Arsip Baru</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close">x</button>
                     </div>
                     <div class="modal-body">
-                        @include('yandas.create')
+                        @include ('yandas.create')
                     </div>
                 </div>
             </div>
         </div>
+        <!--  Akhir Modal Tambah Arsip -->
+
+        <!-- Modal Edit Arsip -->
+        @foreach ($yandas as $item)
+            <div class="modal fade" id="editArsipModal{{ $item->id }}" tabindex="-1"
+                aria-labelledby="editArsipModalLabel{{ $item->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="editArsipModalLabel{{ $item->id }}">Edit Data</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close">x</button>
+                        </div>
+                        <div class="modal-body">
+                            @include ('yandas.edit')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        <!-- Akhir Modal Edit Arsip -->
+
+
 
 
         <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
@@ -150,8 +198,8 @@
         <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
         <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
-         <!-- Bootstrap 5.1 Bundle dengan Popper.js -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
+        <!-- Bootstrap 5.1 Bundle dengan Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
