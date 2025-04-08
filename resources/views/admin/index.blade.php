@@ -61,9 +61,6 @@
                                             <th>Nama</th>
                                             <th>Role</th>
                                             <th>Email</th>
-                                            @if (Auth()->user()->role == 'admin')
-                                                <th>Aksi</th>
-                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -74,18 +71,6 @@
                                                     <td>{{ $item->name }}</td>
                                                     <td>{{ $item->role }}</td>
                                                     <td>{{ $item->email }}</td>
-                                                    @if (Auth()->user()->role == 'admin')
-                                                        <td>
-                                                            <button type="button" class="btn btn-warning btn-sm"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#editArsipModal{{ $item->id }}">
-                                                                Edit
-                                                            </button>
-                                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#hapusModal">Hapus</button>
-                                                        </td>
-                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @else
@@ -105,6 +90,40 @@
             @include ('layout.footer')
         </div>
 
+        <!-- Modal Tambah Admin -->
+        <div class="modal fade" id="tambahArsipModal" tabindex="-1" aria-labelledby="tambahArsipModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="{{ route('admin.store') }}" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="tambahArsipModalLabel">Tambah Admin</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nama</label>
+                                <input type="text" class="form-control" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- modal tambah akhir --}}
 
         <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 

@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
 // admin routing
 Route::middleware('auth')->group(function(){
     Route::get('/admin', [AdminController::class,'index'])->name('admin.index');
+    Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');    
 });
 
 // user routing
