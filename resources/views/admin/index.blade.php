@@ -61,7 +61,6 @@
                                             <th>Nama</th>
                                             <th>Role</th>
                                             <th>Email</th>
-                                            <th>Password</th>
                                             @if (Auth()->user()->role == 'admin')
                                                 <th>Aksi</th>
                                             @endif
@@ -75,7 +74,6 @@
                                                     <td>{{ $item->name }}</td>
                                                     <td>{{ $item->role }}</td>
                                                     <td>{{ $item->email }}</td>
-                                                    <td>{{ $item->password }}</td>
                                                     @if (Auth()->user()->role == 'admin')
                                                         <td>
                                                             <button type="button" class="btn btn-warning btn-sm"
