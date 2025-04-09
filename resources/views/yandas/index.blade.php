@@ -97,16 +97,16 @@
                                                                 class="fas fa-download"></i></a>
                                                     </td>
                                                     @if (Auth()->user()->role == 'admin')
-                                                        <td>
-                                                            {{-- <a href="{{ route('yandas.edit', $item->id) }}"
-                                                                class="btn btn-warning btn-sm" data-bs-toggle="modal"data-bs-target="#editArsipModal">Edit</a> --}}
-                                                            <button type="button" class="btn btn-warning btn-sm"
+                                                        <td class="text-nowrap">
+                                                            <button type="button" class="btn btn-warning btn-sm me-2"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#editArsipModal{{ $item->id }}">
-                                                                Edit </button>
+                                                                data-bs-target="#editArsipModal{{ $item->id }}"><i
+                                                                    class="fas fa-edit"></i>
+                                                            </button>
                                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#hapusModal">Hapus</button>
+                                                                data-bs-toggle="modal" data-bs-target="#hapusModal"><i
+                                                                    class="fas fa-trash"></i>
+                                                            </button>
                                                         </td>
                                                     @endif
                                                 </tr>
@@ -138,7 +138,7 @@
                         Apakah Anda yakin ingin menghapus data ini?
                     </div>
                     <div class="modal-footer">
-                            <form action="{{ route('yandas.destroy', $item->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('yandas.destroy', $item->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="button"class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
