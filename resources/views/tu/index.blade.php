@@ -93,17 +93,16 @@
                                                         </a>
                                                     </td>
                                                     @if (Auth()->user()->role == 'admin')
-                                                        <td>
-                                                            <button type="button" class="btn btn-warning btn-sm"
+                                                        <td class="text-nowrap">
+                                                            <button type="button" class="btn btn-warning btn-sm me-2"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#editArsipModal{{ $item->id }}">
-                                                                Edit
+                                                                <i class="fas fa-edit"></i>
                                                             </button>
                                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#hapusModal">Hapus</button>
-                                                            </form>
-                                                            </form>
+                                                                data-bs-toggle="modal" data-bs-target="#hapusModal">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
                                                         </td>
                                                     @endif
                                                 </tr>
