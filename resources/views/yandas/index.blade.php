@@ -44,10 +44,11 @@
                                     <option value="arsip dinamis">Arsip Elektronik</option>
                                     <option value="arsip statis">Arsip Fisik</option>
                                 </select>
-                                <form action="{{route('yandas')}}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <form
+                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-white border-0 small"
-                                            placeholder="Search for..." value="{{ $request->get('search') }}">
+                                            placeholder="Search for...">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button"><i
                                                     class="fas fa-search fa-sm"></i></button>
