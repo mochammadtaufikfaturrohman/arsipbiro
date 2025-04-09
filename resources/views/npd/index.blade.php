@@ -180,7 +180,7 @@
                                 aria-label="Close">x</button>
                         </div>
                         <div class="modal-body">
-                            @include ('tu.edit')
+                            @include ('npd.edit')
                         </div>
                     </div>
                 </div>

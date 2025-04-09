@@ -173,7 +173,7 @@
                                 aria-label="Close">x</button>
                         </div>
                         <div class="modal-body">
-                            @include ('tu.edit')
+                            @include ('bms.edit')
                         </div>
                     </div>
                 </div>
