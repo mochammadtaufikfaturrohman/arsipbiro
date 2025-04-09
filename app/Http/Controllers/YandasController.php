@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Yandas;
 
 class YandasController extends Controller
@@ -30,15 +31,15 @@ class YandasController extends Controller
             'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'
         ]);
 
-        $data = $request->all();
+        $data = $request->except('dokumen');
 
         if ($request->hasFile('dokumen')) {
-            $data['dokumen'] = $request->file('dokumen')->store('dokumen');
+            // Simpan file dokumen ke folder 'dokumen/yandas' dan dapatkan path-nya
+            $data['dokumen'] = $request->file('dokumen')->store('dokumen/yandas', 'public');
         }
 
         Yandas::create($data);
 
-        // Mengarahkan ke rute 'yandas' dengan pesan sukses
         return redirect()->route('yandas')->with('success', 'Data Yandas berhasil disimpan.');
     }
 
@@ -61,24 +62,49 @@ class YandasController extends Controller
         ]);
 
         $yandas = Yandas::findOrFail($id);
-        $data = $request->all();
+        $data = $request->except('dokumen');
 
         if ($request->hasFile('dokumen')) {
-            $data['dokumen'] = $request->file('dokumen')->store('dokumen');
+            // Hapus file dokumen lama jika ada
+            if ($yandas->dokumen && Storage::disk('public')->exists($yandas->dokumen)) {
+                Storage::disk('public')->delete($yandas->dokumen);
+            }
+
+            // Simpan file dokumen baru
+            $data['dokumen'] = $request->file('dokumen')->store('dokumen/yandas', 'public');
         }
 
         $yandas->update($data);
 
-        // Mengarahkan ke rute 'yandas' dengan pesan sukses
         return redirect()->route('yandas')->with('success', 'Data Yandas berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $yandas = Yandas::findOrFail($id);
+
+        // Hapus file dokumen jika ada
+        if ($yandas->dokumen && Storage::disk('public')->exists($yandas->dokumen)) {
+            Storage::disk('public')->delete($yandas->dokumen);
+        }
+
+        // Hapus data dari database
         $yandas->delete();
 
-        // Mengarahkan ke rute 'yandas' dengan pesan sukses
         return redirect()->route('yandas')->with('success', 'Data berhasil dihapus.');
+    }
+
+    public function download($id)
+    {
+        $yandas = Yandas::findOrFail($id);
+
+        // Pastikan kolom 'dokumen' menyimpan path file
+        $filePath = storage_path('app/public/' . $yandas->dokumen);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        }
+
+        return redirect()->route('yandas')->with('error', 'File tidak ditemukan.');
     }
 }

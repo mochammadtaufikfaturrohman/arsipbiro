@@ -53,7 +53,7 @@
 
         <div class="mb-3">
             <label for="Dokumen" class="form-label">Unggah Dokumen</label>
-            <input type="file" name="Dokumen" id="Dokumen" class="form-control" accept=".pdf,.doc,.docx" required>
+            <input type="file" name="dokumen" id="dokumen" class="form-control" accept=".pdf,.doc,.docx" required>
             <small class="text-muted">Format: PDF, DOC, DOCX (Max: 2MB)</small>
         </div>
 

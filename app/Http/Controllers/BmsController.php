@@ -4,18 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bms;
+use Illuminate\Support\Facades\Storage;
 
 class BmsController extends Controller
 {
     public function index()
     {
-        $bms = Bms::paginate(10); // Mengambil data dengan pagination
-        return view('bms.index', compact('bms')); // Kirim data ke view
-    }
-
-    public function create()
-    {
-        return view('bms.create'); // Menampilkan form untuk membuat data baru
+        $bms = Bms::paginate(10);
+        return view('bms.index', compact('bms'));
     }
 
     public function store(Request $request)
@@ -26,25 +22,24 @@ class BmsController extends Controller
             'Tanggal' => 'required|date',
             'Kegiatan' => 'required|string',
             'Keterangan' => 'nullable|string',
-            'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
-            'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'
+            'Kategori' => 'required',
+            'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
         $data = $request->all();
 
         if ($request->hasFile('dokumen')) {
-            $data['Dokumen'] = $request->file('dokumen')->store('dokumen');
+            // Buat folder jika belum ada
+            if (!Storage::disk('public')->exists('dokumen/bms')) {
+                Storage::disk('public')->makeDirectory('dokumen/bms');
+            }
+
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/bms', 'public');
         }
 
         Bms::create($data);
 
         return redirect()->route('bms')->with('success', 'Data BMS berhasil disimpan.');
-    }
-
-    public function edit($id)
-    {
-        $bms = Bms::findOrFail($id); // Cari data berdasarkan ID
-        return view('bms.edit', compact('bms')); // Kirim data ke view edit
     }
 
     public function update(Request $request, $id)
@@ -63,7 +58,12 @@ class BmsController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('dokumen')) {
-            $data['Dokumen'] = $request->file('dokumen')->store('dokumen');
+            // Buat folder jika belum ada
+            if (!Storage::disk('public')->exists('dokumen/bms')) {
+                Storage::disk('public')->makeDirectory('dokumen/bms');
+            }
+
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/bms', 'public');
         }
 
         $bms->update($data);
@@ -74,6 +74,13 @@ class BmsController extends Controller
     public function destroy($id)
     {
         $bms = Bms::findOrFail($id);
+
+        // Hapus file dokumen jika ada
+        if ($bms->Dokumen && Storage::disk('public')->exists($bms->Dokumen)) {
+            Storage::disk('public')->delete($bms->Dokumen);
+        }
+
+        // Hapus data dari database
         $bms->delete();
 
         return redirect()->route('bms')->with('success', 'Data berhasil dihapus.');
@@ -83,8 +90,7 @@ class BmsController extends Controller
     {
         $bms = Bms::findOrFail($id);
 
-        // Pastikan kolom 'Dokumen' menyimpan path file
-        $filePath = storage_path('app/' . $bms->Dokumen);
+        $filePath = storage_path('app/public/' . $bms->Dokumen);
 
         if (file_exists($filePath)) {
             return response()->download($filePath);
@@ -93,4 +99,3 @@ class BmsController extends Controller
         return redirect()->route('bms')->with('error', 'File tidak ditemukan.');
     }
 }
-

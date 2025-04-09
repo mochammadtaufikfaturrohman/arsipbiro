@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Npd;
 
 class NpdController extends Controller
@@ -30,10 +31,11 @@ class NpdController extends Controller
             'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'
         ]);
 
-        $data = $request->all();
+        $data = $request->except('dokumen');
 
         if ($request->hasFile('dokumen')) {
-            $data['Dokumen'] = $request->file('dokumen')->store('dokumen');
+            // Simpan file dokumen ke folder 'dokumen/npd' dan dapatkan path-nya
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/npd', 'public');
         }
 
         Npd::create($data);
@@ -60,10 +62,16 @@ class NpdController extends Controller
         ]);
 
         $npd = Npd::findOrFail($id);
-        $data = $request->all();
+        $data = $request->except('dokumen');
 
         if ($request->hasFile('dokumen')) {
-            $data['Dokumen'] = $request->file('dokumen')->store('dokumen');
+            // Hapus file dokumen lama jika ada
+            if ($npd->Dokumen && Storage::disk('public')->exists($npd->Dokumen)) {
+                Storage::disk('public')->delete($npd->Dokumen);
+            }
+
+            // Simpan file dokumen baru
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/npd', 'public');
         }
 
         $npd->update($data);
@@ -74,6 +82,13 @@ class NpdController extends Controller
     public function destroy($id)
     {
         $npd = Npd::findOrFail($id);
+
+        // Hapus file dokumen jika ada
+        if ($npd->Dokumen && Storage::disk('public')->exists($npd->Dokumen)) {
+            Storage::disk('public')->delete($npd->Dokumen);
+        }
+
+        // Hapus data dari database
         $npd->delete();
 
         return redirect()->route('npd')->with('success', 'Data berhasil dihapus.');
@@ -84,7 +99,7 @@ class NpdController extends Controller
         $npd = Npd::findOrFail($id);
 
         // Pastikan kolom 'Dokumen' menyimpan path file
-        $filePath = storage_path('app/' . $npd->Dokumen);
+        $filePath = storage_path('app/public/' . $npd->Dokumen);
 
         if (file_exists($filePath)) {
             return response()->download($filePath);
