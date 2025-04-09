@@ -10,13 +10,13 @@ class YandasController extends Controller
 {
     public function index()
     {
-        $yandas = Yandas::paginate(10); // Mengambil data dengan pagination
-        return view('yandas.index', compact('yandas')); // Kirim data ke view
+        $yandas = Yandas::paginate(10);
+        return view('yandas.index', compact('yandas'));
     }
 
     public function create()
     {
-        return view('yandas.create'); // Menampilkan form untuk membuat data baru
+        return view('yandas.create');
     }
 
     public function store(Request $request)
@@ -34,8 +34,7 @@ class YandasController extends Controller
         $data = $request->except('dokumen');
 
         if ($request->hasFile('dokumen')) {
-            // Simpan file dokumen ke folder 'dokumen/yandas' dan dapatkan path-nya
-            $data['dokumen'] = $request->file('dokumen')->store('dokumen/yandas', 'public');
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/yandas', 'public');
         }
 
         Yandas::create($data);
@@ -45,8 +44,8 @@ class YandasController extends Controller
 
     public function edit($id)
     {
-        $yandas = Yandas::findOrFail($id); // Cari data berdasarkan ID
-        return view('yandas.edit', compact('yandas')); // Kirim data ke view edit
+        $yandas = Yandas::findOrFail($id);
+        return view('yandas.edit', compact('yandas'));
     }
 
     public function update(Request $request, $id)
@@ -65,13 +64,11 @@ class YandasController extends Controller
         $data = $request->except('dokumen');
 
         if ($request->hasFile('dokumen')) {
-            // Hapus file dokumen lama jika ada
-            if ($yandas->dokumen && Storage::disk('public')->exists($yandas->dokumen)) {
-                Storage::disk('public')->delete($yandas->dokumen);
+            if ($yandas->Dokumen && Storage::disk('public')->exists($yandas->Dokumen)) {
+                Storage::disk('public')->delete($yandas->Dokumen);
             }
 
-            // Simpan file dokumen baru
-            $data['dokumen'] = $request->file('dokumen')->store('dokumen/yandas', 'public');
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/yandas', 'public');
         }
 
         $yandas->update($data);
@@ -83,12 +80,10 @@ class YandasController extends Controller
     {
         $yandas = Yandas::findOrFail($id);
 
-        // Hapus file dokumen jika ada
-        if ($yandas->dokumen && Storage::disk('public')->exists($yandas->dokumen)) {
-            Storage::disk('public')->delete($yandas->dokumen);
+        if ($yandas->Dokumen && Storage::disk('public')->exists($yandas->Dokumen)) {
+            Storage::disk('public')->delete($yandas->Dokumen);
         }
 
-        // Hapus data dari database
         $yandas->delete();
 
         return redirect()->route('yandas')->with('success', 'Data berhasil dihapus.');
@@ -98,8 +93,7 @@ class YandasController extends Controller
     {
         $yandas = Yandas::findOrFail($id);
 
-        // Pastikan kolom 'dokumen' menyimpan path file
-        $filePath = storage_path('app/public/' . $yandas->dokumen);
+        $filePath = storage_path('app/public/' . $yandas->Dokumen);
 
         if (file_exists($filePath)) {
             return response()->download($filePath);

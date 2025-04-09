@@ -10,13 +10,13 @@ class TuController extends Controller
 {
     public function index()
     {
-        $tu = Tu::paginate(10); // Mengambil data dengan pagination
-        return view('tu.index', compact('tu')); // Kirim data ke view
+        $tu = Tu::paginate(10);
+        return view('tu.index', compact('tu'));
     }
 
     public function createForm()
     {
-        return view('tu.create'); // Menampilkan form untuk membuat data baru
+        return view('tu.create');
     }
 
     public function store(Request $request)
@@ -34,8 +34,7 @@ class TuController extends Controller
         $data = $request->except('dokumen');
 
         if ($request->hasFile('dokumen')) {
-            // Simpan file dokumen ke folder 'dokumen/tu' dan dapatkan path-nya
-            $data['dokumen'] = $request->file('dokumen')->store('dokumen/tu', 'public');
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/tu', 'public');
         }
 
         Tu::create($data);
@@ -45,8 +44,8 @@ class TuController extends Controller
 
     public function edit($id)
     {
-        $tu = Tu::findOrFail($id); // Cari data berdasarkan ID
-        return view('tu.edit', compact('tu')); // Kirim data ke view edit
+        $tu = Tu::findOrFail($id);
+        return view('tu.edit', compact('tu'));
     }
 
     public function update(Request $request, $id)
@@ -65,13 +64,11 @@ class TuController extends Controller
         $data = $request->except('dokumen');
 
         if ($request->hasFile('dokumen')) {
-            // Hapus file dokumen lama jika ada
-            if ($tu->dokumen && Storage::disk('public')->exists($tu->dokumen)) {
-                Storage::disk('public')->delete($tu->dokumen);
+            if ($tu->Dokumen && Storage::disk('public')->exists($tu->Dokumen)) {
+                Storage::disk('public')->delete($tu->Dokumen);
             }
 
-            // Simpan file dokumen baru
-            $data['dokumen'] = $request->file('dokumen')->store('dokumen/tu', 'public');
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/tu', 'public');
         }
 
         $tu->update($data);
@@ -83,12 +80,10 @@ class TuController extends Controller
     {
         $tu = Tu::findOrFail($id);
 
-        // Hapus file dokumen jika ada
-        if ($tu->dokumen && Storage::disk('public')->exists($tu->dokumen)) {
-            Storage::disk('public')->delete($tu->dokumen);
+        if ($tu->Dokumen && Storage::disk('public')->exists($tu->Dokumen)) {
+            Storage::disk('public')->delete($tu->Dokumen);
         }
 
-        // Hapus data dari database
         $tu->delete();
 
         return redirect()->route('tu')->with('success', 'Data berhasil dihapus.');
@@ -98,8 +93,7 @@ class TuController extends Controller
     {
         $tu = Tu::findOrFail($id);
 
-        // Pastikan kolom 'dokumen' menyimpan path file
-        $filePath = storage_path('app/public/' . $tu->dokumen);
+        $filePath = storage_path('app/public/' . $tu->Dokumen);
 
         if (file_exists($filePath)) {
             return response()->download($filePath);
