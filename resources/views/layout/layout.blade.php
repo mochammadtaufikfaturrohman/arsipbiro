@@ -193,38 +193,11 @@
                                                 <td>
                                                     <a href="#" class="btn btn-primary btn-sm"
                                                         title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                                                    <a href="#" class="btn btn-primary btn-sm"
-                                                        title="Unduh Dokumen"><i class="fas fa-download"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @endforeach
-                                        @php
-                                            $totalData = count($tu) + count($yandas) + count($bms) + count($npd ?? []);
-                                        @endphp
                                     
-                                        @if ($totalData > 0)
-                                            @foreach (['tu' => $tu, 'yandas' => $yandas, 'bms' => $bms, 'npd' => $npd ?? []] as $title => $data)
-                                                @foreach ($data as $item)
-                                                    <tr>
-                                                        <td>{{ $item->No_Arsip }}</td>
-                                                        <td>{{ $item->Nama_Lembaga }}</td>
-                                                        <td>{{ $item->Tanggal }}</td>
-                                                        <td>{{ $item->Kegiatan }}</td>
-                                                        <td>{{ $item->Keterangan }}</td>
-                                                        <td>{{ $item->Kategori }}</td>
-                                                        <td>
-                                                            <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                                                            <a href="#" class="btn btn-primary btn-sm" title="Unduh Dokumen"><i class="fas fa-download"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            @endforeach
-                                        @else
-                                            <tr>
-                                                <td colspan="7" class="text-center">Tidak ada data</td>
-                                            </tr>
-                                        @endif
                                 </tbody>
                             </table>
                             {{ $tu->links() }}

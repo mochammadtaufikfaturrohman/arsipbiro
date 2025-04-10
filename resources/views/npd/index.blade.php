@@ -72,6 +72,7 @@
                                             <th>Tanggal</th>
                                             <th>Kegiatan</th>
                                             <th>Keterangan</th>
+                                            <th>Divisi</th>
                                             <th>Kategori</th>
                                             <th>Dokumen</th>
                                             @if (Auth()->user()->role == 'admin')
@@ -88,6 +89,7 @@
                                                     <td>{{ $item->Tanggal }}</td>
                                                     <td>{{ $item->Kegiatan }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
+                                                    <td>{{ $item->Divisi }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td> <a href="#"
                                                             class="btn btn-primary btn-sm"title="Lihat Detail"><i
@@ -113,7 +115,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="8" class="text-center">Tidak ada data</td>
+                                                <td colspan="9" class="text-center">Tidak ada data</td>
                                             </tr>
                                         @endif
                                     </tbody>
@@ -122,7 +124,6 @@
                             {{ $npd->links() }}
                         </div>
                     </div>
-
                 </div>
             </div>
             @include ('layout.footer')
@@ -130,27 +131,29 @@
 
         <!-- Awal Modal Delete -->
         @foreach ($npd as $item)
-        <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data ini?
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{ route('npd.destroy', $item->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button"class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit"class="btn btn-danger">Hapus</button>
-                        </form>
+            <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close">X</button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda yakin ingin menghapus data <strong>{{ $item->No_Arsip }}</strong>ini?
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ route('npd.destroy', $item->id) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button"class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit"class="btn btn-danger">Hapus</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         @endforeach
         {{-- Akhir Modal Delete --}}
 

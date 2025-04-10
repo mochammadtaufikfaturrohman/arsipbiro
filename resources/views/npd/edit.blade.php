@@ -28,6 +28,15 @@
     </div>
 
     <div class="form-group mb-3">
+        <label for="Divisi">Divisi</label>
+        <select class="form-control" id="Divisi" name="Divisi" required>
+            <option value="NPD 1" {{ $item->Divisi == 'NPD 1' ? 'selected' : '' }}>NPD 1</option>
+            <option value="NPD 2" {{ $item->Divisi == 'NPD 2' ? 'selected' : '' }}>NPD 2</option>
+            <option value="NPD 3" {{ $item->Divisi == 'NPD 3' ? 'selected' : '' }}>NPD 3</option>
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
         <label for="Kategori">Kategori</label>
         <select class="form-control" id="Kategori" name="Kategori" required>
             <option value="Arsip Dinamis" {{ $item->Kategori == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
@@ -41,7 +50,7 @@
         </select>
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group mb-3"> 
         <label for="dokumen">Dokumen</label>
         @if ($item->dokumen)
             <p>Dokumen saat ini: <a href="{{ route('npd.download', $item->id) }}">{{ basename($item->dokumen) }}</a></p>

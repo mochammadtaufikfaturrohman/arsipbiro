@@ -27,6 +27,7 @@ class NpdController extends Controller
             'Tanggal' => 'required|date',
             'Kegiatan' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Divisi' => 'required|in:NPD 1,NPD 2,NPD 3',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'
         ]);
@@ -57,6 +58,7 @@ class NpdController extends Controller
             'Tanggal' => 'required|date',
             'Kegiatan' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Divisi' => 'required|in:NPD 1,NPD 2,NPD 3',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'
         ]);

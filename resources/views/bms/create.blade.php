@@ -39,7 +39,7 @@
         <div class="mb-3">
             <label for="Kategori" class="form-label">Kategori</label>
             <select name="Kategori" id="Kategori" class="form-control" required>
-
+                <option value="Pilih Kategori">Pilih Kategori</option>
                 <option value="Arsip Dinamis">Arsip Dinamis</option>
                 <option value="Arsip Statis">Arsip Statis</option>
                 <option value="Arsip Dinamis">Arsip Vital</option>
