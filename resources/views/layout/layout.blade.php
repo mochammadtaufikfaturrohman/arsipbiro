@@ -47,12 +47,12 @@
                     </div>
                     <!-- Content Row -->
                     <div class="row">
-                       <!-- card -->
+                        <!-- card -->
                         @if (Auth()->user()->role == 'admin')
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
-                                         <div class="row no-gutters align-items-center">
+                                        <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Total Admin</div>
@@ -151,11 +151,14 @@
                                     <option value="arsip dinamis">Arsip Elektronik</option>
                                     <option value="arsip statis">Arsip Fisik</option>
                                 </select>
-                                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <form
+                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-white border-0 small" placeholder="Search for...">
+                                        <input type="text" class="form-control bg-white border-0 small"
+                                            placeholder="Search for...">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button"><i class="fas fa-search fa-sm"></i></button>
+                                            <button class="btn btn-primary" type="button"><i
+                                                    class="fas fa-search fa-sm"></i></button>
                                         </div>
                                     </div>
                                 </form>
@@ -172,34 +175,56 @@
                                         <th>Keterangan</th>
                                         <th>Kategori</th>
                                         <th>Dokumen</th>
-                                        {{-- @if (Auth()->user()->role=='admin')
+                                        {{-- @if (Auth()->user()->role == 'admin')
                                         <th>Aksi</th>
                                         @endif --}}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (['tu' => $tu, 'yandas' => $yandas , 'bms' => $bms , 'npd' => $npd ?? []] as $title => $data)
-                                    @foreach($data as $item)
-                                    <tr>
-                                        <td>{{ $item->No_Arsip }}</td>
-                                        <td>{{ $item->Nama_Lembaga }}</td>
-                                        <td>{{ $item->Tanggal }}</td>
-                                        <td>{{ $item->Kegiatan }}</td>
-                                        <td>{{ $item->Keterangan }}</td>
-                                        <td>{{ $item->Kategori }}</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                                            <a href="#" class="btn btn-primary btn-sm" title="Unduh Dokumen"><i class="fas fa-download"></i></a>
-                                        </td>
-                                        {{-- @if (Auth()->user()->role=='admin')
-                                        <td>
-                                            <a href="#" class="icon" title="Edit Dokumen"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="icon" title="Hapus Dokumen"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
-                                        @endif --}}
-                                    </tr>
+                                    @foreach (['tu' => $tu, 'yandas' => $yandas, 'bms' => $bms, 'npd' => $npd ?? []] as $title => $data)
+                                        @foreach ($data as $item)
+                                            <tr>
+                                                <td>{{ $item->No_Arsip }}</td>
+                                                <td>{{ $item->Nama_Lembaga }}</td>
+                                                <td>{{ $item->Tanggal }}</td>
+                                                <td>{{ $item->Kegiatan }}</td>
+                                                <td>{{ $item->Keterangan }}</td>
+                                                <td>{{ $item->Kategori }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-primary btn-sm"
+                                                        title="Lihat Detail"><i class="fas fa-eye"></i></a>
+                                                    <a href="#" class="btn btn-primary btn-sm"
+                                                        title="Unduh Dokumen"><i class="fas fa-download"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     @endforeach
-                                    @endforeach
+                                        @php
+                                            $totalData = count($tu) + count($yandas) + count($bms) + count($npd ?? []);
+                                        @endphp
+                                    
+                                        @if ($totalData > 0)
+                                            @foreach (['tu' => $tu, 'yandas' => $yandas, 'bms' => $bms, 'npd' => $npd ?? []] as $title => $data)
+                                                @foreach ($data as $item)
+                                                    <tr>
+                                                        <td>{{ $item->No_Arsip }}</td>
+                                                        <td>{{ $item->Nama_Lembaga }}</td>
+                                                        <td>{{ $item->Tanggal }}</td>
+                                                        <td>{{ $item->Kegiatan }}</td>
+                                                        <td>{{ $item->Keterangan }}</td>
+                                                        <td>{{ $item->Kategori }}</td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail"><i class="fas fa-eye"></i></a>
+                                                            <a href="#" class="btn btn-primary btn-sm" title="Unduh Dokumen"><i class="fas fa-download"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="7" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                        @endif
                                 </tbody>
                             </table>
                             {{ $tu->links() }}
@@ -227,26 +252,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    {{-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>

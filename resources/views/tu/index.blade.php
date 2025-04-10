@@ -124,6 +124,7 @@
         </div>
 
         <!-- Awal Modal Delete -->
+        @foreach ($tu as $item)
         <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -145,6 +146,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
         {{-- Akhir Modal Delete --}}
 
         <!-- Modal Awal Tambah Arsip -->

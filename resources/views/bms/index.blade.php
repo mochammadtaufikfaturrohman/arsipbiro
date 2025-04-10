@@ -108,7 +108,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="7" class="text-center">Tidak ada data</td>
+                                                <td colspan="8" class="text-center">Tidak ada data</td>
                                             </tr>
                                         @endif
                                     </tbody>
@@ -121,7 +121,9 @@
             </div>
             @include ('layout.footer')
         </div>
+
         <!-- Awal Modal Delete -->
+        @foreach ($bms as $item)
         <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -143,7 +145,9 @@
                 </div>
             </div>
         </div>
+        @endforeach
         {{-- Akhir Modal Delete --}}
+        
         <!-- Modal Tambah Arsip -->
         <div class="modal fade" id="tambahArsipModal" tabindex="-1" aria-labelledby="tambahArsipModalLabel"
             aria-hidden="true">

@@ -27,7 +27,6 @@
                     <p class="mb-4"> Bertanggung jawab dalam penyaluran bantuan sosial, pengawasan program
                         kesejahteraan masyarakat, dan memastikan transparansi dalam pendistribusian dana sosial.</p>
 
-
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -90,7 +89,8 @@
                                                     <td>{{ $item->Kegiatan }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
-                                                    <td> <a href="#" class="btn btn-primary btn-sm"
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary btn-sm"
                                                             title="Lihat Detail"><i class="fas fa-eye"></i></a>
                                                         <a href="{{ route('yandas.download', $item->id) }}"
                                                             class="btn btn-primary btn-sm" title="Unduh Dokumen"><i
@@ -104,7 +104,8 @@
                                                                     class="fas fa-edit"></i>
                                                             </button>
                                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                                data-bs-toggle="modal" data-bs-target="#hapusModal"><i
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#hapusModal{{ $item->id }}"><i
                                                                     class="fas fa-trash"></i>
                                                             </button>
                                                         </td>
@@ -113,7 +114,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="7" class="text-center">Tidak ada data</td>
+                                                <td colspan="8" class="text-center">Tidak ada data</td>
                                             </tr>
                                         @endif
                                     </tbody>
@@ -126,28 +127,34 @@
             </div>
             @include ('layout.footer')
         </div>
+
         <!-- Awal Modal Delete -->
-        <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data ini?
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{ route('yandas.destroy', $item->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button"class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit"class="btn btn-danger">Hapus</button>
-                        </form>
+        @foreach ($yandas as $item)
+            <div class="modal fade" id="hapusModal{{ $item->id }}" tabindex="-1" aria-labelledby="hapusModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="hapusModalLabel{{ $item->id }}">Konfirmasi Hapus</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close">X</button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda yakin ingin menghapus data ini?
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ route('yandas.destroy', $item->id) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button"class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit"class="btn btn-danger">Hapus</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
         {{-- Akhir Modal Delete --}}
 
         <!-- Modal Tambah Arsip -->
@@ -158,7 +165,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title" id="tambahArsipModalLabel">Tambah Arsip Baru</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close">x</button>
+                            aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
                         @include ('yandas.create')
