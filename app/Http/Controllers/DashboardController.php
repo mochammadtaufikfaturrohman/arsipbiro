@@ -13,13 +13,23 @@ class DashboardController extends BaseController
 {
     public function index()
     {
-        // Ambil data dari database
+        // Ambil data paginasi
         $tu = Tu::paginate(5);
         $yandas = Yandas::paginate(5);
         $bms = Bms::paginate(5);
         $npd = Npd::paginate(5);
-
-        // Kirim data ke view dashboard
-        return view('dashboard', compact('tu', 'yandas', 'bms', 'npd'));
+    
+        // Hitung jumlah total data
+        $totalTu = Tu::count();
+        $totalYandas = Yandas::count();
+        $totalBms = Bms::count();
+        $totalNpd = Npd::count();
+    
+        // Kirim semuanya ke view
+        return view('dashboard', compact(
+            'tu', 'yandas', 'bms', 'npd',
+            'totalTu', 'totalYandas', 'totalBms', 'totalNpd'
+        ));
     }
+    
 }

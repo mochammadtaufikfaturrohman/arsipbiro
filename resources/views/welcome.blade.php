@@ -69,12 +69,43 @@
 </head>
 
 <body>
-    <div class="overlay"></div>
-    <div class="content">
+    {{-- navbar --}}
+    <nav class="navbar">
+        <img src="https://d2s1u1uyrl4yfi.cloudfront.net/birokesra/wysiwyg/26b607be1faf7d4ced6bd140956a5a1a.webp"
+            alt="Logo kesra jabar" class="logo">
+        <div class="buttons">
+            <ul>
+                @if (Route::has('login'))
+                    @auth
+                        <li class="nav-item">
+                            <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}">Login</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a href="{{ route('register') }}">Register</a>
+                            </li>
+                        @endif
+                    @endauth
+                @endif
+            </ul>
+        </div>
+    </nav>
+    {{-- akhir navbar --}}
+    {{-- awal konten --}}
+    <div class="overlay">
+        <div class="content">
+            <h1>Selamat Datang di Penataan Arsip Biro Kesejahteraan Rakyat Provinsi Jawa Barat</h1>
+        </div>
+    </div>
+    {{-- <div class="content">
         <h1>Selamat Datang di Penataan Arsip Biro Kesejahteraan Rakyat Provinsi Jawa Barat</h1>
         <div class="container">
-            <h2>Jika Anda belum memiliki akun, silakan daftar terlebih dahulu.</h2>
-            <div class="buttons">
+
+            {{-- <div class="buttons">
                 @if (Route::has('login'))
                     @auth
                         <a href="{{ url('/dashboard') }}">Dashboard</a>
@@ -85,9 +116,9 @@
                         @endif
                     @endauth
                 @endif
-            </div>
-        </div>
-    </div>
+            </div> --}}
+        {{-- </div>
+    </div> --}}
 </body>
 
 </html>

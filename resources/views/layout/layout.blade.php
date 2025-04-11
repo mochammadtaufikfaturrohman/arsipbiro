@@ -48,34 +48,17 @@
                     <!-- Content Row -->
                     <div class="row">
                         <!-- card -->
-                        @if (Auth()->user()->role == 'admin')
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Total Admin</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
+                                                    Total Arsip TU</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalTu }}</div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-user fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Total Dokumen</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">215</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+                                                <i class="fas fa-archive fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -86,53 +69,50 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    Total Divisi</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Total Arsip Yandas</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalYandas }}</div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-folder fa-2x text-gray-300"></i>
+                                                <i class="fas fa-archive fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-danger shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Total Arsip NPD</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalNpd }}</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-archive fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Total Arsip BMS</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalBms }}</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-archive fa-2x text-gray-300"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                     </div>
-                @elseif (Auth()->user()->role == 'user')
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Total Dokumen</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">215</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-file-alt fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            Total Divisi</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-folder fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endif
 
                 <!-- Content Table -->
                 <div class="col-lg-15">
