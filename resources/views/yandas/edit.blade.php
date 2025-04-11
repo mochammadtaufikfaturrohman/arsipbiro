@@ -25,22 +25,14 @@
     <div class="form-group mb-3">
         <label for="Kategori">Kategori</label>
         <select class="form-control" id="Kategori" name="Kategori" required>
-            <option value="Arsip Dinamis" {{ $item->Kategori == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis
-            </option>
-            <option value="Arsip Statis" {{ $item->Kategori == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis
-            </option>
-            <option value="Arsip Vital" {{ $item->Kategori == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital
-            </option>
-            <option value="Arsip Permanen" {{ $item->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen
-            </option>
-            <option value="Arsip Retensi Jangka Pendek"
-                {{ $item->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>
-                Arsip Retensi Jangka Pendek</option>
-            <option value="Arsip Retensi Jangka Panjang"
-                {{ $item->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>
-                Arsip Retensi Jangka Panjang</option>
-            <option value="Arsip Elektronik" {{ $item->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip
-                Elektronik</option>
+            <option value="Arsip Dinamis" {{ $item->Kategori == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
+            <option value="Arsip Statis" {{ $item->Kategori == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
+            <option value="Arsip Vital" {{ $item->Kategori == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
+            <option value="Arsip Fisik" {{ $item->Kategori == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
+            <option value="Arsip Permanen" {{ $item->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
+            <option value="Arsip Retensi Jangka Pendek" {{ $item->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
+            <option value="Arsip Retensi Jangka Panjang" {{ $item->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>  Arsip Retensi Jangka Panjang</option>
+            <option value="Arsip Elektronik" {{ $item->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
         </select>
     </div>
     <div class="form-group mb-3">

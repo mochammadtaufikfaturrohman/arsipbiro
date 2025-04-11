@@ -29,6 +29,7 @@
             </option>
             <option value="Arsip Statis" {{ $item->Kategori == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
             <option value="Arsip Vital" {{ $item->Kategori == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
+            <option value="Arsip Fisik" {{ $item->Kategori == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
             <option value="Arsip Permanen" {{ $item->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen
             </option>
             <option value="Arsip Retensi Jangka Pendek"
