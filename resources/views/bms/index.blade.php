@@ -99,9 +99,11 @@
                                                                     data-bs-target="#editArsipModal{{ $item->id }}">
                                                                     <i class="fas fa-edit"></i>
                                                                 </button>
-                                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                                    data-bs-toggle="modal" data-bs-target="#hapusModal">
-                                                                    <i class="fas fa-trash"></i></button>
+                                                                <button type="button" class="btn btn-danger btn-sm"
+    data-bs-toggle="modal" data-bs-target="#hapusModal{{ $item->id }}">
+    <i class="fas fa-trash"></i>
+</button>
+
                                                         </td>
                                                     @endif
                                                 </tr>
@@ -123,30 +125,32 @@
         </div>
 
         <!-- Awal Modal Delete -->
-        @foreach ($bms as $item)
-        <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data ini?
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{ route('bms.destroy', $item->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button"class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit"class="btn btn-danger">Hapus</button>
-                        </form>
-                    </div>
-                </div>
+      <!-- Awal Modal Delete -->
+@foreach ($bms as $item)
+<div class="modal fade" id="hapusModal{{ $item->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $item->id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="hapusModalLabel{{ $item->id }}">Konfirmasi Hapus</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin menghapus data ini?
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('bms.destroy', $item->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
             </div>
         </div>
-        @endforeach
-        {{-- Akhir Modal Delete --}}
+    </div>
+</div>
+@endforeach
+
+
         
         <!-- Modal Tambah Arsip -->
         <div class="modal fade" id="tambahArsipModal" tabindex="-1" aria-labelledby="tambahArsipModalLabel"
