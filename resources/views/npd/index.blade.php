@@ -106,7 +106,7 @@
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
                                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                                data-bs-toggle="modal" data-bs-target="#hapusModal">
+                                                                data-bs-toggle="modal" data-bs-target="#hapusModal{{$item->id}}">
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </td>
@@ -131,16 +131,16 @@
 
         <!-- Awal Modal Delete -->
         @foreach ($npd as $item)
-            <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+            <div class="modal fade" id="hapusModal{{ $item->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $item->id }}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus</h5>
+                            <h5 class="modal-title" id="hapusModalLabel{{ $item->id }}">Konfirmasi Hapus</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close">X</button>
                         </div>
                         <div class="modal-body">
-                            Apakah Anda yakin ingin menghapus data <strong>{{ $item->No_Arsip }}</strong>ini?
+                            Apakah Anda yakin ingin menghapus data ini?
                         </div>
                         <div class="modal-footer">
                             <form action="{{ route('npd.destroy', $item->id) }}" method="POST"

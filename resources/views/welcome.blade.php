@@ -1,68 +1,13 @@
-{{-- <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <title>Arsip Biro Kesra Jabar</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-      
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-
-        <!-- Styles / Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
-        @endif
-    </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
-                        >
-                            Log in
-                        </a>
-
-                        @if (Route::has('register'))
-                            <a
-                                href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                                Register
-                            </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-        </header>
-
-        @if (Route::has('login'))
-            <div class="h-14.5 hidden lg:block"></div>
-        @endif
-    </body>
-</html> --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Biro Kesra Jabar') }}</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
@@ -96,29 +41,147 @@
     </nav>
     {{-- akhir navbar --}}
     {{-- awal konten --}}
-    <div class="overlay">
-        <div class="content">
-            <h1>Selamat Datang di Penataan Arsip Biro Kesejahteraan Rakyat Provinsi Jawa Barat</h1>
+    <section>
+        <div class="overlay">
+            <div class="content">
+                <h1>Selamat Datang di Penataan Arsip Biro Kesejahteraan Rakyat Provinsi Jawa Barat</h1>
+            </div>
         </div>
-    </div>
-    {{-- <div class="content">
-        <h1>Selamat Datang di Penataan Arsip Biro Kesejahteraan Rakyat Provinsi Jawa Barat</h1>
+    </section>
+    <section class="about-section">
+        <div class="about">
+            <div class="about-image">
+                <img src="https://img.freepik.com/free-vector/file-transfer-concept-illustration_114360-531.jpg?ga=GA1.1.1347691071.1735566400&semt=ais_hybrid&w=740"
+                    alt="Ilustrasi E-Arsip">
+            </div>
+            <div class="about-text">
+                <h1>Apa Itu E-Arsip?</h1>
+                <p>E-Arsip adalah sistem digital yang dirancang untuk menyimpan, mengelola, dan mengakses arsip secara
+                    elektronik. Dengan teknologi ini, pengguna dapat mengunggah dokumen penting, mengatur kategori
+                    arsip, serta mencari dokumen dengan cepat dan efisien.</p>
+            </div>
+        </div>
+    </section>
+    <section>
         <div class="container">
+            <h2>Tujuan E-Arsip</h2>
+            <div class="card-group">
+                <div class="card">
+                    <img src="https://img.freepik.com/free-vector/transfer-files-concept-illustration_114360-5838.jpg?ga=GA1.1.1347691071.1735566400&semt=ais_hybrid&w=740"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Akses dokumen menjadi lebih cepat dan efisien, karena e-Arsip memungkinkan
+                            pencarian dan pembukaan file hanya dengan beberapa klik.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://img.freepik.com/free-vector/digital-personal-files-concept-illustration_114360-5335.jpg?ga=GA1.1.1347691071.1735566400&semt=ais_hybrid&w=740"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">E-Arsip menghemat ruang penyimpanan fisik karena dokumen disimpan secara
+                            digital, memudahkan organisasi dalam mengelola volume besar arsip.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37375.jpg?ga=GA1.1.1347691071.1735566400&semt=ais_hybrid&w=740"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Keamanan arsip meningkat dengan adanya fitur enkripsi dan hak akses,
+                            sehingga hanya pihak tertentu yang dapat membuka dokumen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="fitur">
+            <h2>Fitur E-Arsip</h2>
+            <div class="card-group">
+                <div class="card-filter">
+                    <img src="{{ asset('template/img/gambar 1.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"> Login & Logout</h5>
+                        <p class="card-text">Fitur Login & Logout memungkinkan pengguna untuk masuk ke dalam sistem secara aman dan keluar saat telah selesai menggunakan layanan.</p>
+                    </div>
+                </div>
+                <div class="card-filter">
+                    <img src="{{ asset('template/img/gambar 2.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">CRUD Arsip</h5>
+                        <p class="card-text">Fitur CRUD Arsip memungkinkan administrator untuk membuat, melihat, memperbarui, dan menghapus data arsip secara efisien dalam sistem manajemen arsip.</p>
+                    </div>
+                </div>
+                <div class="card-filter">
+                    <img src="{{ asset('template/img/gambar 3.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">CRUD Admin</h5>
+                        <p class="card-text">Fitur CRUD Admin memungkinkan administrator untuk membuat akun admin baru dalam sistem manajemen arsip.</p>
+                    </div>
+                </div>
+                <div class="card-filter">
+                    <img src="{{ asset('template/img/gambar 4.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Dashboard Admin</h5>
+                        <p class="card-text">Menyediakan tampilan terpusat bagi admin untuk mengelola data, memantau aktivitas pengguna, dan mengatur konten sistem secara efisien.</p>
+                    </div>
+                </div>
+                <div class="card-filter">
+                    <img src="{{ asset('template/img/gambar 5.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Dashborad User</h5>
+                        <p class="card-text">Menyajikan informasi personal dan akses untuk melihat arsip yang telah diunggah tanpa fitur interaktif tambahan.</p>
+                    </div>
+                </div>
+                <div class="card-filter">
+                    <img src="{{ asset('template/img/gambar 6.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile</h5>
+                        <p class="card-text">Menampilkan data diri pengguna yang dapat dilihat dan diperbarui untuk memastikan informasi tetap akurat dan terkini.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- akhir konten --}}
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Alamat -->
+            <div class="footer-item">
+                <h4><i class="fa fa-map-marker-alt"></i> Alamat</h4>
+                <p>Jl. Diponegoro No.22, Citarum, Kec. Bandung<br>
+                    Wetan, Kota Bandung, Jawa Barat 40115</p>
+            </div>
 
-            {{-- <div class="buttons">
-                @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                @endif
-            </div> --}}
-        {{-- </div>
-    </div> --}}
+            <!-- Email -->
+            <div class="footer-item">
+                <h4><i class="fas fa-envelope"></i> Email</h4>
+                <p>birokesra@jabarprov.go.id</p>
+            </div>
+
+            <!-- Telepon -->
+            <div class="footer-item">
+                <h4><i class="fas fa-phone"></i> Nomor Telepon</h4>
+                <p>0224232448</p>
+            </div>
+
+            <!-- Sosial Media -->
+            <div class="footer-item">
+                <h4><i class="fas fa-globe"></i> Sosial Media</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/birokesrajabar"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/birokesrajabar"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/Birokesrajabar?t=363D1kaWtyo8ol_ZKhkAQg&s=09"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/channel/UCDkE835qNrFOCO6w6ZO2B4A"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@birokesrajabar"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

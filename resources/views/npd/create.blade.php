@@ -52,12 +52,12 @@
                 <option value="Pilih Kategori">Pilih Kategori</option>
                 <option value="Arsip Dinamis">Arsip Dinamis</option>
                 <option value="Arsip Statis">Arsip Statis</option>
-                <option value="Arsip Dinamis">Arsip Vital</option>
-                <option value="Arsip Statis">Arsip Fisik</option>
-                <option value="Arsip Dinamis">Arsip Permanen</option>
-                <option value="Arsip Dinamis">Arsip Retensi Jangka Pendek</option>
-                <option value="Arsip Statis">Arsip Retensi Jangka Panjang</option>
-                <option value="Arsip Statis">Arsip Elektronik</option>
+                <option value="Arsip Vital">Arsip Vital</option>
+                <option value="Arsip Fisik">Arsip Fisik</option>
+                <option value="Arsip Permanen">Arsip Permanen</option>
+                <option value="Arsip Retensi Jangka Pendek">Arsip Retensi Jangka Pendek</option>
+                <option value="Arsip Retensi Jangka Panjang">Arsip Retensi Jangka Panjang</option>
+                <option value="Arsip Elektronik">Arsip Elektronik</option>
             </select>
         </div>
 
