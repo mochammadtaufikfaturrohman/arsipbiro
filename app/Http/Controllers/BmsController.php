@@ -130,15 +130,5 @@ class BmsController extends Controller
         return view('bms.index', compact('bms'));
     }
 
-    public function liveSearch(Request $request)
-    {
-        $query = $request->input('query');
-
-        $bms = Bms::where('No_Arsip', 'LIKE', "%{$query}%")
-            ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
-            ->orWhere('Kegiatan', 'LIKE', "%{$query}%")
-            ->get();
-
-        return BmsResource::collection($bms);
-    }
+   
 }

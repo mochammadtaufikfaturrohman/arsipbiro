@@ -101,4 +101,18 @@ class YandasController extends Controller
 
         return redirect()->route('yandas')->with('error', 'File tidak ditemukan.');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Cari data berdasarkan No Arsip, Nama Lembaga, atau Kegiatan
+        $yandas = Yandas::where('No_Arsip', 'LIKE', "%{$query}%")
+            ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+            ->orWhere('Kegiatan', 'LIKE', "%{$query}%")
+            ->paginate(10)
+            ->appends($request->all()); // Menjaga query string saat berpindah halaman
+
+        return view('yandas.index', compact('yandas'));
+    }
 }
