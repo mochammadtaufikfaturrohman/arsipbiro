@@ -6,7 +6,7 @@ body {
 .overlay {
     background: url('https://awsimages.detik.net.id/community/media/visual/2022/07/20/kota-bandung_169.jpeg?w=600&q=90')no-repeat center center;
     background-size: cover;
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 70%;
     top: 0px;
@@ -15,16 +15,17 @@ body {
 }
   .overlay::before {
     content: "center";
-    position: fixed;
     top: 0;
     left: 0;
+    position: absolute;
     width: 100%;
-    height: 70%;
+    height: 100%;
     background: url('https://awsimages.detik.net.id/community/media/visual/2022/07/20/kota-bandung_169.jpeg?w=600&q=90') no-repeat center center;
     background-size: cover;
     filter: blur(3px); 
     border-radius: 50px;
     z-index: -1;
+
     }  
 
 .content {
@@ -33,21 +34,17 @@ body {
 }
 
 .content h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     padding-bottom: 10px ;
     padding-top:15%; 
     margin-bottom:5px;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    font-family: 'times new roman', sans-serif;
+    text-shadow: 3px 3px 10px rgba(49, 18, 18, 0.603);
 }
-
-/* .content h2 {
-    font-size: 1.8rem;
-    margin-top: 30px;
-    color :rgb(255, 255, 255)
-} */
 
 .buttons a {
     background-color: #2d8038;
+    font-family: Georgia;
     padding: 10px;
     border-radius: 5px;
     margin: 5px;
@@ -83,5 +80,186 @@ body {
 .navbar .logo {
     width: 25%; /* atau sesuaikan dengan ukuran yang diinginkan */
     height: auto;
- 
+}
+
+.container {
+    margin-top: 3%;
+    font-family: Georgia;
+}
+
+.container h2 {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    padding-top: 30px;
+    margin-top: 30px;
+    color: rgb(0, 0, 0);
+}
+
+.card-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-left: 25px;
+    padding: 30px 0;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    width: 300px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.fitur{
+    margin-top: 3%;
+    font-family: Georgia;
+}
+
+.fitur h2 {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    padding-top: 30px;
+    margin-top: 30px;
+    color: rgb(0, 0, 0);
+}
+
+
+.card-filter {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px;
+    width: 450px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-filter img{
+    width: 100%;
+    height:65%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: rgb(0, 0, 0);
+}
+.card-text {
+    font-size: 1.10rem;
+}
+.about-section {
+    padding-top: 30%;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap; /* supaya responsive di layar kecil */
+    /* border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.473); */
+    margin: 50px;
+}
+
+.about-image img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+.about-text {
+    max-width: 600px;
+}
+
+.about-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.about-text p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #444;
+    text-align: justify;
+}
+
+.footer {
+  background-color: #0e2246;
+  color: white;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+}
+
+.footer-logo img {
+  width: 30%;
+  margin-right: 10px;
+  vertical-align: middle;
+  border-radius: 10px;
+}
+
+.footer-item h4 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-item p {
+  margin: 25px;
+  color: #cbd5e1;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.social-icons a {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 8px;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 20px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  background-color: #64748b;
 }
