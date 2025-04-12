@@ -40,17 +40,19 @@
                                     <option value="arsip dinamis">Arsip Elektronik</option>
                                     <option value="arsip statis">Arsip Fisik</option>
                                 </select>
-                                <form
-                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-white border-0 small"
-                                            placeholder="Search for...">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button"><i
-                                                    class="fas fa-search fa-sm"></i></button>
-                                        </div>
+                                <form action="{{ route('bms.search') }}" method="GET"
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" name="query" class="form-control bg-white border-0 small"
+                                        placeholder="Search for..." aria-label="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
+                            
                                 @if (Auth()->user()->role == 'admin')
                                     <button type="button" class="btn btn-success"
                                         data-bs-toggle="modal"data-bs-target="#tambahArsipModal">

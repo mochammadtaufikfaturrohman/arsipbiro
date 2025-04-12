@@ -98,4 +98,47 @@ class BmsController extends Controller
 
         return redirect()->route('bms')->with('error', 'File tidak ditemukan.');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $kategori = $request->input('kategori');
+
+        $bms = Bms::query();
+
+        if ($query) {
+            $bms->where(function ($q) use ($query) {
+                $q->where('No_Arsip', 'like', "%{$query}%")
+                  ->orWhere('Nama_Lembaga', 'like', "%{$query}%")
+                  ->orWhere('Kegiatan', 'like', "%{$query}%");
+            });
+        }
+
+        if ($kategori) {
+            $bms->where('Kategori', $kategori);
+        }
+
+        $bms = $bms->paginate(10)->appends($request->only('query', 'kategori'));
+
+        return view('bms.index', compact('bms'));
+    }
+
+    public function filter(Request $request)
+    {
+        $kategori = $request->input('kategori');
+        $bms = Bms::where('Kategori', $kategori)->paginate(10);
+
+        return view('bms.index', compact('bms'));
+    }
+
+    public function liveSearch(Request $request)
+    {
+        $query = $request->input('query');
+
+        $bms = Bms::where('No_Arsip', 'LIKE', "%{$query}%")
+            ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+            ->orWhere('Kegiatan', 'LIKE', "%{$query}%")
+            ->get();
+
+        return BmsResource::collection($bms);
+    }
 }

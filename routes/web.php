@@ -29,11 +29,13 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function(){
     Route::get('/admin', [AdminController::class,'index'])->name('admin.index');
     Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');    
+    Route::get('/bms/search', [BmsController::class, 'search'])->name('bms.search');
 });
 
 // user routing
 Route::middleware('auth')->group(function(){
     Route::get('/user', [UserController::class,'index'])->name('user.index');
+    Route::get('/bms/search', [BmsController::class, 'search'])->name('bms.search');
         // Rute untuk setiap tim, menggunakan controller masing-masing
 });
 
