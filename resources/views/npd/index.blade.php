@@ -32,16 +32,23 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Non-Pelayanan Dasar</h6>
                             <div class="d-flex gap-2 mt-3">
-                                <select id="filterKategori" class="form-control" style="width: 160px;">
+                                <select id="filterKategori" class="form-control" style="width: 160px;" onchange="filterNpd()">
                                     <option value="">Semua Kategori</option>
-                                    <option value="arsip dinamis">Arsip Dinamis</option>
-                                    <option value="arsip statis">Arsip Statis</option>
-                                    <option value="arsip dinamis">Arsip Vital</option>
-                                    <option value="arsip statis">Arsip Permanen</option>
-                                    <option value="arsip dinamis">Arsip Retensi Jangka Pendek</option>
-                                    <option value="arsip statis">Arsip Retensi Jangka Panjang</option>
-                                    <option value="arsip dinamis">Arsip Elektronik</option>
-                                    <option value="arsip statis">Arsip Fisik</option>
+                                    <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
+                                    <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
+                                    <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
+                                    <option value="Arsip Fisik" {{ request('kategori') == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
+                                    <option value="Arsip Permanen" {{ request('kategori') == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
+                                    <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
+                                    <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
+                                    <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+                                </select>
+
+                                <select id="filterDivisi" class="form-control" style="width: 160px;" onchange="filterNpd()">
+                                    <option value="">Semua Divisi</option>
+                                    <option value="NPD 1" {{ request('divisi') == 'NPD 1' ? 'selected' : '' }}>NPD 1</option>
+                                    <option value="NPD 2" {{ request('divisi') == 'NPD 2' ? 'selected' : '' }}>NPD 2</option>
+                                    <option value="NPD 3" {{ request('divisi') == 'NPD 3' ? 'selected' : '' }}>NPD 3</option>
                                 </select>
                                 <form action="{{ route('npd.search') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
@@ -200,6 +207,14 @@
         <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
         <!-- Bootstrap 5.1 Bundle dengan Popper.js -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function filterNpd() {
+                const kategori = document.getElementById('filterKategori').value;
+                const divisi = document.getElementById('filterDivisi').value;
+                const url = "{{ route('npd.filter') }}";
+                window.location.href = `${url}?kategori=${kategori}&divisi=${divisi}`;
+            }
+        </script>
 </body>
 
 </html>

@@ -123,4 +123,25 @@ class NpdController extends Controller
 
         return view('npd.index', compact('npd'));
     }
+
+    public function filter(Request $request)
+    {
+        $kategori = $request->input('kategori');
+        $divisi = $request->input('divisi');
+
+        // Filter data berdasarkan kategori atau divisi jika ada
+        $npd = Npd::query();
+
+        if ($kategori) {
+            $npd->where('Kategori', $kategori);
+        }
+
+        if ($divisi) {
+            $npd->where('Divisi', $divisi);
+        }
+
+        $npd = $npd->paginate(10)->appends($request->all()); // Menjaga query string saat berpindah halaman
+
+        return view('npd.index', compact('npd'));
+    }
 }

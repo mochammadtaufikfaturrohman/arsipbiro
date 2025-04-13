@@ -29,16 +29,16 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Tata Usaha</h6>
                             <div class="d-flex gap-2 mt-3">
-                                <select id="filterKategori" class="form-control" style="width: 160px;">
-                                    <option value="">Semua Kategori</option>
-                                    <option value="arsip dinamis">Arsip Dinamis</option>
-                                    <option value="arsip statis">Arsip Statis</option>
-                                    <option value="arsip dinamis">Arsip Vital</option>
-                                    <option value="arsip statis">Arsip Permanen</option>
-                                    <option value="arsip dinamis">Arsip Retensi Jangka Pendek</option>
-                                    <option value="arsip statis">Arsip Retensi Jangka Panjang</option>
-                                    <option value="arsip dinamis">Arsip Elektronik</option>
-                                    <option value="arsip statis">Arsip Fisik</option>
+                                <select id="filterKategori" class="form-control" style="width: 160px;" onchange="filterKategori()">
+                                    <option value="" {{ request('kategori') == '' ? 'selected' : '' }}>Semua Kategori</option>
+                                    <option value="arsip dinamis" {{ request('kategori') == 'arsip dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
+                                    <option value="arsip statis" {{ request('kategori') == 'arsip statis' ? 'selected' : '' }}>Arsip Statis</option>
+                                    <option value="arsip vital" {{ request('kategori') == 'arsip vital' ? 'selected' : '' }}>Arsip Vital</option>
+                                    <option value="arsip permanen" {{ request('kategori') == 'arsip permanen' ? 'selected' : '' }}>Arsip Permanen</option>
+                                    <option value="arsip retensi jangka pendek" {{ request('kategori') == 'arsip retensi jangka pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
+                                    <option value="arsip retensi jangka panjang" {{ request('kategori') == 'arsip retensi jangka panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
+                                    <option value="arsip elektronik" {{ request('kategori') == 'arsip elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+                                    <option value="arsip fisik" {{ request('kategori') == 'arsip fisik' ? 'selected' : '' }}>Arsip Fisik</option>
                                 </select>
                                 <form action="{{ route('tu.search') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
@@ -72,8 +72,7 @@
                                                 <th>Aksi</th>
                                             @endif
                                         </tr>
-                                    </thead>
-                                    <tbody>
+                                    </thead><tbody>
                                         @if (isset($tu) && $tu->count() > 0)
                                             @foreach ($tu as $item)
                                                 <tr>
@@ -189,6 +188,13 @@
         <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
         <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function filterKategori() {
+                const kategori = document.getElementById('filterKategori').value;
+                const url = "{{ route('tu.filter') }}";
+                window.location.href = `${url}?kategori=${kategori}`;
+            }
+        </script>
 </body>
 
 </html>

@@ -115,4 +115,21 @@ class YandasController extends Controller
 
         return view('yandas.index', compact('yandas'));
     }
+
+    public function filter(Request $request)
+    {
+        $kategori = $request->input('kategori');
+
+        // Filter data berdasarkan kategori jika ada
+        $yandas = Yandas::query();
+
+        if ($kategori) {
+            $yandas->where('Kategori', $kategori);
+        }
+
+        $yandas = $yandas->paginate(10)->appends($request->all()); // Menjaga query string saat berpindah halaman
+
+        return view('yandas.index', compact('yandas'));
+    }
+    
 }

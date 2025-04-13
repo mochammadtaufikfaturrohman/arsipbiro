@@ -115,4 +115,20 @@ class TuController extends Controller
 
         return view('tu.index', compact('tu'));
     }
+
+    public function filter(Request $request)
+    {
+        $kategori = $request->input('kategori');
+
+        // Filter data berdasarkan kategori jika ada
+        $tu = Tu::query();
+
+        if ($kategori) {
+            $tu->where('Kategori', $kategori);
+        }
+
+        $tu = $tu->paginate(10)->appends($request->all()); // Menjaga query string saat berpindah halaman
+
+        return view('tu.index', compact('tu'));
+    }
 }

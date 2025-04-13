@@ -125,10 +125,16 @@ class BmsController extends Controller
     public function filter(Request $request)
     {
         $kategori = $request->input('kategori');
-        $bms = Bms::where('Kategori', $kategori)->paginate(10);
+
+        // Filter data berdasarkan kategori jika ada
+        $bms = Bms::query();
+
+        if ($kategori) {
+            $bms->where('Kategori', $kategori);
+        }
+
+        $bms = $bms->paginate(10)->appends($request->all()); // Menjaga query string saat berpindah halaman
 
         return view('bms.index', compact('bms'));
     }
-
-   
 }
