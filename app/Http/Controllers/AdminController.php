@@ -33,4 +33,18 @@ class AdminController extends Controller
 
         return redirect()->route('admin.index')->with('success', 'Admin berhasil ditambahkan!');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Cari data berdasarkan nama, email, atau role
+        $users = User::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('email', 'LIKE', "%{$query}%")
+            ->orWhere('role', 'LIKE', "%{$query}%")
+            ->paginate(10)
+            ->appends($request->all()); // Menjaga query string saat berpindah halaman
+
+        return view('admin.index', compact('users'));
+    }
 }

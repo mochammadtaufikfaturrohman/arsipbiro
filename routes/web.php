@@ -28,7 +28,8 @@ Route::middleware('auth')->group(function () {
 // admin routing
 Route::middleware('auth')->group(function(){
     Route::get('/admin', [AdminController::class,'index'])->name('admin.index');
-    Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');    
+    Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');  
+    Route::get('/admin/search', [AdminController::class, 'search'])->name('admin.search');  
     Route::get('dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
 Route::get('tu/filter', [TuController::class, 'filter'])->name('tu.filter');
 Route::get('yandas/filter', [YandasController::class, 'filter'])->name('yandas.filter');
@@ -47,6 +48,7 @@ Route::get('npd/filter', [NpdController::class, 'filter'])->name('npd.filter');
 // user routing
 Route::middleware('auth')->group(function(){
     Route::get('/user', [UserController::class,'index'])->name('user.index');
+    Route::get('/admin/search', [AdminController::class, 'search'])->name('admin.search');
     Route::get('/bms/search', [BmsController::class, 'search'])->name('bms.search');
     Route::get('bms/filter', [BmsController::class, 'filter'])->name('bms.filter');
 Route::get('npd/filter', [NpdController::class, 'filter'])->name('npd.filter');
