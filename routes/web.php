@@ -37,6 +37,11 @@ Route::get('tu/search', [TuController::class, 'search'])->name('tu.search');
  Route::get('bms/filter', [BmsController::class, 'filter'])->name('bms.filter');
 Route::get('npd/filter', [NpdController::class, 'filter'])->name('npd.filter');
  Route::get('npd/search', [NpdController::class, 'search'])->name('npd.search');
+ Route::get('/npd/download/{id}', [NpdController::class, 'download'])->name('npd.download');
+ Route::get('/bms/download/{id}', [BmsController::class, 'download'])->name('bms.download');
+ Route::get('/tu/download/{id}', [TuController::class, 'download'])->name('tu.download');
+ Route::get('/yandas/download/{id}', [YandasController::class, 'download'])->name('yandas.download');
+ 
 });
 
 // user routing
@@ -51,6 +56,11 @@ Route::get('tu/filter', [TuController::class, 'filter'])->name('tu.filter');
 Route::get('tu/search', [TuController::class, 'search'])->name('tu.search');
 Route::get('tu/filter', [TuController::class, 'filter'])->name('tu.filter');
 Route::get('yandas/search', [YandasController::class, 'search'])->name('yandas.search');   // Rute untuk setiap tim, menggunakan controller masing-masing
+//unduh user
+Route::get('/npd/download/{id}', [NpdController::class, 'download'])->name('npd.download');
+Route::get('/bms/download/{id}', [BmsController::class, 'download'])->name('bms.download');
+Route::get('/tu/download/{id}', [TuController::class, 'download'])->name('tu.download');
+Route::get('/yandas/download/{id}', [YandasController::class, 'download'])->name('yandas.download');
 });
 
 // raouting
@@ -65,16 +75,14 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 //yandascrud
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('yandas', YandasController::class);
-    Route::get('/yandas/download/{id}', [YandasController::class, 'download'])->name('yandas.download');
-
+   
 });
 Route::get('/yandas', [YandasController::class, 'index'])->name('yandas');
  
 //tucrud
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('tu', TuController::class);
-    Route::get('/tu/download/{id}', [TuController::class, 'download'])->name('tu.download');
-  
+   
     Route::get('/tu/create', [TuController::class, 'createForm'])->name('tu.create');
 
 });
@@ -84,16 +92,14 @@ Route::get('/tu', [TuController::class, 'index'])->name('tu');
 // npd CRUD
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('npd', NpdController::class);
-    Route::get('/npd/download/{id}', [NpdController::class, 'download'])->name('npd.download');
-    Route::get('/npd/create', [NpdController::class, 'create'])->name('npd.create');
+      Route::get('/npd/create', [NpdController::class, 'create'])->name('npd.create');
 });
 Route::get('/npd', [NpdController::class, 'index'])->name('npd');
  
 // bms CRUD
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('bms', BmsController::class);
-    Route::get('/bms/download/{id}', [BmsController::class, 'download'])->name('bms.download');
-    Route::get('/bms/create', [BmsController::class, 'create'])->name('bms.create');
+     Route::get('/bms/create', [BmsController::class, 'create'])->name('bms.create');
 });
 Route::get('/bms', [BmsController::class, 'index'])->name('bms');
  

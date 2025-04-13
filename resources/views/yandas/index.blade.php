@@ -42,16 +42,7 @@
                                     <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
                                     <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
                                     <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
-                                <select id="filterKategori" class="form-control" style="width: 160px;">
-                                    <option value="">Pilih Kategori</option>
-                                    <option value="arsip dinamis">Arsip Dinamis</option>
-                                    <option value="arsip statis">Arsip Statis</option>
-                                    <option value="arsip dinamis">Arsip Vital</option>
-                                    <option value="arsip statis">Arsip Permanen</option>
-                                    <option value="arsip dinamis">Arsip Retensi Jangka Pendek</option>
-                                    <option value="arsip statis">Arsip Retensi Jangka Panjang</option>
-                                    <option value="arsip dinamis">Arsip Elektronik</option>
-                                    <option value="arsip statis">Arsip Fisik</option>
+                              
                                 </select>
                                 <form action="{{ route('yandas.search') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">

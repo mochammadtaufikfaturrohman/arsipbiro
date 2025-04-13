@@ -43,6 +43,12 @@
                                     <option value="arsip dinamis">Arsip Elektronik</option>
                                     <option value="arsip statis">Arsip Fisik</option>
                                 </select>
+                                <select id="filterDivisi" class="form-control" style="width: 160px;" onchange="filterNpd()">
+                                    <option value="">Semua Divisi</option>
+                                    <option value="NPD 1" {{ request('divisi') == 'NPD 1' ? 'selected' : '' }}>NPD 1</option>
+                                    <option value="NPD 2" {{ request('divisi') == 'NPD 2' ? 'selected' : '' }}>NPD 2</option>
+                                    <option value="NPD 3" {{ request('divisi') == 'NPD 3' ? 'selected' : '' }}>NPD 3</option>
+                                </select>
                                 <form action="{{ route('npd.search') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" name="query" class="form-control bg-white border-0 small" placeholder="Search for..." value="{{ request('query') }}">
