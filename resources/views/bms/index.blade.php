@@ -88,7 +88,7 @@
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td> <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                                                        <a href="{{ route('bms.download', $item->id) }}" class="btn btn-primary btn-sm" title="Unduh Dokumen">
+                                                        <a href="{{ route('bms.download', $item->id) }}" class="btn btn-success btn-sm" title="Unduh Dokumen">
                                                             <i class="fas fa-download"></i></a>
                                                     </td>
                                                     @if (Auth()->user()->role == 'admin')
