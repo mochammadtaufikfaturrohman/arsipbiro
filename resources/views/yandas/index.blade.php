@@ -42,10 +42,20 @@
                                     <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
                                     <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
                                     <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+                                <select id="filterKategori" class="form-control" style="width: 160px;">
+                                    <option value="">Pilih Kategori</option>
+                                    <option value="arsip dinamis">Arsip Dinamis</option>
+                                    <option value="arsip statis">Arsip Statis</option>
+                                    <option value="arsip dinamis">Arsip Vital</option>
+                                    <option value="arsip statis">Arsip Permanen</option>
+                                    <option value="arsip dinamis">Arsip Retensi Jangka Pendek</option>
+                                    <option value="arsip statis">Arsip Retensi Jangka Panjang</option>
+                                    <option value="arsip dinamis">Arsip Elektronik</option>
+                                    <option value="arsip statis">Arsip Fisik</option>
                                 </select>
                                 <form action="{{ route('yandas.search') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" name="query" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan No Arsip, Nama Lembaga, atau Kegiatan" value="{{ request('query') }}">
+                                        <input type="text" name="query" class="form-control bg-white border-0 small" placeholder="Search for..." value="{{ request('query') }}">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fas fa-search fa-sm"></i>

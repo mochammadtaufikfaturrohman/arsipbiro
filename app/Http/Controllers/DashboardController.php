@@ -14,10 +14,10 @@ class DashboardController extends BaseController
     public function index()
     {
         // Ambil data paginasi
-        $tu = Tu::paginate(5);
-        $yandas = Yandas::paginate(5);
-        $bms = Bms::paginate(5);
-        $npd = Npd::paginate(5);
+        $tu = Tu::paginate(10);
+        $yandas = Yandas::paginate(10);
+        $bms = Bms::paginate(10);
+        $npd = Npd::paginate(10);
     
         // Hitung jumlah total data
         $totalTu = Tu::count();
