@@ -43,14 +43,13 @@
                                     <option value="arsip dinamis">Arsip Elektronik</option>
                                     <option value="arsip statis">Arsip Fisik</option>
                                 </select>
-                                <form
-                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <form action="{{ route('npd.search') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-white border-0 small"
-                                            placeholder="Search for...">
+                                        <input type="text" name="query" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan No Arsip, Nama Lembaga, atau Kegiatan" value="{{ request('query') }}">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button"><i
-                                                    class="fas fa-search fa-sm"></i></button>
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -91,22 +90,18 @@
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Divisi }}</td>
                                                     <td>{{ $item->Kategori }}</td>
-                                                    <td> <a href="#"
-                                                            class="btn btn-primary btn-sm"title="Lihat Detail"><i
-                                                                class="fas fa-eye"></i></a>
-                                                        <a href="{{ route('npd.download', $item->id) }}"
-                                                            class="btn btn-primary btn-sm" title="Unduh Dokumen">
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail"><i class="fas fa-eye"></i></a>
+                                                        <a href="{{ route('npd.download', $item->id) }}" class="btn btn-success btn-sm" title="Unduh Dokumen">
                                                             <i class="fas fa-download"></i>
+                                                        </a>
                                                     </td>
                                                     @if (Auth()->user()->role == 'admin')
                                                         <td class="text-nowrap">
-                                                            <button type="button" class="btn btn-warning btn-sm me-2"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#editArsipModal{{ $item->id }}">
+                                                            <button type="button" class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editArsipModal{{ $item->id }}">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
-                                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                                data-bs-toggle="modal" data-bs-target="#hapusModal{{$item->id}}">
+                                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $item->id }}">
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </td>
@@ -115,13 +110,15 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="9" class="text-center">Tidak ada data</td>
+                                                <td colspan="9" class="text-center">Tidak ada data ditemukan.</td>
                                             </tr>
                                         @endif
                                     </tbody>
                                 </table>
                             </div>
-                            {{ $npd->links() }}
+                            <div class="d-flex justify-content-center">
+                                {{ $npd->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

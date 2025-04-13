@@ -29,12 +29,20 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function(){
     Route::get('/admin', [AdminController::class,'index'])->name('admin.index');
     Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');    
+   
+Route::get('tu/search', [TuController::class, 'search'])->name('tu.search');
+    Route::get('/bms/search', [BmsController::class, 'search'])->name('bms.search');
+ Route::get('npd/search', [NpdController::class, 'search'])->name('npd.search');
 });
 
 // user routing
 Route::middleware('auth')->group(function(){
     Route::get('/user', [UserController::class,'index'])->name('user.index');
-        // Rute untuk setiap tim, menggunakan controller masing-masing
+    Route::get('/bms/search', [BmsController::class, 'search'])->name('bms.search');
+   Route::get('npd/search', [NpdController::class, 'search'])->name('npd.search');
+  
+Route::get('tu/search', [TuController::class, 'search'])->name('tu.search');
+Route::get('yandas/search', [YandasController::class, 'search'])->name('yandas.search');   // Rute untuk setiap tim, menggunakan controller masing-masing
 });
 
 // raouting

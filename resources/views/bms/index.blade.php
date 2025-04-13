@@ -40,17 +40,18 @@
                                     <option value="arsip dinamis">Arsip Elektronik</option>
                                     <option value="arsip statis">Arsip Fisik</option>
                                 </select>
-                                <form
-                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-white border-0 small"
-                                            placeholder="Search for...">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button"><i
-                                                    class="fas fa-search fa-sm"></i></button>
-                                        </div>
+                                <form action="{{ route('bms.search') }}" method="GET"
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" id="searchInput" name="query" class="form-control bg-white border-0 small" placeholder="Search for..." aria-label="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
+                            
                                 @if (Auth()->user()->role == 'admin')
                                     <button type="button" class="btn btn-success"
                                         data-bs-toggle="modal"data-bs-target="#tambahArsipModal">
@@ -76,7 +77,7 @@
                                             @endif
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="dataTableBody">
                                         @if (isset($bms) && $bms->count() > 0)
                                             @foreach ($bms as $item)
                                                 <tr>
@@ -86,22 +87,16 @@
                                                     <td>{{ $item->Kegiatan }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
-                                                    <td> <a href="#" class="btn btn-primary btn-sm"
-                                                            title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                                                        <a href="{{ route('bms.download', $item->id) }}"
-                                                            class="btn btn-primary btn-sm" title="Unduh Dokumen">
+                                                    <td> <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail"><i class="fas fa-eye"></i></a>
+                                                        <a href="{{ route('bms.download', $item->id) }}" class="btn btn-primary btn-sm" title="Unduh Dokumen">
                                                             <i class="fas fa-download"></i></a>
                                                     </td>
                                                     @if (Auth()->user()->role == 'admin')
                                                         <td class="text-nowrap">
-                                                            <button type="button" class="btn btn-warning btn-sm me-2"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#editArsipModal{{ $item->id }}">
+                                                            <button type="button" class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editArsipModal{{ $item->id }}">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
-                                                            <button type="button" class="btn btn-danger btn-sm"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#hapusModal{{ $item->id }}">
+                                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $item->id }}">
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </td>
@@ -200,6 +195,7 @@
         <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
         <!-- Bootstrap 5.1 Bundle dengan Popper.js -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      
 </body>
 
 </html>

@@ -109,4 +109,18 @@ class NpdController extends Controller
 
         return redirect()->route('npd')->with('error', 'File tidak ditemukan.');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Cari data berdasarkan No Arsip, Nama Lembaga, atau Kegiatan
+        $npd = Npd::where('No_Arsip', 'LIKE', "%{$query}%")
+            ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+            ->orWhere('Kegiatan', 'LIKE', "%{$query}%")
+            ->paginate(10)
+            ->appends($request->all());// Tambahkan pagination jika diperlukan
+
+        return view('npd.index', compact('npd'));
+    }
 }
