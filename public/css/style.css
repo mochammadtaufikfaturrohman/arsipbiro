@@ -3,6 +3,7 @@ body {
     margin: 0;
     color: white;
 }
+
 .overlay {
     background: url('https://awsimages.detik.net.id/community/media/visual/2022/07/20/kota-bandung_169.jpeg?w=600&q=90')no-repeat center center;
     background-size: cover;
@@ -38,13 +39,13 @@ body {
     padding-bottom: 10px ;
     padding-top:15%; 
     margin-bottom:5px;
-    font-family: 'times new roman', sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-shadow: 3px 3px 10px rgba(49, 18, 18, 0.603);
 }
 
 .buttons a {
     background-color: #2d8038;
-    font-family: Georgia;
+    /* font-family: Georgia; */
     padding: 10px;
     border-radius: 5px;
     margin: 5px;
@@ -78,16 +79,17 @@ body {
 }
 
 .navbar .logo {
-    width: 25%; /* atau sesuaikan dengan ukuran yang diinginkan */
+    width:30vh; /* atau sesuaikan dengan ukuran yang diinginkan */
     height: auto;
 }
 
 .container {
     margin-top: 3%;
-    font-family: Georgia;
+    /* font-family: Georgia; */
 }
 
-.container h2 {
+.container h2, 
+.about-section h2 {
     display: flex;
     justify-content: center;
     font-size: 3rem;
@@ -125,7 +127,7 @@ body {
 
 .fitur{
     margin-top: 3%;
-    font-family: Georgia;
+    /* font-family: Georgia; */
 }
 
 .fitur h2 {
@@ -165,7 +167,8 @@ body {
 .card-text {
     font-size: 1.10rem;
 }
-.about-section {
+
+ .about-section {
     padding-top: 30%;
 }
 
@@ -174,14 +177,13 @@ body {
     align-items: center;
     justify-content: center;
     gap: 40px;
-    flex-wrap: wrap; /* supaya responsive di layar kecil */
-    /* border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.473); */
+     flex-wrap: wrap; 
     margin: 50px;
-}
+}  
 
 .about-image img {
-    max-width: 400px;
+    border-radius: 50px;
+    max-width: 500px;
     width: 100%;
     height: auto;
 }
@@ -197,20 +199,20 @@ body {
 }
 
 .about-text p {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     line-height: 1.6;
-    color: #444;
+    color: #000000;
     text-align: justify;
-}
+} 
 
-.footer {
+.footer  {
   background-color: #0e2246;
   color: white;
   padding: 40px 20px;
-  font-family: 'Segoe UI', sans-serif;
+  /* font-family: 'Segoe UI', sans-serif; */
 }
 
-.footer-container {
+.footer-container  {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -241,6 +243,13 @@ body {
   color: #cbd5e1;
 }
 
+.footer-bottom {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
 .social-icons {
   display: flex;
   gap: 10px;
@@ -263,3 +272,190 @@ body {
 .social-icons a:hover {
   background-color: #64748b;
 }
+/* CSS Responsif untuk Semua Ukuran Mobile (320px - 991px) */
+@media screen and (max-width: 991px) {
+    /* Navbar */
+    .navbar {
+      align-items: center;
+      padding: 10px;
+    }
+    
+    .navbar ul {
+      gap: 12px;
+      margin: 8px 0;
+    }
+    
+    .navbar .logo {
+      width: 35vw;
+      margin-bottom: 10px;
+    }
+    
+    /* Hero Section */
+    .overlay {
+      height: 60%;
+      border-radius: 20px;
+    }
+    
+    .content h1 {
+      font-size: 2.2rem;
+      padding-top: 25%;
+    }
+    
+    .buttons a {
+      padding: 10px;
+      font-size: 0.95rem;
+    }
+    
+    /* Section Headings */
+    .container h2, .about-section h2, .fitur h2 {
+      font-size: 2.2rem;
+      padding-top: 15px;
+      margin-top: 25px;
+    }
+    
+    /* Cards */
+    .card-group {
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0;
+    }
+    
+    .card {
+      width: 90%;
+      margin-bottom: 20px;
+    }
+    
+    .card-filter {
+      width: 90%;
+      margin: 12px auto;
+    }
+    
+    /* About Section */
+    .about-section {
+      padding-top: 50%;
+    }
+    
+    .about {
+      margin: 20px;
+    }
+    
+    .about-image img {
+      max-width: 100%;
+      border-radius: 20px;
+    }
+    
+    .about-text h1 {
+      font-size: 2.2rem;
+    }
+    
+    .about-text p {
+      font-size: 1.5rem;
+    }
+    
+    /* Footer */
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 25px 15px;
+    }
+    
+    .footer-logo img {
+      width: 50%;
+      margin: 0 auto 10px;
+    }
+    
+    .footer-item h4 {
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    
+    .footer-item p {
+      margin: 10px;
+      font-size: 0.95rem;
+    }
+    
+    .social-icons {
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    /* Penyesuaian untuk Mobile Besar (768px - 991px) */
+    @media screen and (min-width: 768px) {
+      .card-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      
+      .card {
+        width: 45%;
+      }
+      
+      .card-filter {
+        width: 45%;
+        margin: 15px;
+      }
+      
+      .footer-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+      
+      .footer-item {
+        width: 45%;
+        margin-bottom: 20px;
+      }
+      
+      .social-icons {
+        justify-content: flex-start;
+      }
+    }
+    
+    /* Penyesuaian untuk Mobile Kecil (max-width: 480px) */
+    @media screen and (max-width: 480px) {
+      .navbar ul {
+        gap: 8px;
+      }
+      
+      .content h1 {
+        font-size: 1.8rem;
+        padding-top: 30%;
+      }
+      
+      .buttons a {
+        padding: 8px;
+        font-size: 0.85rem;
+      }
+      
+      .card {
+        width: 95%;
+      }
+      
+      .card-filter {
+        width: 95%;
+      }
+      
+      .about-text h1 {
+        font-size: 1.8rem;
+      }
+      
+      .about-text p {
+        font-size: 1.2rem;
+      }
+      
+      .footer-logo img {
+        width: 60%;
+      }
+      
+      .footer-item h4 {
+        font-size: 1rem;
+      }
+      
+      .footer-item p {
+        font-size: 0.85rem;
+      }
+    }
+  }

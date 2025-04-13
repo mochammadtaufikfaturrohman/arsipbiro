@@ -33,7 +33,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Pelayanan Dasar</h6>
                             <div class="d-flex gap-2 mt-3">
                                 <select id="filterKategori" class="form-control" style="width: 160px;">
-                                    <option value="">Semua Kategori</option>
+                                    <option value="">Pilih Kategori</option>
                                     <option value="arsip dinamis">Arsip Dinamis</option>
                                     <option value="arsip statis">Arsip Statis</option>
                                     <option value="arsip dinamis">Arsip Vital</option>
