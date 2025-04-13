@@ -116,9 +116,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="d-flex justify-content-center">
                                 {{ $npd->links() }}
-                            </div>
                         </div>
                     </div>
                 </div>
