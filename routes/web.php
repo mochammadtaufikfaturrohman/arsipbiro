@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');  
     Route::get('/admin/search', [AdminController::class, 'search'])->name('admin.search');  
     Route::get('dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
+    Route::get('dashboard/filter', [DashboardController::class, 'filter'])->name('dashboard.filter');
 Route::get('tu/filter', [TuController::class, 'filter'])->name('tu.filter');
 Route::get('yandas/filter', [YandasController::class, 'filter'])->name('yandas.filter');
 Route::get('tu/search', [TuController::class, 'search'])->name('tu.search');
@@ -54,7 +55,9 @@ Route::middleware('auth')->group(function(){
 Route::get('npd/filter', [NpdController::class, 'filter'])->name('npd.filter');
    Route::get('npd/search', [NpdController::class, 'search'])->name('npd.search');
    Route::get('dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
-Route::get('tu/filter', [TuController::class, 'filter'])->name('tu.filter');
+   Route::get('dashboard/filter', [DashboardController::class, 'filter'])->name('dashboard.filter');
+   
+   Route::get('tu/filter', [TuController::class, 'filter'])->name('tu.filter');
 Route::get('tu/search', [TuController::class, 'search'])->name('tu.search');
 Route::get('tu/filter', [TuController::class, 'filter'])->name('tu.filter');
 Route::get('yandas/search', [YandasController::class, 'search'])->name('yandas.search');   // Rute untuk setiap tim, menggunakan controller masing-masing

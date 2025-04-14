@@ -31,5 +31,77 @@ class DashboardController extends BaseController
             'totalTu', 'totalYandas', 'totalBms', 'totalNpd'
         ));
     }
-    
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Cari data di semua divisi berdasarkan No Arsip, Nama Lembaga, atau Kegiatan
+        $tu = Tu::where('No_Arsip', 'LIKE', "%{$query}%")
+            ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+            ->orWhere('Kegiatan', 'LIKE', "%{$query}%")
+            ->paginate(10);
+
+        $yandas = Yandas::where('No_Arsip', 'LIKE', "%{$query}%")
+            ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+            ->orWhere('Kegiatan', 'LIKE', "%{$query}%")
+            ->paginate(10);
+
+        $bms = Bms::where('No_Arsip', 'LIKE', "%{$query}%")
+            ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+            ->orWhere('Kegiatan', 'LIKE', "%{$query}%")
+            ->paginate(10);
+
+        $npd = Npd::where('No_Arsip', 'LIKE', "%{$query}%")
+            ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+            ->orWhere('Kegiatan', 'LIKE', "%{$query}%")
+            ->paginate(10);
+
+        // Hitung jumlah total data
+        $totalTu = Tu::count();
+        $totalYandas = Yandas::count();
+        $totalBms = Bms::count();
+        $totalNpd = Npd::count();
+
+        // Kirim semuanya ke view
+        return view('dashboard', compact(
+            'tu', 'yandas', 'bms', 'npd',
+            'totalTu', 'totalYandas', 'totalBms', 'totalNpd'
+        ));
+    }
+
+    public function filter(Request $request)
+    {
+        $kategori = $request->input('kategori');
+
+        // Filter data berdasarkan kategori jika ada
+        $tu = Tu::query();
+        $yandas = Yandas::query();
+        $bms = Bms::query();
+        $npd = Npd::query();
+
+        if ($kategori) {
+            $tu->where('Kategori', $kategori);
+            $yandas->where('Kategori', $kategori);
+            $bms->where('Kategori', $kategori);
+            $npd->where('Kategori', $kategori);
+        }
+
+        $tu = $tu->paginate(10)->appends($request->all());
+        $yandas = $yandas->paginate(10)->appends($request->all());
+        $bms = $bms->paginate(10)->appends($request->all());
+        $npd = $npd->paginate(10)->appends($request->all());
+
+        // Hitung jumlah total data
+        $totalTu = Tu::count();
+        $totalYandas = Yandas::count();
+        $totalBms = Bms::count();
+        $totalNpd = Npd::count();
+
+        // Kirim semuanya ke view
+        return view('dashboard', compact(
+            'tu', 'yandas', 'bms', 'npd',
+            'totalTu', 'totalYandas', 'totalBms', 'totalNpd'
+        ));
+    }
 }
