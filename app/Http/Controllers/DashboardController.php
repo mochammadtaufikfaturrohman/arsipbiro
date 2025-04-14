@@ -73,8 +73,9 @@ class DashboardController extends BaseController
     public function filter(Request $request)
     {
         $kategori = $request->input('kategori');
+        $query = $request->input('query');
 
-        // Filter data berdasarkan kategori jika ada
+        // Filter dan cari data di semua divisi
         $tu = Tu::query();
         $yandas = Yandas::query();
         $bms = Bms::query();
@@ -85,6 +86,32 @@ class DashboardController extends BaseController
             $yandas->where('Kategori', $kategori);
             $bms->where('Kategori', $kategori);
             $npd->where('Kategori', $kategori);
+        }
+
+        if ($query) {
+            $tu->where(function ($q) use ($query) {
+                $q->where('No_Arsip', 'LIKE', "%{$query}%")
+                    ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+                    ->orWhere('Kegiatan', 'LIKE', "%{$query}%");
+            });
+
+            $yandas->where(function ($q) use ($query) {
+                $q->where('No_Arsip', 'LIKE', "%{$query}%")
+                    ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+                    ->orWhere('Kegiatan', 'LIKE', "%{$query}%");
+            });
+
+            $bms->where(function ($q) use ($query) {
+                $q->where('No_Arsip', 'LIKE', "%{$query}%")
+                    ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+                    ->orWhere('Kegiatan', 'LIKE', "%{$query}%");
+            });
+
+            $npd->where(function ($q) use ($query) {
+                $q->where('No_Arsip', 'LIKE', "%{$query}%")
+                    ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+                    ->orWhere('Kegiatan', 'LIKE', "%{$query}%");
+            });
         }
 
         $tu = $tu->paginate(10)->appends($request->all());

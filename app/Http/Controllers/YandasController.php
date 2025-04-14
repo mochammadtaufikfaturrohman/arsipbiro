@@ -119,12 +119,21 @@ class YandasController extends Controller
     public function filter(Request $request)
     {
         $kategori = $request->input('kategori');
+        $query = $request->input('query');
 
-        // Filter data berdasarkan kategori jika ada
+        // Filter dan cari data berdasarkan kategori dan kata kunci
         $yandas = Yandas::query();
 
         if ($kategori) {
             $yandas->where('Kategori', $kategori);
+        }
+
+        if ($query) {
+            $yandas->where(function ($q) use ($query) {
+                $q->where('No_Arsip', 'LIKE', "%{$query}%")
+                    ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+                    ->orWhere('Kegiatan', 'LIKE', "%{$query}%");
+            });
         }
 
         $yandas = $yandas->paginate(10)->appends($request->all()); // Menjaga query string saat berpindah halaman

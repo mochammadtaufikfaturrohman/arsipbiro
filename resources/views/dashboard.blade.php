@@ -120,26 +120,22 @@
                         <div class="card-header py-3">
                             <h6 class="m-10 font-weight-bold text-primary">Dokumen Semua Divisi</h6>
                             <div class="d-flex gap-2 mt-3">
-                                <select id="filterKategori" class="form-control" style="width: 160px;" onchange="filterKategori()">
-                                    <option value="">Pilih Kategori</option>
-                                    <option value="arsip dinamis" {{ request('kategori') == 'arsip dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
-                                    <option value="arsip statis" {{ request('kategori') == 'arsip statis' ? 'selected' : '' }}>Arsip Statis</option>
-                                    <option value="arsip vital" {{ request('kategori') == 'arsip vital' ? 'selected' : '' }}>Arsip Vital</option>
-                                    <option value="arsip permanen" {{ request('kategori') == 'arsip permanen' ? 'selected' : '' }}>Arsip Permanen</option>
-                                    <option value="arsip retensi jangka pendek" {{ request('kategori') == 'arsip retensi jangka pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
-                                    <option value="arsip retensi jangka panjang" {{ request('kategori') == 'arsip retensi jangka panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
-                                    <option value="arsip elektronik" {{ request('kategori') == 'arsip elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
-                                    <option value="arsip fisik" {{ request('kategori') == 'arsip fisik' ? 'selected' : '' }}>Arsip Fisik</option>
-                                </select>
-                                <form action="{{ route('dashboard.search') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" name="query" class="form-control bg-white border-0 small" placeholder="Search for..." value="{{ request('query') }}">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
+                                <form action="{{ route('dashboard.filter') }}" method="GET" class="d-flex">
+                                    <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;">
+                                        <option value="">Pilih Kategori</option>
+                                        <option value="arsip dinamis" {{ request('kategori') == 'arsip dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
+                                        <option value="arsip statis" {{ request('kategori') == 'arsip statis' ? 'selected' : '' }}>Arsip Statis</option>
+                                        <option value="arsip vital" {{ request('kategori') == 'arsip vital' ? 'selected' : '' }}>Arsip Vital</option>
+                                        <option value="arsip permanen" {{ request('kategori') == 'arsip permanen' ? 'selected' : '' }}>Arsip Permanen</option>
+                                        <option value="arsip retensi jangka pendek" {{ request('kategori') == 'arsip retensi jangka pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
+                                        <option value="arsip retensi jangka panjang" {{ request('kategori') == 'arsip retensi jangka panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
+                                        <option value="arsip elektronik" {{ request('kategori') == 'arsip elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+                                        <option value="arsip fisik" {{ request('kategori') == 'arsip fisik' ? 'selected' : '' }}>Arsip Fisik</option>
+                                    </select>
+                                    <input type="text" name="query" class="form-control ml-2" placeholder="Search for..." value="{{ request('query') }}">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
                                 </form>
                             </div>
                         </div>

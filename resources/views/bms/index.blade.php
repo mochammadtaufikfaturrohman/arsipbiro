@@ -29,34 +29,28 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Bina Mental Spiritual</h6>
                             <div class="d-flex gap-2 mt-3">
-                                <select id="filterKategori" class="form-control" style="width: 160px;" onchange="filterBms()">
-                                    <option value="">Semua Kategori</option>
-                                    <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
-                                    <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
-                                    <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
-                                    <option value="Arsip Fisik" {{ request('kategori') == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
-                                    <option value="Arsip Permanen" {{ request('kategori') == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
-                                    <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
-                                    <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
-                                    <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
-                                </select>
-                                <form action="{{ route('bms.search') }}" method="GET"
-                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" id="searchInput" name="query" class="form-control bg-white border-0 small" placeholder="Search for..." aria-label="Search">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                            
-                                @if (Auth()->user()->role == 'admin')
-                                    <button type="button" class="btn btn-success"
-                                        data-bs-toggle="modal"data-bs-target="#tambahArsipModal">
-                                        Tambah Arsip
+                                <form action="{{ route('bms.filter') }}" method="GET" class="d-flex">
+                                    <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;">
+                                        <option value="">Semua Kategori</option>
+                                        <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
+                                        <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
+                                        <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
+                                        <option value="Arsip Fisik" {{ request('kategori') == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
+                                        <option value="Arsip Permanen" {{ request('kategori') == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
+                                        <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
+                                        <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
+                                        <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+                                    </select>
+                                    <input type="text" name="query" class="form-control ml-2" placeholder="Cari..." value="{{ request('query') }}">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search fa-sm"></i>
                                     </button>
+                                </form>
+                                @if (Auth()->user()->role == 'admin')
+                                <button type="button" class="btn btn-success ml-auto"
+                                    data-bs-toggle="modal" data-bs-target="#tambahArsipModal">
+                                    </i> Tambah Arsip
+                                </button>
                                 @endif
                             </div>
                         </div>

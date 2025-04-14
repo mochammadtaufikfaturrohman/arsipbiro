@@ -119,12 +119,21 @@ class TuController extends Controller
     public function filter(Request $request)
     {
         $kategori = $request->input('kategori');
+        $query = $request->input('query');
 
-        // Filter data berdasarkan kategori jika ada
+        // Filter dan cari data berdasarkan kategori dan kata kunci
         $tu = Tu::query();
 
         if ($kategori) {
             $tu->where('Kategori', $kategori);
+        }
+
+        if ($query) {
+            $tu->where(function ($q) use ($query) {
+                $q->where('No_Arsip', 'LIKE', "%{$query}%")
+                    ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
+                    ->orWhere('Kegiatan', 'LIKE', "%{$query}%");
+            });
         }
 
         $tu = $tu->paginate(10)->appends($request->all()); // Menjaga query string saat berpindah halaman
