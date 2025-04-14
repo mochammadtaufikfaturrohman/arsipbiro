@@ -34,7 +34,7 @@
                             <div class="d-flex gap-2 mt-3">
                                 <form action="{{ route('npd.filter') }}" method="GET" class="d-flex">
                                     <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;">
-                                        <option value="">Semua Kategori</option>
+                                        <option value="">Pilih Kategori</option>
                                         <option value="arsip dinamis" {{ request('kategori') == 'arsip dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
                                         <option value="arsip statis" {{ request('kategori') == 'arsip statis' ? 'selected' : '' }}>Arsip Statis</option>
                                         <option value="arsip vital" {{ request('kategori') == 'arsip vital' ? 'selected' : '' }}>Arsip Vital</option>
@@ -45,7 +45,7 @@
                                         <option value="arsip fisik" {{ request('kategori') == 'arsip fisik' ? 'selected' : '' }}>Arsip Fisik</option>
                                     </select>
                                     <select name="divisi" id="filterDivisi" class="form-control ml-2" style="width: 160px;">
-                                        <option value="">Semua Divisi</option>
+                                        <option value="">Pilih Divisi</option>
                                         <option value="NPD 1" {{ request('divisi') == 'NPD 1' ? 'selected' : '' }}>NPD 1</option>
                                         <option value="NPD 2" {{ request('divisi') == 'NPD 2' ? 'selected' : '' }}>NPD 2</option>
                                         <option value="NPD 3" {{ request('divisi') == 'NPD 3' ? 'selected' : '' }}>NPD 3</option>

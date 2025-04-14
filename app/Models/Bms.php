@@ -21,6 +21,7 @@ class Bms extends Model
         'Tanggal',
         'Kegiatan',
         'Keterangan',
+        'Divisi',
         'Kategori',
         'Dokumen',
     ];

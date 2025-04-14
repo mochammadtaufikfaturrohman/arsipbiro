@@ -381,7 +381,33 @@ body {
     }
     
     /* Penyesuaian untuk Mobile Besar (768px - 991px) */
-    @media screen and (min-width: 768px) {
+     @media screen and (min-width: 768px) {
+      .content h1 {
+        font-size: 2.2rem;
+        padding-top: 20%;
+      }
+
+      .about-section {
+        padding-top: 20%;
+      }
+      
+      .about {
+        margin: 20px;
+      }
+      
+      .about-image img {
+        max-width: 75%;
+        border-radius: 20px;
+      }
+      
+      .about-text h1 {
+        font-size: 2.2rem;
+      }
+      
+      .about-text p {
+        font-size: 1.5rem;
+      }
+
       .card-group {
         flex-direction: row;
         flex-wrap: wrap;
@@ -412,7 +438,7 @@ body {
       .social-icons {
         justify-content: flex-start;
       }
-    }
+    } 
     
     /* Penyesuaian untuk Mobile Kecil (max-width: 480px) */
     @media screen and (max-width: 480px) {
