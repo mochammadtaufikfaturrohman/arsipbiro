@@ -89,11 +89,12 @@
                                                     <td>{{ $item->Nama_Lembaga }}</td>
                                                     <td>{{ $item->Tanggal }}</td>
                                                     <td>{{ $item->Kegiatan }}</td>
-                                                    <td>{{ $item->Keterangan }}</td>
-                                                    <td>{{ $item->Divisi }}</td>
+                                                    <td class="kolom-terbatas">{{ $item->Kegiatan }}</td>
+                                                    <td class="kolom-terbatas">{{ $item->Keterangan }}</td>
+                                                    
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td>
-                                                        <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail"><i class="fas fa-eye"></i></a>
+                                                        <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail" data-bs-toggle="modal" data-bs-target="#viewModal{{ $item->id }}"><i class="fas fa-eye"></i></a>
                                                         <a href="{{ route('npd.download', $item->id) }}" class="btn btn-success btn-sm" title="Unduh Dokumen">
                                                             <i class="fas fa-download"></i>
                                                         </a>
@@ -191,6 +192,40 @@
         @endforeach
         <!-- Akhir Modal Edit Arsip -->
 
+        <!-- Modal View Dokumen -->
+        @foreach ($npd as $dokumen)
+            <div class="modal fade" id="viewModal{{ $dokumen->id }}" tabindex="-1" aria-labelledby="viewModalLabel{{ $dokumen->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="viewModalLabel{{ $dokumen->id }}">Detail Dokumen</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h6><strong>No Arsip:</strong> {{ $dokumen->No_Arsip }}</h6>
+                            <h6><strong>Nama Lembaga:</strong> {{ $dokumen->Nama_Lembaga }}</h6>
+                            <h6><strong>Tanggal:</strong> {{ $dokumen->Tanggal }}</h6>
+                            <h6><strong>Kegiatan:</strong> {{ $dokumen->Kegiatan }}</h6>
+                            <h6><strong>Keterangan:</strong> {{ $dokumen->Keterangan }}</h6>
+                            <h6><strong>Divisi:</strong> {{ $dokumen->Divisi }}</h6>
+                            <h6><strong>Kategori:</strong> {{ $dokumen->Kategori }}</h6>
+                            @if ($dokumen->Dokumen)
+                                <div class="mt-4">
+                                    <h6><strong>Preview Dokumen:</strong></h6>
+                                    <iframe src="{{ asset('storage/' . $dokumen->Dokumen) }}" frameborder="0" width="100%" height="400px"></iframe>
+                                </div>
+                            @else
+                                <p class="text-danger">Dokumen tidak tersedia.</p>
+                            @endif
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        <!-- Akhir Modal View Dokumen -->
 
         <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 

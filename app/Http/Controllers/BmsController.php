@@ -90,14 +90,14 @@ class BmsController extends Controller
     {
         $bms = Bms::findOrFail($id);
 
-        $filePath = storage_path('app/public/' . $bms->Dokumen);
-
-        if (file_exists($filePath)) {
+        if ($bms->Dokumen) {
+            $filePath = storage_path('app/public/' . $bms->Dokumen);
             return response()->download($filePath);
         }
 
-        return redirect()->route('bms')->with('error', 'File tidak ditemukan.');
+        return redirect()->route('bms.index')->with('error', 'Dokumen tidak ditemukan.');
     }
+
     public function search(Request $request)
     {
         $query = $request->input('query');

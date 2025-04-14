@@ -85,8 +85,10 @@
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td>
-                                                        <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail"><i class="fas fa-eye"></i></a>
-                                                        <a href="{{ route('yandas.download', $item->id) }}" class="btn btn-success btn-sm" title="Unduh Dokumen">
+                                                        <a href="#" class="btn btn-primary btn-sm" title="Preview Dokumen"
+   data-bs-toggle="modal" data-bs-target="#viewYandasModal{{ $item->id }}">
+   <i class="fas fa-eye"></i>
+</a>    <a href="{{ route('yandas.download', $item->id) }}" class="btn btn-success btn-sm" title="Unduh Dokumen">
                                                             <i class="fas fa-download"></i>
                                                         </a>
                                                     </td>
@@ -151,9 +153,9 @@
         {{-- Akhir Modal Delete --}}
 
         <!-- Modal Tambah Arsip -->
-        <div class="modal fade" id="tambahArsipModal" tabindex="-1" aria-labelledby="tambahArsipModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+       <div class="modal fade" id="previewYandasModal{{ $item->id }}" tabindex="-1"
+     aria-labelledby="previewYandasModalLabel{{ $item->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="tambahArsipModalLabel">Tambah Arsip Baru</h4>
@@ -167,6 +169,42 @@
             </div>
         </div>
         <!--  Akhir Modal Tambah Arsip -->
+        <!-- Modal Preview Arsip -->
+        @foreach ($yandas as $item)
+<div class="modal fade" id="viewYandasModal{{ $item->id }}" tabindex="-1" aria-labelledby="viewYandasModalLabel{{ $item->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewYandasModalLabel{{ $item->id }}">Detail Dokumen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6><strong>No Arsip:</strong> {{ $item->No_Arsip }}</h6>
+                <h6><strong>Nama Lembaga:</strong> {{ $item->Nama_Lembaga }}</h6>
+                <h6><strong>Tanggal:</strong> {{ $item->Tanggal }}</h6>
+                <h6><strong>Kegiatan:</strong> {{ $item->Kegiatan }}</h6>
+                <h6><strong>Keterangan:</strong> {{ $item->Keterangan }}</h6>
+                <h6><strong>Divisi:</strong> {{ $item->Divisi }}</h6>
+                <h6><strong>Kategori:</strong> {{ $item->Kategori }}</h6>
+                @if ($item->Dokumen)
+                    <div class="mt-4">
+                        <h6><strong>Preview Dokumen:</strong></h6>
+                        <iframe src="{{ asset('storage/arsip/' . $item->Dokumen) }}" frameborder="0" width="100%" height="400px"></iframe>
+                    </div>
+                @else
+                    <p class="text-danger">Dokumen tidak tersedia.</p>
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+    
+        <!-- Akhir Modal Preview Arsip -->
 
         <!-- Modal Edit Arsip -->
         @foreach ($yandas as $item)
