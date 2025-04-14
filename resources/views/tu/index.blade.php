@@ -31,7 +31,7 @@
                             <div class="d-flex gap-2 mt-3">
                                 <form action="{{ route('tu.filter') }}" method="GET" class="d-flex">
                                     <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;">
-                                        <option value="">Semua Kategori</option>
+                                        <option value="">Pilih Kategori</option>
                                         <option value="arsip dinamis" {{ request('kategori') == 'arsip dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
                                         <option value="arsip statis" {{ request('kategori') == 'arsip statis' ? 'selected' : '' }}>Arsip Statis</option>
                                         <option value="arsip vital" {{ request('kategori') == 'arsip vital' ? 'selected' : '' }}>Arsip Vital</option>

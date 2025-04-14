@@ -31,7 +31,7 @@
                             <div class="d-flex gap-2 mt-3">
                                 <form action="{{ route('bms.filter') }}" method="GET" class="d-flex">
                                     <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;">
-                                        <option value="">Semua Kategori</option>
+                                        <option value="">Pilih Kategori</option>
                                         <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
                                         <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
                                         <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
@@ -40,6 +40,11 @@
                                         <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
                                         <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
                                         <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+                                    </select>
+                                    <select name="divisi" id="filterDivisi" class="form-control ml-2" style="width: 160px;">
+                                        <option value="">Pilih Divisi</option>
+                                        <option value="Kelembagaan" {{ request('divisi') == 'Kelembagaan' ? 'selected' : '' }}>Kelembagaan</option>
+                                        <option value="Sarana Prasarana " {{ request('divisi') == 'Sarana Prasarana' ? 'selected' : '' }}>Sarana Prasarana</option>
                                     </select>
                                     <input type="text" name="query" class="form-control ml-2" placeholder="Cari..." value="{{ request('query') }}">
                                     <button class="btn btn-primary" type="submit">
@@ -64,6 +69,7 @@
                                             <th>Tanggal</th>
                                             <th>Kegiatan</th>
                                             <th>Keterangan</th>
+                                            <th>Divisi</th>
                                             <th>Kategori</th>
                                             <th>Dokumen</th>
                                             @if (Auth()->user()->role == 'admin')
@@ -80,6 +86,7 @@
                                                     <td>{{ $item->Tanggal }}</td>
                                                     <td>{{ $item->Kegiatan }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
+                                                    <td>{{ $item->Divisi }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td> 
                                                         <a href="javascript:void(0);" class="btn btn-primary btn-sm" title="Lihat Detail" data-bs-toggle="modal" data-bs-target="#viewModal{{ $item->id }}">

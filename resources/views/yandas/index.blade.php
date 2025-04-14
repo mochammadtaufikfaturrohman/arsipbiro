@@ -44,6 +44,12 @@
                                         <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
                                         <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
                                     </select>
+                                    <select name="divisi" id="filterDivisi" class="form-control ml-2" style="width: 160px;">
+                                        <option value="">Pilih Divisi</option>
+                                        <option value="Sosial" {{ request('divisi') == 'Sosial' ? 'selected' : '' }}>Sosial</option>
+                                        <option value="Kesehatan" {{ request('divisi') == 'Kesehatan' ? 'selected' : '' }}>Kesehatan</option>
+                                        <option value="Pendidikan" {{ request('divisi') == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
+                                    </select>
                                     <input type="text" name="query" class="form-control ml-2" placeholder="Search for..." value="{{ request('query') }}">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-search fa-sm"></i>
@@ -67,6 +73,7 @@
                                             <th>Tanggal</th>
                                             <th>Kegiatan</th>
                                             <th>Keterangan</th>
+                                            <th>Divisi</th>
                                             <th>Kategori</th>
                                             <th>Dokumen</th>
                                             @if (Auth()->user()->role == 'admin')
@@ -83,6 +90,7 @@
                                                     <td>{{ $item->Tanggal }}</td>
                                                     <td>{{ $item->Kegiatan }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
+                                                    <td>{{ $item->Divisi }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td>
                                                         <a href="#" class="btn btn-primary btn-sm" title="Preview Dokumen"

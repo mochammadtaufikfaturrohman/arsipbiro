@@ -22,6 +22,7 @@ class BmsController extends Controller
             'Tanggal' => 'required|date',
             'Kegiatan' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Divisi' => 'required|in:Kelembagaan,Sarana Prasarana',
             'Kategori' => 'required',
             'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
@@ -50,6 +51,7 @@ class BmsController extends Controller
             'Tanggal' => 'required|date',
             'Kegiatan' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Divisi' => 'required|in:Kelembagaan,Sarana Prasarana',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'
         ]);

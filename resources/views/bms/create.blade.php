@@ -37,6 +37,15 @@
         </div>
 
         <div class="mb-3">
+            <label for="Divisi" class="form-label">Divisi</label>
+            <select name="Divisi" id="Divisi" class="form-control" required>
+                <option value="Pilih Divisi">Pilih Divisi</option>
+                <option value="Kelembagaan">Kelembagaan</option>
+                <option value="Sarana Prasarana">Sarana Prasarana</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
             <label for="Kategori" class="form-label">Kategori</label>
             <select name="Kategori" id="Kategori" class="form-control" required>
                 <option value="Pilih Kategori">Pilih Kategori</option>

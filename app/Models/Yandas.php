@@ -21,6 +21,7 @@ class Yandas extends Model
         'Tanggal',
         'Kegiatan',
         'Keterangan',
+        'Divisi',
         'Kategori',
         'Dokumen',
     ];
