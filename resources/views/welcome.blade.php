@@ -161,13 +161,7 @@
             <!-- Email -->
             <div class="footer-item">
                 <h4><i class="fas fa-envelope"></i> Email</h4>
-                <p>birokesra@jabarprov.go.id</p>
-            </div>
-
-            <!-- Telepon -->
-            <div class="footer-item">
-                <h4><i class="fas fa-phone"></i> Nomor Telepon</h4>
-                <p>0224232448</p>
+                <p>arsipkesra@gmail.com</p>
             </div>
 
             <!-- Sosial Media -->
