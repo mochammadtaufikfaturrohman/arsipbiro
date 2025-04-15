@@ -127,13 +127,18 @@ class BmsController extends Controller
     public function filter(Request $request)
     {
         $kategori = $request->input('kategori');
+        $divisi = $request->input('divisi');
         $query = $request->input('query');
 
-        // Filter dan cari data berdasarkan kategori dan kata kunci
+        // Filter dan cari data berdasarkan kategori, divisi, dan kata kunci
         $bms = Bms::query();
 
         if ($kategori) {
             $bms->where('Kategori', $kategori);
+        }
+
+        if ($divisi) {
+            $bms->where('Divisi', $divisi);
         }
 
         if ($query) {

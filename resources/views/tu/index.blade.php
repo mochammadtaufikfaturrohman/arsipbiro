@@ -29,9 +29,9 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Tata Usaha</h6>
                             <div class="d-flex gap-2 mt-3">
-                                <form action="{{ route('tu.filter') }}" method="GET" class="d-flex">
-                                    <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;">
-                                        <option value="">Pilih Kategori</option>
+                                <form action="{{ route('tu.filter') }}" method="GET" id="filterForm" class="d-flex">
+                                    <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;" onchange="document.getElementById('filterForm').submit();">
+                                       <option value="">Pilih Kategori</option>
                                         <option value="arsip dinamis" {{ request('kategori') == 'arsip dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
                                         <option value="arsip statis" {{ request('kategori') == 'arsip statis' ? 'selected' : '' }}>Arsip Statis</option>
                                         <option value="arsip vital" {{ request('kategori') == 'arsip vital' ? 'selected' : '' }}>Arsip Vital</option>
@@ -40,8 +40,8 @@
                                         <option value="arsip retensi jangka panjang" {{ request('kategori') == 'arsip retensi jangka panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
                                         <option value="arsip elektronik" {{ request('kategori') == 'arsip elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
                                         <option value="arsip fisik" {{ request('kategori') == 'arsip fisik' ? 'selected' : '' }}>Arsip Fisik</option>
-                                    </select>
-                                    <input type="text" name="query" class="form-control ml-2" placeholder="Search for..." value="{{ request('query') }}">
+                                 </select>
+                                    <input type="text" name="query" class="form-control ml-2" placeholder="Cari..." value="{{ request('query') }}" onkeypress="if(event.key === 'Enter') document.getElementById('filterForm').submit();">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-search fa-sm"></i>
                                     </button>
@@ -81,9 +81,10 @@
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td>
-                                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm" title="Lihat Detail" data-bs-toggle="modal" data-bs-target="#viewTUModal{{ $item->id }}">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
+                                                        <a href="#" class="btn btn-primary btn-sm"
+                                                            title="Lihat Detail" data-bs-toggle="modal"
+                                                            data-bs-target="#viewTUModal{{ $item->id }}"><i
+                                                                class="fas fa-eye"></i></a>
                                                         <a href="{{ route('tu.download', $item->id) }}" class="btn btn-success btn-sm" title="Unduh Dokumen">
                                                             <i class="fas fa-download"></i>
                                                         </a>
@@ -137,7 +138,7 @@
                 @if ($item->Dokumen)
                     <div class="mt-4">
                         <h6><strong>Preview Dokumen:</strong></h6>
-                        <iframe src="{{ asset('storage/arsip/' . $item->Dokumen) }}" frameborder="0" width="100%" height="400px"></iframe>
+                        <iframe src="{{ asset('storage/' . $item->Dokumen) }}" frameborder="0" width="100%" height="400px"></iframe>
                     </div>
                 @else
                     <p class="text-danger">Dokumen tidak tersedia.</p>

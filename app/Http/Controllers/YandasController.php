@@ -121,13 +121,18 @@ class YandasController extends Controller
     public function filter(Request $request)
     {
         $kategori = $request->input('kategori');
+        $divisi = $request->input('divisi');
         $query = $request->input('query');
 
-        // Filter dan cari data berdasarkan kategori dan kata kunci
+        // Filter dan cari data berdasarkan kategori, divisi, dan kata kunci
         $yandas = Yandas::query();
 
         if ($kategori) {
             $yandas->where('Kategori', $kategori);
+        }
+
+        if ($divisi) {
+            $yandas->where('Divisi', $divisi);
         }
 
         if ($query) {
@@ -142,5 +147,4 @@ class YandasController extends Controller
 
         return view('yandas.index', compact('yandas'));
     }
-    
 }

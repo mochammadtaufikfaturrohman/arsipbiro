@@ -229,7 +229,7 @@
                             @if ($item->Dokumen)
                                 <div class="mt-4">
                                     <h6><strong>Preview Dokumen:</strong></h6>
-                                    <iframe src="{{ asset('storage/arsip/' . $item->Dokumen) }}" frameborder="0"
+                                    <iframe src="{{ asset('storage/' . $item->Dokumen) }}" frameborder="0"
                                         width="100%" height="400px"></iframe>
                                 </div>
                             @else
