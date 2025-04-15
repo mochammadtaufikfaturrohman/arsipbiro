@@ -89,9 +89,8 @@
                                                     <td>{{ $item->Nama_Lembaga }}</td>
                                                     <td>{{ $item->Tanggal }}</td>
                                                     <td>{{ $item->Kegiatan }}</td>
-                                                    <td class="kolom-terbatas">{{ $item->Kegiatan }}</td>
-                                                    <td class="kolom-terbatas">{{ $item->Keterangan }}</td>
-                                                    
+                                                    <td>{{ $item->Keterangan }}</td>
+                                                    <td>{{ $item->Divisi }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td>
                                                         <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail" data-bs-toggle="modal" data-bs-target="#viewModal{{ $item->id }}"><i class="fas fa-eye"></i></a>
