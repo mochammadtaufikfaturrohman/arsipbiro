@@ -120,12 +120,17 @@ class NpdController extends Controller
     public function filter(Request $request)
     {
         $kategori = $request->input('kategori');
+        $divisi = $request->input('divisi');
         $query = $request->input('query');
 
         $npd = Npd::query();
 
         if ($kategori) {
             $npd->where('Kategori', $kategori);
+        }
+
+        if ($divisi) {
+            $npd->where('Divisi', $divisi);
         }
 
         if ($query) {

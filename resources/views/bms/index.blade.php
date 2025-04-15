@@ -29,24 +29,20 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Bina Mental Spiritual</h6>
                             <div class="d-flex gap-2 mt-3">
-                                <form action="{{ route('bms.filter') }}" method="GET" class="d-flex">
-                                    <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;">
+                                <form action="{{ route('bms.filter') }}" method="GET" id="filterForm" class="d-flex">
+                                    <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;" onchange="document.getElementById('filterForm').submit();">
                                         <option value="">Pilih Kategori</option>
                                         <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
                                         <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
                                         <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
-                                        <option value="Arsip Fisik" {{ request('kategori') == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
-                                        <option value="Arsip Permanen" {{ request('kategori') == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
-                                        <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
-                                        <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
                                         <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
                                     </select>
-                                    <select name="divisi" id="filterDivisi" class="form-control ml-2" style="width: 160px;">
+                                    <select name="divisi" id="filterDivisi" class="form-control ml-2" style="width: 160px;" onchange="document.getElementById('filterForm').submit();">
                                         <option value="">Pilih Divisi</option>
                                         <option value="Kelembagaan" {{ request('divisi') == 'Kelembagaan' ? 'selected' : '' }}>Kelembagaan</option>
-                                        <option value="Sarana Prasarana " {{ request('divisi') == 'Sarana Prasarana' ? 'selected' : '' }}>Sarana Prasarana</option>
+                                        <option value="Sarana Prasarana" {{ request('divisi') == 'Sarana Prasarana' ? 'selected' : '' }}>Sarana Prasarana</option>
                                     </select>
-                                    <input type="text" name="query" class="form-control ml-2" placeholder="Cari..." value="{{ request('query') }}">
+                                    <input type="text" name="query" class="form-control ml-2" placeholder="Cari..." value="{{ request('query') }}" onkeypress="if(event.key === 'Enter') document.getElementById('filterForm').submit();">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-search fa-sm"></i>
                                     </button>
