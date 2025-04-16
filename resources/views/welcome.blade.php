@@ -180,7 +180,7 @@
             <hr>
             <!-- Copyright -->
             <div class="footer-bottom">
-                <i>&copy; 2023 Biro Kesra Jabar. Semua hak dilindungi.</i>
+                <i>&copy; 2025  Arsip Biro Kesra Jabar. Semua hak dilindungi.</i>
             </div>
     </footer>
 
