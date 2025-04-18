@@ -30,40 +30,90 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Pelayanan Dasar</h6>
-                            <div class="d-flex gap-2 mt-3">
-                                <form action="{{ route('yandas.filter') }}" method="GET" id="filterForm" class="d-flex">
-                                    <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;" onchange="document.getElementById('filterForm').submit();">
-                                        <option value="">Semua Kategori</option>
-                                        <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
-                                        <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
-                                        <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
-                                        <option value="Arsip Fisik" {{ request('kategori') == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
-                                        <option value="Arsip Permanen" {{ request('kategori') == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
-                                        <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
-                                        <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
-                                        <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
-                                    </select>
-                                    <select name="divisi" id="filterDivisi" class="form-control ml-2" style="width: 160px;" onchange="document.getElementById('filterForm').submit();">
-                                        <option value="">Pilih Divisi</option>
-                                        <option value="Sosial" {{ request('divisi') == 'Sosial' ? 'selected' : '' }}>Sosial</option>
-                                        <option value="Kesehatan" {{ request('divisi') == 'Kesehatan' ? 'selected' : '' }}>Kesehatan</option>
-                                        <option value="Pendidikan" {{ request('divisi') == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
-                                    </select>
-                                    <input type="text" name="query" class="form-control ml-2" placeholder="Search for..." value="{{ request('query') }}" onkeypress="if(event.key === 'Enter') document.getElementById('filterForm').submit();">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </form>
-                                @if (Auth()->user()->role == 'admin')
-                                    <button type="button" class="btn btn-success ml-auto" data-bs-toggle="modal"
-                                        data-bs-target="#tambahArsipModal">
-                                        </i> Tambah Arsip
-                                    </button>
-                                @endif
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahArsipModal">
+                                <i class="fas fa-plus"></i> Tambah Arsip
+                            </button>
+                        </div>
+                        <div class="d-flex gap-2 mt-3 px-3">
+                            {{-- Icon Filter for Mobile --}}
+                            <button type="button" class="btn btn-secondary d-md-none" data-bs-toggle="modal" data-bs-target="#filterModal">
+                                <i class="fas fa-filter"></i> Filter
+                            </button>
+
+                            {{-- Filter Form for Desktop --}}
+                            <form action="{{ route('yandas.filter') }}" method="GET" id="filterForm" class="d-none d-md-flex">
+                                <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;" onchange="document.getElementById('filterForm').submit();">
+                                    <option value="">Semua Kategori</option>
+                                    <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
+                                    <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
+                                    <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
+                                    <option value="Arsip Fisik" {{ request('kategori') == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
+                                    <option value="Arsip Permanen" {{ request('kategori') == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
+                                    <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
+                                    <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
+                                    <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+                                </select>
+                                <select name="divisi" id="filterDivisi" class="form-control ml-2" style="width: 160px;" onchange="document.getElementById('filterForm').submit();">
+                                    <option value="">Pilih Divisi</option>
+                                    <option value="Sosial" {{ request('divisi') == 'Sosial' ? 'selected' : '' }}>Sosial</option>
+                                    <option value="Kesehatan" {{ request('divisi') == 'Kesehatan' ? 'selected' : '' }}>Kesehatan</option>
+                                    <option value="Pendidikan" {{ request('divisi') == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
+                                </select>
+                                <input type="text" name="query" class="form-control ml-2" placeholder="Search for..." value="{{ request('query') }}" onkeypress="if(event.key === 'Enter') document.getElementById('filterForm').submit();">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        {{-- Modal for Mobile Filter --}}
+                        <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="filterModalLabel">Filter Data</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('yandas.filter') }}" method="GET" id="mobileFilterForm">
+                                            <div class="mb-3">
+                                                <label for="mobileFilterKategori" class="form-label">Kategori</label>
+                                                <select name="kategori" id="mobileFilterKategori" class="form-control">
+                                                    <option value="">Semua Kategori</option>
+                                                    <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
+                                                    <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
+                                                    <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
+                                                    <option value="Arsip Fisik" {{ request('kategori') == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
+                                                    <option value="Arsip Permanen" {{ request('kategori') == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
+                                                    <option value="Arsip Retensi Jangka Pendek" {{ request('kategori') == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
+                                                    <option value="Arsip Retensi Jangka Panjang" {{ request('kategori') == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
+                                                    <option value="Arsip Elektronik" {{ request('kategori') == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="mobileFilterDivisi" class="form-label">Divisi</label>
+                                                <select name="divisi" id="mobileFilterDivisi" class="form-control">
+                                                    <option value="">Pilih Divisi</option>
+                                                    <option value="Sosial" {{ request('divisi') == 'Sosial' ? 'selected' : '' }}>Sosial</option>
+                                                    <option value="Kesehatan" {{ request('divisi') == 'Kesehatan' ? 'selected' : '' }}>Kesehatan</option>
+                                                    <option value="Pendidikan" {{ request('divisi') == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="mobileSearchQuery" class="form-label">Search</label>
+                                                <input type="text" name="query" id="mobileSearchQuery" class="form-control" placeholder="Search for..." value="{{ request('query') }}">
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">Apply Filter</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
