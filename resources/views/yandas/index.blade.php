@@ -33,7 +33,7 @@
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Pelayanan Dasar</h6>
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahArsipModal">
-                                <i class="fas fa-plus"></i> Tambah Arsip
+                                <i class="fas fa-plus"></i> Arsip
                             </button>
                         </div>
                         <div class="d-flex gap-2 mt-3 px-3">
@@ -45,7 +45,7 @@
                             {{-- Filter Form for Desktop --}}
                             <form action="{{ route('yandas.filter') }}" method="GET" id="filterForm" class="d-none d-md-flex">
                                 <select name="kategori" id="filterKategori" class="form-control" style="width: 160px;" onchange="document.getElementById('filterForm').submit();">
-                                    <option value="">Semua Kategori</option>
+                                    <option value="">Pilih Kategori</option>
                                     <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
                                     <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
                                     <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
@@ -61,10 +61,14 @@
                                     <option value="Kesehatan" {{ request('divisi') == 'Kesehatan' ? 'selected' : '' }}>Kesehatan</option>
                                     <option value="Pendidikan" {{ request('divisi') == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
                                 </select>
-                                <input type="text" name="query" class="form-control ml-2" placeholder="Search for..." value="{{ request('query') }}" onkeypress="if(event.key === 'Enter') document.getElementById('filterForm').submit();">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                                <div class="input-group">
+                                    <input type="text" name="query" class="form-control ml-2" placeholder="Search for..." value="{{ request('query') }}" onkeypress="if(event.key === 'Enter') document.getElementById('filterForm').submit();">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i> 
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
 
@@ -74,14 +78,14 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="filterModalLabel">Filter Data</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                                     </div>
                                     <div class="modal-body">
                                         <form action="{{ route('yandas.filter') }}" method="GET" id="mobileFilterForm">
                                             <div class="mb-3">
                                                 <label for="mobileFilterKategori" class="form-label">Kategori</label>
                                                 <select name="kategori" id="mobileFilterKategori" class="form-control">
-                                                    <option value="">Semua Kategori</option>
+                                                    <option value="">Pilih Kategori</option>
                                                     <option value="Arsip Dinamis" {{ request('kategori') == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
                                                     <option value="Arsip Statis" {{ request('kategori') == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
                                                     <option value="Arsip Vital" {{ request('kategori') == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
@@ -106,7 +110,7 @@
                                                 <input type="text" name="query" id="mobileSearchQuery" class="form-control" placeholder="Search for..." value="{{ request('query') }}">
                                             </div>
                                             <div class="d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary">Apply Filter</button>
+                                                <button type="submit" class="btn btn-primary">Terapkan Filter</button>
                                             </div>
                                         </form>
                                     </div>

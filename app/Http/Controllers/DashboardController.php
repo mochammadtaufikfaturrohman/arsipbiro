@@ -70,6 +70,7 @@ class DashboardController extends BaseController
     public function filter(Request $request)
     {
         $kategori = $request->input('kategori');
+        $divisi = $request->input('divisi');
         $query = $request->input('query');
 
         // Filter dan cari data di semua divisi
@@ -83,6 +84,11 @@ class DashboardController extends BaseController
             $yandas->where('Kategori', $kategori);
             $bms->where('Kategori', $kategori);
             $npd->where('Kategori', $kategori);
+        }
+        if ($divisi) {
+            $yandas->where('Divisi', $divisi);
+            $bms->where('Divisi', $divisi);
+            $npd->where('Divisi', $divisi);
         }
 
         if ($query) {

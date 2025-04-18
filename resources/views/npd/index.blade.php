@@ -33,7 +33,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Non-Pelayanan Dasar</h6>
                             @if (Auth()->user()->role == 'admin')
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahArsipModal">
-                                    <i class="fas fa-plus"></i> Tambah Arsip
+                                    <i class="fas fa-plus"></i> Arsip
                                 </button>
                             @endif
                         </div>
@@ -62,10 +62,14 @@
                                     <option value="NPD 2" {{ request('divisi') == 'NPD 2' ? 'selected' : '' }}>NPD 2</option>
                                     <option value="NPD 3" {{ request('divisi') == 'NPD 3' ? 'selected' : '' }}>NPD 3</option>
                                 </select>
-                                <input type="text" name="query" class="form-control ml-2" placeholder="Search for..." value="{{ request('query') }}" onkeypress="if(event.key === 'Enter') document.getElementById('filterForm').submit();">
-                                <button class="btn btn-primary ml-2" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                                <div class="input-group">
+                                    <input type="text" name="query" class="form-control ml-2" placeholder="Search for..." value="{{ request('query') }}" onkeypress="if(event.key === 'Enter') document.getElementById('filterForm').submit();">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary " type="submit">
+                                            <i class="fas fa-search fa-sm"></i> 
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                         <div class="card-body">
@@ -249,7 +253,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="filterModalLabel">Filter Data</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
                         <form action="{{ route('npd.filter') }}" method="GET" id="mobileFilterForm">

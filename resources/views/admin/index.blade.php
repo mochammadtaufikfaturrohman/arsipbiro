@@ -32,10 +32,9 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Data Admin</h6>
                             <div class="d-flex gap-2 mt-3">
-
                                 <form action="{{ route('admin.search') }}" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" name="query" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan nama, email, atau role" value="{{ request('query') }}">
+                                        <input type="text" name="query" class="form-control bg-white border-0 small" placeholder="𝘤𝘢𝘳𝘪 𝘯𝘢𝘮𝘢 𝘢𝘥𝘮𝘪𝘯" value="{{ request('query') }}">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fas fa-search fa-sm"></i>
