@@ -273,7 +273,7 @@ body {
   background-color: #64748b;
 }
 /* CSS Responsif untuk Semua Ukuran Mobile (320px - 991px) */
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 992px) {
     /* Navbar */
     .navbar {
       align-items: center;
@@ -286,7 +286,7 @@ body {
     }
     
     .navbar .logo {
-      width: 35vw;
+      width: 30vh;
       margin-bottom: 10px;
     }
     
@@ -297,7 +297,7 @@ body {
     }
     
     .content h1 {
-      font-size: 2.2rem;
+      font-size: 3rem;
       padding-top: 25%;
     }
     
@@ -332,7 +332,7 @@ body {
     
     /* About Section */
     .about-section {
-      padding-top: 50%;
+      padding-top: 35%;
     }
     
     .about {
@@ -342,6 +342,7 @@ body {
     .about-image img {
       max-width: 100%;
       border-radius: 20px;
+      align-items: center;
     }
     
     .about-text h1 {
@@ -383,12 +384,12 @@ body {
     /* Penyesuaian untuk Mobile Besar (768px - 991px) */
      @media screen and (min-width: 768px) {
       .content h1 {
-        font-size: 2.2rem;
+        font-size: 3rem;
         padding-top: 20%;
       }
 
       .about-section {
-        padding-top: 20%;
+        padding-top: 45%;
       }
       
       .about {
@@ -396,6 +397,7 @@ body {
       }
       
       .about-image img {
+        align-items: center;
         max-width: 75%;
         border-radius: 20px;
       }
@@ -431,7 +433,7 @@ body {
       }
       
       .footer-item {
-        width: 45%;
+        width: 30%;
         margin-bottom: 20px;
       }
       
@@ -447,7 +449,7 @@ body {
       }
       
       .content h1 {
-        font-size: 1.8rem;
+        font-size: 3rem;
         padding-top: 30%;
       }
       
@@ -462,6 +464,10 @@ body {
       
       .card-filter {
         width: 95%;
+      }
+
+      .about-section {
+        padding-top: 75%;
       }
       
       .about-text h1 {
@@ -483,5 +489,42 @@ body {
       .footer-item p {
         font-size: 0.85rem;
       }
+    }
+
+    @media screen and (max-width: 320px) {
+      .navbar ul {
+        gap: 5px;
+      }
+      
+      .content h1 {
+        font-size: 2.5rem;
+        padding-top: 35%;
+      }
+      
+      .buttons a {
+        padding: 6px;
+        font-size: 0.75rem;
+      }
+      
+      .card {
+        width: 100%;
+      }
+      
+      .card-filter {
+        width: 100%;
+      }
+
+      .about-section {
+        padding-top: 120%;
+      }
+      
+      .about-text h1 {
+        font-size: 1.5rem;
+      }
+      
+      .about-text p {
+        font-size: 1rem;
+      }
+      
     }
   }

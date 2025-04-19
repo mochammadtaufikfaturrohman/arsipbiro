@@ -24,8 +24,14 @@ class DashboardController extends BaseController
         $totalNpd = Npd::count();
 
         return view('dashboard', compact(
-            'tu', 'yandas', 'bms', 'npd',
-            'totalTu', 'totalYandas', 'totalBms', 'totalNpd'
+            'tu',
+            'yandas',
+            'bms',
+            'npd',
+            'totalTu',
+            'totalYandas',
+            'totalBms',
+            'totalNpd'
         ));
     }
 
@@ -62,8 +68,14 @@ class DashboardController extends BaseController
 
         // Kirim semuanya ke view
         return view('dashboard', compact(
-            'tu', 'yandas', 'bms', 'npd',
-            'totalTu', 'totalYandas', 'totalBms', 'totalNpd'
+            'tu',
+            'yandas',
+            'bms',
+            'npd',
+            'totalTu',
+            'totalYandas',
+            'totalBms',
+            'totalNpd'
         ));
     }
 
@@ -89,6 +101,7 @@ class DashboardController extends BaseController
             $yandas->where('Divisi', $divisi);
             $bms->where('Divisi', $divisi);
             $npd->where('Divisi', $divisi);
+            $tu = collect([]);
         }
 
         if ($query) {
@@ -116,8 +129,10 @@ class DashboardController extends BaseController
                     ->orWhere('Kegiatan', 'LIKE', "%{$query}%");
             });
         }
-
-        $tu = $tu->paginate(10)->appends($request->all());
+        // Kalau $tu berupa collection kosong, tidak perlu paginasi
+        if ($tu instanceof \Illuminate\Database\Eloquent\Builder) {
+            $tu = $tu->paginate(10)->appends($request->all());
+        }
         $yandas = $yandas->paginate(10)->appends($request->all());
         $bms = $bms->paginate(10)->appends($request->all());
         $npd = $npd->paginate(10)->appends($request->all());
@@ -130,8 +145,14 @@ class DashboardController extends BaseController
 
         // Kirim semuanya ke view
         return view('dashboard', compact(
-            'tu', 'yandas', 'bms', 'npd',
-            'totalTu', 'totalYandas', 'totalBms', 'totalNpd'
+            'tu',
+            'yandas',
+            'bms',
+            'npd',
+            'totalTu',
+            'totalYandas',
+            'totalBms',
+            'totalNpd'
         ));
     }
 }
