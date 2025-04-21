@@ -501,7 +501,7 @@ body {
       }
     }
 
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 320px)  {
       .navbar ul {
         gap: 5px;
       }
@@ -540,6 +540,100 @@ body {
       .about-text p {
         font-size: 1rem;
       }
-      
     }
+
+    @media  screen and (min-width:320px) {
+      .navbar ul {
+        gap: 5px;
+      }
+
+      .navbar .logo {
+        width:15vh; /* atau sesuaikan dengan ukuran yang diinginkan */
+        height: auto;
+    }
+      
+      .content h1 {
+        font-size: 2rem;
+        padding-top: 35%;
+      }
+      
+      .buttons a {
+        padding: 6px;
+        font-size: 0.75rem;
+      }
+      
+      .card {
+        width: 100%;
+      }
+      
+      .card-filter {
+        width: 100%;
+      }
+
+      .about-section {
+        padding-top: 120%;
+      }
+      
+      .about-text h1 {
+        font-size: 1.5rem;
+      }
+      
+      .about-text p {
+        font-size: 1rem;
+      }
+    }
+
+    @media screen and (min-width: 480px) {
+      .navbar ul {
+        gap: 8px;
+      }
+
+      .navbar .logo {
+        width:20vh; /* atau sesuaikan dengan ukuran yang diinginkan */
+        height: auto;
+    }
+      
+      .content h1 {
+        font-size: 3rem;
+        padding-top: 30%;
+      }
+      
+      .buttons a {
+        padding: 8px;
+        font-size: 0.85rem;
+      }
+      
+      .card {
+        width: 95%;
+      }
+      
+      .card-filter {
+        width: 95%;
+      }
+
+      .about-section {
+        padding-top: 80%;
+      }
+      
+      .about-text h1 {
+        font-size: 1.8rem;
+      }
+      
+      .about-text p {
+        font-size: 1.2rem;
+      }
+      
+      .footer-logo img {
+        width: 60%;
+      }
+      
+      .footer-item h4 {
+        font-size: 1rem;
+      }
+      
+      .footer-item p {
+        font-size: 0.85rem;
+      }
+    }
+
   }
