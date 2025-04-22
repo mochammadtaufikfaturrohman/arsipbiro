@@ -273,6 +273,70 @@ body {
   background-color: #64748b;
 }
 /* CSS Responsif untuk Semua Ukuran Mobile (320px - 991px) */
+@media screen and (max-width: 1200px) {
+    /* Navbar */
+    .navbar {
+      padding: 10px;
+    }
+    
+    .navbar ul {
+      gap: 15px;
+      margin: 10px 0;
+    }
+    
+    .navbar .logo {
+      width: 25vh;
+      margin-bottom: 10px;
+    }
+    
+    /* Hero Section */
+    .overlay {
+      height: 70%;
+      border-radius: 20px;
+    }
+    
+    .content h1 {
+      margin: 15px;
+      font-size: 3rem;
+      padding-top: 20%;
+    }
+    
+    .buttons a {
+      padding: 10px;
+      font-size: 1rem;
+    }
+    
+    /* Section Headings */
+    .container h2, .about-section h2, .fitur h2 {
+      font-size: 2.5rem;
+      padding-top: 15px;
+      margin-top: 25px;
+    }
+    
+    /* Cards */
+    .card-group {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .card {
+      width: 45%;
+    }
+    
+    .card-filter {
+      width: 45%;
+      margin: 15px auto;
+    }
+    
+    /* About Section */
+    .about-section {
+      padding-top: 45%;
+    }
+  
+}
+
 @media screen and (max-width: 991px) {
     /* Navbar */
     .navbar {
@@ -333,7 +397,7 @@ body {
     
     /* About Section */
     .about-section {
-      padding-top: 25%;
+      padding-top: 35%;
     }
     
     .about {

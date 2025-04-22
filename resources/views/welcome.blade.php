@@ -126,7 +126,7 @@
                     <img src="{{ asset('template/img/gambar 4.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Dashboard Admin</h5>
-                        <p class="card-text">Menyediakan tampilan terpusat bagi admin untuk mengelola data, memantau
+                        <p class="card-text">Menyediakan tampilan bagi admin untuk mengelola data, memantau
                             aktivitas pengguna, dan mengatur konten sistem secara efisien.</p>
                     </div>
                 </div>
