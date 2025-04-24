@@ -181,7 +181,7 @@
             <hr>
             <!-- Copyright -->
             <div class="footer-bottom">
-                <i>&copy; 2025  Arsip Biro Kesra Jabar. Semua hak dilindungi.</i>
+                <i> Copyright &copy; Arsip Biro Kesra Jabar 2025</i>
             </div>
     </footer>
 
