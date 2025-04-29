@@ -22,9 +22,7 @@
 
                 <div class="container-fluid">
                     <h1 class="h3 mb-2 text-gray-800">Tata Usaha</h1>
-                    <p class="mb-4">TU bertanggung jawab memastikan kelancaran operasional kantor dengan menangani
-                        segala bentuk korespondensi, pencatatan dokumen resmi, serta pendistribusian informasi kepada
-                        pihak-pihak terkait.</p>
+                    <p class="mb-4">Melaksanakan pelayanan administrasi umum, kearsipan, surat-menyurat, penjadwalan, serta dokumentasi kegiatan Biro Kesejahteraan Rakyat guna mendukung kelancaran tugas-tugas substansi di bidang kesejahteraan rakyat.</p>
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">

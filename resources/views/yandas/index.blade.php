@@ -25,8 +25,8 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Pelayanan Dasar</h1>
-                    <p class="mb-4"> Bertanggung jawab dalam penyaluran bantuan sosial, pengawasan program
-                        kesejahteraan masyarakat, dan memastikan transparansi dalam pendistribusian dana sosial.</p>
+                    <p class="mb-4"> Menyelenggarakan pengkajian bahan kebijakan umum, koordinasi dan pelayanan administratif bidang Kesejahteraan Rakyat Pelayanan Dasar, meliputi Kesejahteraan Rakyat Pelayanan Dasar
+                    </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">

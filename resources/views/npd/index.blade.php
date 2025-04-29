@@ -24,8 +24,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Non-Pelayanan Dasar</h1>
-                    <p class="mb-4">NPD diajukan oleh satuan kerja perangkat daerah (SKPD) kepada Badan Pengelola
-                        Keuangan Daerah (BPKD) untuk mendapatkan dana yang sudah dianggarkan dalam APBD.</p>
+                    <p class="mb-4">Menyelenggarakan penyiapan bahan pengoordinasian perumusan kebijakan daerah, pengoordinasian pelaksanaan tugas Perangkat Daerah, pemantauan dan evaluasi pelaksanaan kebijakan daerah di bidang kesejahteraan rakyat non pelayanan dasar I, kesejahteraan rakyat non pelayanan dasar II, dan kesejahteraan rakyat non pelayanan dasar III</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">

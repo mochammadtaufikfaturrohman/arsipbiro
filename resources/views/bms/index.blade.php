@@ -23,9 +23,7 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Bina Mental Spiritual</h1>
-                    <p class="mb-4">BMS digunakan untuk meningkatkan kesejahteraan masyarakat, terutama dalam bidang
-                        pendidikan, kesehatan, dan ekonomi, dengan memanfaatkan dana pemerintah atau CSR dari
-                        perusahaan.</p>
+                    <p class="mb-4">Menyelenggarakan pengkajian bahan pengoordinasian perumusan kebijakan daerah, pengoordinasian pelaksanaan tugas Perangkat Daerah, pemantauan dan evaluasi pelaksanaan kebijakan daerah di bidang sarana dan prasarana spiritual serta kelembagaan bina spiritual.</p>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
