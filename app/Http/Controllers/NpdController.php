@@ -35,7 +35,7 @@ class NpdController extends Controller
         $data = $request->except('dokumen');
 
         if ($request->hasFile('dokumen')) {
-            $data['dokumen'] = $request->file('dokumen')->store('dokumen/npd', 'public');
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/npd', 'public');
         }
 
         Npd::create($data);
@@ -70,7 +70,7 @@ class NpdController extends Controller
                 Storage::disk('public')->delete($item->dokumen);
             }
 
-            $data['dokumen'] = $request->file('dokumen')->store('dokumen/npd', 'public');
+            $data['Dokumen'] = $request->file('dokumen')->store('dokumen/npd', 'public');
         }
 
         $item->update($data);
@@ -93,17 +93,22 @@ class NpdController extends Controller
 
     public function download($id)
     {
-        $item = Npd::findOrFail($id);
-
-        $filePath = storage_path('app/public/' . $item->dokumen);
-
-        if (file_exists($filePath)) {
-            return response()->download($filePath);
+        $data = Npd::findOrFail($id);
+    
+        if (!$data->Dokumen) {
+            return redirect()->back()->with('error', 'File tidak tersedia.');
         }
+    
+        $path = storage_path('app/public/' . $data->Dokumen);
 
-        return redirect()->route('npd')->with('error', 'File tidak ditemukan.');
+    
+        if (!file_exists($path)) {
+            return redirect()->back()->with('error', 'File tidak ditemukan di server.');
+        }
+    
+        return response()->download($path);
     }
-
+    
     public function search(Request $request)
     {
         $query = $request->input('query');

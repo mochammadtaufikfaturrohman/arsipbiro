@@ -243,7 +243,7 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @endforeach 
         <!-- Akhir Modal View Dokumen -->
 
         <!-- Modal for Mobile Filter -->
