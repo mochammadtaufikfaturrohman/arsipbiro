@@ -53,7 +53,7 @@
         <h2>Apa Itu E-Arsip?</h2>
         <div class="about">
             <div class="about-image">
-                <img src="https://img.freepik.com/free-vector/add-files-concept-illustration_114360-5399.jpg?ga=GA1.1.1347691071.1735566400&semt=ais_hybrid&w=740"
+                <img src="https://img.freepik.com/free-vector/personal-files-concept-illustration_114360-4013.jpg?ga=GA1.1.1347691071.1735566400&semt=ais_hybrid&w=740"
                     alt="Ilustrasi E-Arsip">
             </div>
             <div class="about-text">
