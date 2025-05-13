@@ -58,8 +58,8 @@
             </div>
             <div class="about-text">
                 <p>E-Arsip adalah sistem digital yang dirancang untuk menyimpan, mengelola, dan mengakses arsip secara
-                    elektronik. Dengan teknologi ini, pengguna dapat mengunggah dokumen penting, mengatur kategori
-                    arsip, serta mencari dokumen dengan cepat dan efisien.</p>
+                    elektronik. Teknologi ini memungkinkan pengguna dapat mengunggah dokumen penting, mengelola kategori
+                    arsip, dan menemukan dokumen dengan cepat dan efisien.</p>
             </div>
         </div>
     </section>
