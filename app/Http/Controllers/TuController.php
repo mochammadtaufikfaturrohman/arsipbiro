@@ -28,7 +28,7 @@ class TuController extends Controller
             'Kegiatan' => 'required|string',
             'Keterangan' => 'nullable|string',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
-            'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'
+            'dokumen' => 'nullable|file|mimes:pdf|max:5048'
         ]);
 
         $data = $request->except('dokumen');
@@ -57,7 +57,7 @@ class TuController extends Controller
             'Kegiatan' => 'required|string',
             'Keterangan' => 'nullable|string',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
-            'dokumen' => 'nullable|file|mimes:pdf,doc,docx|max:2048'
+            'dokumen' => 'nullable|file|mimes:pdf|max:5048'
         ]);
 
         $tu = Tu::findOrFail($id);
