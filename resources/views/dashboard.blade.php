@@ -40,6 +40,11 @@
             <div id="content">
 
                 <!-- Topbar -->
+                <div class="bg-danger text-light py-10 px-15">
+                    <marquee behavior="scroll" direction="left" scrollamount="5">
+                        <strong>🔔 Pemberitahuan:</strong> Silakan baca halaman <a href="{{ route('dashboard') }}" class="text-light font-weight-bold">Panduan Arsip</a> terlebih dahulu untuk mengetahui jenis-jenis arsip yang tersedia.
+                    </marquee>
+                </div>
                 @include('layout.navbar')
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
