@@ -10,10 +10,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-<<<<<<< HEAD
      @if (Auth()->user()->role == 'admin')
-=======
->>>>>>> 006d221ec77c3af79ff5e733a0a04afadf09c5b4
         <li class="nav-item ">
             <a class="nav-link" href="{{ route('dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -23,7 +20,6 @@
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('dashboard') }}">
-<<<<<<< HEAD
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
     @endif 
@@ -34,15 +30,9 @@
         </li>
     <li class="nav-item ">
             <a class="nav-link" href="{{ route('dashboard') }}">
-                <i class="fas fa-book-reader"></i>
-                <span>Panduan Kerja</span></a>
-        </li>
-=======
                 <i class="fas fa-fw fa-solid fa-book"></i>
                 <span>Panduan Arsip</span></a>
         </li>
-    
->>>>>>> 006d221ec77c3af79ff5e733a0a04afadf09c5b4
 
     <!-- Divider -->
     <hr class="sidebar-divider">
