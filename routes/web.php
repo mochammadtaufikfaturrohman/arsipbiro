@@ -110,5 +110,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 Route::get('/bms', [BmsController::class, 'index'])->name('bms');
 
+// panduan arsip
+Route::get('/panduan', function () {
+    return view('panduan');
+})->name('panduan');
+
 
 require __DIR__.'/auth.php';
