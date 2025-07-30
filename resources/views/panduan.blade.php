@@ -41,6 +41,7 @@
                     </div>
 
                     <div class="row">
+<<<<<<< HEAD
                         @php
                         $arsipList = [
                             ['title' => 'Arsip Dinamis', 'desc' => 'Digunakan secara langsung dalam kegiatan sehari-hari dan memiliki nilai guna administrasi.', 'slug' => 'dinamis'],
@@ -53,6 +54,130 @@
                             ['title' => 'Arsip Elektronik', 'desc' => 'Berbentuk digital dan tersimpan dalam sistem komputerisasi.', 'slug' => 'elektronik'],
                         ];
                         @endphp
+=======
+                        <div class="col-md-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-2">
+                                    <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
+                                </div>
+                                <img src="template/img/dinamis.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <div class="card-body">
+                                    <p class="text-justify text-sm">
+                                        Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
+                                        pencipta arsip dan disimpan selama jangka waktu tertentu.
+                                    </p>
+                                    <a href="detail-arsip-dinamis.html" class="btn btn-primary">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-2">
+                                    <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
+                                </div>
+                                <img src="template/img/statis.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <div class="card-body">
+                                    <p class="text-justify text-sm">
+                                        Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
+                                        pencipta arsip dan disimpan selama jangka waktu tertentu.
+                                    </p>
+                                    <a href="detail-arsip-dinamis.html" class="btn btn-primary">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-2">
+                                    <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
+                                </div>
+                                <img src="template/img/vital.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <div class="card-body">
+                                    <p class="text-justify text-sm">
+                                        Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
+                                        pencipta arsip dan disimpan selama jangka waktu tertentu.
+                                    </p>
+                                    <a href="detail-arsip-dinamis.html" class="btn btn-primary">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-2">
+                                    <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
+                                </div>
+                                <img src="template/img/permanen.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <div class="card-body">
+                                    <p class="text-justify text-sm">
+                                        Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
+                                        pencipta arsip dan disimpan selama jangka waktu tertentu.
+                                    </p>
+                                    <a href="detail-arsip-dinamis.html" class="btn btn-primary">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-2">
+                                    <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
+                                </div>
+                                <img src="template/img/fisik.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <div class="card-body">
+                                    <p class="text-justify text-sm">
+                                        Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
+                                        pencipta arsip dan disimpan selama jangka waktu tertentu.
+                                    </p>
+                                    <a href="detail-arsip-dinamis.html" class="btn btn-primary">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-2">
+                                    <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
+                                </div>
+                                <img src="template/img/pendek.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <div class="card-body">
+                                    <p class="text-justify text-sm">
+                                        Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
+                                        pencipta arsip dan disimpan selama jangka waktu tertentu.
+                                    </p>
+                                    <a href="detail-arsip-dinamis.html" class="btn btn-primary">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-2">
+                                    <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
+                                </div>
+                                <img src="template/img/panjang.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <div class="card-body">
+                                    <p class="text-justify text-sm">
+                                        Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
+                                        pencipta arsip dan disimpan selama jangka waktu tertentu.
+                                    </p>
+                                    <a href="detail-arsip-dinamis.html" class="btn btn-primary">Lihat
+                                        Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-2">
+                                    <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
+                                </div>
+                                <img src="template/img/elektronik.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <div class="card-body">
+                                    <p class="text-justify text-sm">
+                                        Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
+                                        pencipta arsip dan disimpan selama jangka waktu tertentu.
+                                    </p>
+                                    <a href="detail-arsip-dinamis.html" class="btn btn-primary">Lihat Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+
+>>>>>>> 0c2eaaa44f95cee0b5cda21b805aeaa97810d2d4
 
                         @foreach ($arsipList as $arsip)
                         <div class="col-md-4">
