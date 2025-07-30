@@ -74,7 +74,7 @@
                                 <div class="card-header py-2">
                                     <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
                                 </div>
-                                <img src="template/img/arsip.jpeg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <img src="template/img/dinamis.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
                                 <div class="card-body">
                                     <p class="text-justify text-sm">
                                         Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
@@ -89,7 +89,7 @@
                                 <div class="card-header py-2">
                                     <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
                                 </div>
-                                <img src="template/img/arsip.jpeg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <img src="template/img/statis.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
                                 <div class="card-body">
                                     <p class="text-justify text-sm">
                                         Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
@@ -104,7 +104,7 @@
                                 <div class="card-header py-2">
                                     <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
                                 </div>
-                                <img src="template/img/arsip.jpeg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <img src="template/img/vital.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
                                 <div class="card-body">
                                     <p class="text-justify text-sm">
                                         Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
@@ -119,7 +119,7 @@
                                 <div class="card-header py-2">
                                     <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
                                 </div>
-                                <img src="template/img/arsip.jpeg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <img src="template/img/permanen.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
                                 <div class="card-body">
                                     <p class="text-justify text-sm">
                                         Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
@@ -134,7 +134,7 @@
                                 <div class="card-header py-2">
                                     <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
                                 </div>
-                                <img src="template/img/arsip.jpeg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <img src="template/img/fisik.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
                                 <div class="card-body">
                                     <p class="text-justify text-sm">
                                         Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
@@ -149,7 +149,7 @@
                                 <div class="card-header py-2">
                                     <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
                                 </div>
-                                <img src="template/img/arsip.jpeg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <img src="template/img/pendek.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
                                 <div class="card-body">
                                     <p class="text-justify text-sm">
                                         Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
@@ -164,7 +164,7 @@
                                 <div class="card-header py-2">
                                     <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
                                 </div>
-                                <img src="template/img/arsip.jpeg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <img src="template/img/panjang.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
                                 <div class="card-body">
                                     <p class="text-justify text-sm">
                                         Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
@@ -180,7 +180,7 @@
                                 <div class="card-header py-2">
                                     <h6 class="m-0 font-weight-bold text-primary">Arsip Dinamis</h6>
                                 </div>
-                                <img src="template/img/arsip.jpeg" class="card-img-top" alt="Gambar Arsip Dinamis">
+                                <img src="template/img/elektronik.jpg" class="card-img-top" alt="Gambar Arsip Dinamis">
                                 <div class="card-body">
                                     <p class="text-justify text-sm">
                                         Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan
