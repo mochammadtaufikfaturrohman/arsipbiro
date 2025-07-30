@@ -9,11 +9,14 @@ use App\Http\Controllers\NpdController;
 use App\Http\Controllers\BmsController;
 use App\Http\Controllers\YandasController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\PanduanController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/arsip/{jenis}', [PanduanController::class, 'show'])->name('arsip.detail');
+Route::get('/panduan2', [PanduanController::class, 'index'])->name('panduan.index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
