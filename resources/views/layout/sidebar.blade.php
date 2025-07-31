@@ -10,19 +10,16 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-     {{-- @if (Auth()->user()->role == 'admin') --}}
-        <li class="nav-item ">
-            <a class="nav-link" href="{{ route('dashboard') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
-
-    {{-- @endif  --}}
     <li class="nav-item ">
-            <a class="nav-link" href="{{ route('panduan') }}">
-                <i class="fas fa-fw fa-solid fa-book"></i>
-                <span>Panduan Arsip</span></a>
-        </li>
+        <a class="nav-link" href="{{ route('dashboard') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+    <li class="nav-item ">
+        <a class="nav-link" href="{{ route('panduan') }}">
+            <i class="fas fa-fw fa-solid fa-book"></i>
+            <span>Panduan Arsip</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -60,7 +57,8 @@
     <!-- Nav Item - Pages Collapse Menu -->
     @if (Auth()->user()->role == 'admin')
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.index') }}" aria-expanded="true" aria-controls="collapsePages">
+            <a class="nav-link collapsed" href="{{ route('admin.index') }}" aria-expanded="true"
+                aria-controls="collapsePages">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Admin</span>
             </a>

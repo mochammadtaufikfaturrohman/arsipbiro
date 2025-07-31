@@ -84,7 +84,7 @@
                                 [
                                     'title' => 'Arsip Retensi Jangka Pendek',
                                     'desc' =>
-                                        'Hanya disimpan dalam periode waktu pendek, biasanya kurang dari 5 tahun.',
+                                        'Disimpan dalam waktu pendek kurang dari 5 tahun, dan dimusnahkan setelah masa berakhir.',
                                     'slug' => 'retensi-pendek',
                                     'image' => 'pendek.jpg',
                                 ],
@@ -97,7 +97,7 @@
                                 ],
                                 [
                                     'title' => 'Arsip Elektronik',
-                                    'desc' => 'Berbentuk digital dan tersimpan dalam sistem komputerisasi.',
+                                    'desc' => 'Berbentuk digital, tersimpan, dikelola serta mudah di akses dalam sistem elektronik.',
                                     'slug' => 'elektronik',
                                     'image' => 'elektronik.jpg',
                                 ],

@@ -21,6 +21,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -42,7 +44,9 @@
                 <!-- Topbar -->
                 <div class="bg-danger text-light py-10 px-15">
                     <marquee behavior="scroll" direction="left" scrollamount="5">
-                        <strong>🔔 Pemberitahuan:</strong> Silakan baca halaman <a href="{{ route('dashboard') }}" class="text-light font-weight-bold">Panduan Arsip</a> terlebih dahulu untuk mengetahui jenis-jenis arsip yang tersedia.
+                        <strong>🔔 Pemberitahuan:</strong> Silakan baca halaman <a href="{{ route('dashboard') }}"
+                            class="text-light font-weight-bold">Panduan Arsip</a> terlebih dahulu untuk mengetahui
+                        jenis-jenis arsip yang tersedia.
                     </marquee>
                 </div>
                 @include('layout.navbar')
@@ -55,7 +59,18 @@
                     </div>
                     <!-- Content Row -->
 
-                   
+                    <div class="row">
+                        @foreach ($arsip['images'] as $image)
+                            <div class="col-md-4 mb-3 text-center">
+                                <a href="{{ asset('template/img/' . $image) }}" data-lightbox="arsip-gallery"
+                                    data-title="Infografis: {{ $arsip['title'] }}">
+                                    <img src="{{ asset('template/img/' . $image) }}"
+                                        class="img-fluid img-thumbnail" style="max-height: 300px;" alt="Infografis">
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+
 
 
                     <div class="row">
@@ -95,6 +110,8 @@
         <!-- Page level custom scripts -->
         <script src="{{ asset('template/js/demo/chart-area-demo.js') }}"></script>
         <script src="{{ asset('template/js/demo/chart-pie-demo.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
 </body>
 
 </html>
@@ -124,4 +141,3 @@
 
 
 <!-- nyoba -->
-
