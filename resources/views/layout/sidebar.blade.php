@@ -10,14 +10,14 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-     @if (Auth()->user()->role == 'admin')
+     {{-- @if (Auth()->user()->role == 'admin') --}}
         <li class="nav-item ">
             <a class="nav-link" href="{{ route('dashboard') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
 
-    @endif 
+    {{-- @endif  --}}
     <li class="nav-item ">
             <a class="nav-link" href="{{ route('panduan') }}">
                 <i class="fas fa-fw fa-solid fa-book"></i>
