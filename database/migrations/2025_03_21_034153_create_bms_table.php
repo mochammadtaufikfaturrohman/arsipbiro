@@ -8,11 +8,12 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('bms', function (Blueprint $table) {
-            $table->id(); // Primary Key auto-increment
+            $table->id();
+            $table->string('No_Rak')->unique(); // Nomor Rak tetap ada, tapi bisa diisi manual
             $table->string('No_Arsip')->unique(); // No Arsip tetap ada, tapi bisa diisi manual
             $table->string('Nama_Lembaga');
             $table->date('Tanggal');
-            $table->text('Kegiatan');
+            $table->text('Judul_Arsip');
             $table->text('Keterangan')->nullable();
             $table->enum('Kategori', [
                 'Arsip Dinamis', 

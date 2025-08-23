@@ -22,6 +22,7 @@ class TuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:tu,No_Arsip',
             'Nama_Lembaga' => 'required|string|max:255',
             'Tanggal' => 'required|date',
@@ -51,6 +52,7 @@ class TuController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:tu,No_Arsip,' . $id . ',id|max:50',
             'Nama_Lembaga' => 'required|string|max:255',
             'Tanggal' => 'required|date',

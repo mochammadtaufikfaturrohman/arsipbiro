@@ -16,10 +16,11 @@ class Bms extends Model
    
     protected $fillable = [
         'id',
+        'No_Rak',
         'No_Arsip',
         'Nama_Lembaga',
         'Tanggal',
-        'Kegiatan',
+        'Judul_Arsip',
         'Keterangan',
         'Divisi',
         'Kategori',

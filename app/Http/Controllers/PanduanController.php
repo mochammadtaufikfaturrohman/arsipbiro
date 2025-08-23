@@ -14,6 +14,11 @@ class PanduanController extends Controller
         // Jika kamu ingin mengirim daftar jenis arsip ke view:
         $arsipList = [
             [
+                'slug' => 'manual-book',
+                'title' => 'Buku Panduan',
+                'desc' => 'Panduan penggunaan sistem arsip digital.'
+            ],
+            [
                 'slug' => 'dinamis',
                 'title' => 'Arsip Dinamis',
                 'desc' => 'Arsip yang digunakan secara langsung dalam kegiatan organisasi sehari-hari.'
@@ -64,45 +69,59 @@ class PanduanController extends Controller
     public function show($jenis)
     {
         $arsipList = [
+            'manual-book' => [
+                'title' => 'Buku Panduan',
+                'desc' => 'Panduan penggunaan sistem arsip digital.',
+                'type' => 'pdf',
+                'file' => 'MANUAL-BOOK.pdf',
+            ],
             'dinamis' => [
                 'title' => 'Arsip Dinamis',
                 'desc' => 'Arsip dinamis adalah arsip yang digunakan secara langsung dalam kegiatan sehari-hari organisasi dan memiliki nilai guna administrasi.',
-                'images' => ['1.png', '2.png', '3.png', '4.png'],
+                'type' => 'images',
+                'files' => ['1.png', '2.png', '3.png', '4.png'],
             ],
             'statis' => [
                 'title' => 'Arsip Statis',
                 'desc' => 'Arsip statis adalah arsip yang tidak aktif lagi digunakan, namun tetap disimpan karena memiliki nilai sejarah atau penting secara hukum.',
-                'images' => ['1.png', '2.png', '3.png', '4.png'],
+                'type' => 'images',
+                'files' => ['1.png', '2.png', '3.png', '4.png'],
             ],
             'vital' => [
                 'title' => 'Arsip Vital',
                 'desc' => 'Arsip vital adalah arsip yang sangat penting bagi keberlangsungan hidup organisasi, seperti akta pendirian, dokumen kepemilikan, dan lainnya.',
-                'images' => ['1.png', '2.png', '3.png', '4.png'],
+                'type' => 'images',
+                'files' => ['1.png', '2.png', '3.png', '4.png'],
             ],
             'permanen' => [
                 'title' => 'Arsip Permanen',
                 'desc' => 'Arsip permanen adalah arsip yang disimpan untuk selamanya karena memiliki nilai hukum, sejarah, atau budaya tinggi.',
-                'images' => ['1.png', '2.png', '3.png', '4.png'],
+                'type' => 'images',
+                'files' => ['1.png', '2.png', '3.png', '4.png'],
             ],
             'fisik' => [
                 'title' => 'Arsip Fisik',
                 'desc' => 'Arsip fisik merupakan arsip dalam bentuk dokumen cetak atau kertas yang disimpan secara manual.',
-                'images' => ['1.png', '2.png', '3.png', '4.png'],
+                'type' => 'images',
+                'files' => ['1.png', '2.png', '3.png', '4.png'],
             ],
             'retensi-pendek' => [
                 'title' => 'Arsip Retensi Jangka Pendek',
                 'desc' => 'Arsip ini hanya disimpan dalam waktu singkat (kurang dari 5 tahun) sebelum dimusnahkan.',
-                'images' => ['1.png', '2.png', '3.png', '4.png'],
+                'type' => 'images',
+                'files' => ['1.png', '2.png', '3.png', '4.png'],
             ],
             'retensi-panjang' => [
                 'title' => 'Arsip Retensi Jangka Panjang',
                 'desc' => 'Arsip ini memiliki nilai guna dalam waktu lama, lebih dari 5 tahun, untuk keperluan referensi atau hukum.',
-                'images' => ['1.png', '2.png', '3.png', '4.png'],
+                'type' => 'images',
+                'files' => ['1.png', '2.png', '3.png', '4.png'],
             ],
             'elektronik' => [
                 'title' => 'Arsip Elektronik',
                 'desc' => 'Arsip elektronik adalah dokumen digital yang tersimpan dan dikelola secara elektronik.',
-                'images' => ['1.png'],
+                'type' => 'images',
+                'files' => ['1.png'],
             ]
         ];
 

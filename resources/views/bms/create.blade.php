@@ -10,6 +10,10 @@
 
     <form action="{{ route('bms.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        <div class="mb-3">
+            <label for="No_Rak" class="form-label">Nomor Rak</label>
+            <input type="text" name="No_Rak" id="No_Rak" class="form-control" required>
+        </div>
 
         <div class="mb-3">
             <label for="No_Arsip" class="form-label">Nomor Arsip</label>
@@ -22,13 +26,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="Tanggal" class="form-label">Tanggal</label>
+            <label for="Tanggal" class="form-label">Tanggal Upload</label>
             <input type="date" name="Tanggal" id="Tanggal" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label for="Kegiatan" class="form-label">Kegiatan</label>
-            <input type="text" name="Kegiatan" id="Kegiatan" class="form-control" required>
+            <label for="Judul_Arsip" class="form-label">Judul Arsip</label>
+            <input type="text" name="Judul_Arsip" id="Judul_Arsip" class="form-control" required>
         </div>
 
         <div class="mb-3">
@@ -64,7 +68,7 @@
             <label for="Dokumen" class="form-label">Unggah Dokumen</label>
             <input type="file" name="dokumen" id="dokumen" class="form-control" accept=".pdf" required>
 
-            <small class="text-muted">Format: PDF (Max: 2MB)</small>
+            <small class="text-muted">Format: PDF (Max: 5MB)</small>
         </div>
 
         <button type="submit" class="btn btn-primary">Simpan Arsip</button>

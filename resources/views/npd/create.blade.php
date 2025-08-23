@@ -12,6 +12,11 @@
         @csrf
 
         <div class="mb-3">
+            <label for="No_Rak" class="form-label">Nomor Rak</label>
+            <input type="text" name="No_Rak" id="No_Rak" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
             <label for="No_Arsip" class="form-label">Nomor Arsip</label>
             <input type="text" name="No_Arsip" id="No_Arsip" class="form-control" required>
         </div>
@@ -22,12 +27,12 @@
         </div>
 
         <div class="mb-3">
-            <label for="Tanggal" class="form-label">Tanggal</label>
+            <label for="Tanggal" class="form-label">Tanggal Upload</label>
             <input type="date" name="Tanggal" id="Tanggal" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label for="Kegiatan" class="form-label">Kegiatan</label>
+            <label for="Kegiatan" class="form-label">Judul Arsip</label>
             <input type="text" name="Kegiatan" id="Kegiatan" class="form-control" required>
         </div>
 

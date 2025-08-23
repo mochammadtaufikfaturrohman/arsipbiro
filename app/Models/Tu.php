@@ -17,6 +17,7 @@ class Tu extends Model
 
     protected $fillable = [
         'id', // Primary key
+        'No_Rak',
         'No_Arsip',
         'Nama_Lembaga',
         'Tanggal',

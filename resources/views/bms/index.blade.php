@@ -100,10 +100,11 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No Arsip</th>
+                                            <th>Nomor Rak</th>
+                                            <th>Nomor Arsip</th>
                                             <th>Nama Lembaga</th>
-                                            <th>Tanggal</th>
-                                            <th>Kegiatan</th>
+                                            <th>Tanggal Upload</th>
+                                            <th>Judul Arsip</th>
                                             <th>Keterangan</th>
                                             <th>Divisi</th>
                                             <th>Kategori</th>
@@ -117,10 +118,11 @@
                                         @if (isset($bms) && $bms->count() > 0)
                                             @foreach ($bms as $item)
                                                 <tr>
+                                                    <td>{{ $item->No_Rak }}</td>
                                                     <td>{{ $item->No_Arsip }}</td>
                                                     <td>{{ $item->Nama_Lembaga }}</td>
                                                     <td>{{ $item->Tanggal }}</td>
-                                                    <td>{{ $item->Kegiatan }}</td>
+                                                    <td>{{ $item->Judul_Arsip }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Divisi }}</td>
                                                     <td>{{ $item->Kategori }}</td>
@@ -152,7 +154,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="8" class="text-center">Tidak ada data</td>
+                                                <td colspan="10" class="text-center">Tidak ada data</td>
                                             </tr>
                                         @endif
                                     </tbody>
@@ -215,7 +217,7 @@
                             @if ($dokumen->Dokumen)
                                 <div class="mt-4">
                                     <h6><strong>Preview Dokumen:</strong></h6>
-                                    <iframe src="{{ asset('storage/' . $item->Dokumen) }}" frameborder="0"
+                                    <iframe src="{{ asset('storage/' . $dokumen->Dokumen) }}" frameborder="0"
                                         width="100%" height="400px"></iframe>
                                 </div>
                             @else

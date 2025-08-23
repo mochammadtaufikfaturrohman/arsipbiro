@@ -17,7 +17,7 @@ $(document).ready(function () {
                                 <td>${item.No_Arsip}</td>
                                 <td>${item.Nama_Lembaga}</td>
                                 <td>${item.Tanggal}</td>
-                                <td>${item.Kegiatan}</td>
+                                <td>${item.Judul_Arsip}</td>
                                 <td>${item.Keterangan}</td>
                                 <td>${item.Kategori}</td>
                                 <td>
@@ -45,3 +45,4 @@ $(document).ready(function () {
         });
     });
 });
+

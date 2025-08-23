@@ -16,6 +16,7 @@ class Yandas extends Model
    
     protected $fillable = [
         'id',
+        'No_Rak',
         'No_Arsip',
         'Nama_Lembaga',
         'Tanggal',

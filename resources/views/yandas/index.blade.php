@@ -125,10 +125,11 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No Arsip</th>
+                                            <th>Nomor Rak</th>
+                                            <th>Nomor Arsip</th>
                                             <th>Nama Lembaga</th>
-                                            <th>Tanggal</th>
-                                            <th>Kegiatan</th>
+                                            <th>Tanggal Upload</th>
+                                            <th>Judul Arsip</th>
                                             <th>Keterangan</th>
                                             <th>Divisi</th>
                                             <th>Kategori</th>
@@ -142,6 +143,7 @@
                                         @if (isset($yandas) && $yandas->count() > 0)
                                             @foreach ($yandas as $item)
                                                 <tr>
+                                                    <td>{{ $item->No_Rak }}</td>
                                                     <td>{{ $item->No_Arsip }}</td>
                                                     <td>{{ $item->Nama_Lembaga }}</td>
                                                     <td>{{ $item->Tanggal }}</td>
@@ -177,7 +179,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="8" class="text-center">Tidak ada data ditemukan.</td>
+                                                <td colspan="10" class="text-center">Tidak ada data ditemukan.</td>
                                             </tr>
                                         @endif
                                     </tbody>
@@ -256,7 +258,7 @@
                             <h6><strong>No Arsip:</strong> {{ $item->No_Arsip }}</h6>
                             <h6><strong>Nama Lembaga:</strong> {{ $item->Nama_Lembaga }}</h6>
                             <h6><strong>Tanggal:</strong> {{ $item->Tanggal }}</h6>
-                            <h6><strong>Kegiatan:</strong> {{ $item->Kegiatan }}</h6>
+                            <h6><strong>Judul Arsip:</strong> {{ $item->Kegiatan }}</h6>
                             <h6><strong>Keterangan:</strong> {{ $item->Keterangan }}</h6>
                             <h6><strong>Divisi:</strong> {{ $item->Divisi }}</h6>
                             <h6><strong>Kategori:</strong> {{ $item->Kategori }}</h6>

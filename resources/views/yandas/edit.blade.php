@@ -2,6 +2,10 @@
     @csrf
     @method('PUT')
     <div class="form-group mb-3">
+        <label for="No_Rak">Nomor Rak</label>
+        <input type="text" class="form-control" id="No_Rak" name="No_Rak" value="{{ $item->No_Rak }}" required>
+    </div>
+    <div class="form-group mb-3">
         <label for="No_Arsip">Nomor Arsip</label>
         <input type="text" class="form-control" id="No_Arsip" name="No_Arsip" value="{{ $item->No_Arsip }}" required>
     </div>
@@ -11,11 +15,11 @@
             value="{{ $item->Nama_Lembaga }}" required>
     </div>
     <div class="form-group mb-3">
-        <label for="Tanggal">Tanggal</label>
+        <label for="Tanggal">Tanggal Upload</label>
         <input type="date" class="form-control" id="Tanggal" name="Tanggal" value="{{ $item->Tanggal }}" required>
     </div>
     <div class="form-group mb-3">
-        <label for="Kegiatan">Kegiatan</label>
+        <label for="Kegiatan">Judul Arsip</label>
         <textarea class="form-control" id="Kegiatan" name="Kegiatan" required>{{ $item->Kegiatan }}</textarea>
     </div>
     <div class="form-group mb-3">

@@ -60,15 +60,17 @@
                     <!-- Content Row -->
 
                     <div class="row">
-                        @foreach ($arsip['images'] as $image)
-                            <div class="col-md-4 mb-3 text-center">
-                                <a href="{{ asset('template/img/' . $image) }}" data-lightbox="arsip-gallery"
-                                    data-title="Infografis: {{ $arsip['title'] }}">
-                                    <img src="{{ asset('template/img/' . $image) }}"
-                                        class="img-fluid img-thumbnail" style="max-height: 300px;" alt="Infografis">
-                                </a>
-                            </div>
-                        @endforeach
+                        @if ($arsip['type'] === 'pdf')
+                            <iframe src="{{ asset('storage/dokumen/MANUAL-BOOK.pdf') }}" width="100%" height="800px"
+                                style="border:none;">
+                            </iframe>
+                        @elseif($arsip['type'] === 'images')
+                            @foreach ($arsip['files'] as $img)
+                                <img src="{{ asset('template/img/' . $img) }}" alt="arsip image"
+                                    class="d-block mx-auto mb-3" style="max-width:75%; height:auto;">
+                            @endforeach
+                        @endif
+
                     </div>
 
 

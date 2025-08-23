@@ -155,4 +155,15 @@ class DashboardController extends BaseController
             'totalNpd'
         ));
     }
+
+    // DashboardController.php
+    public function chartData()
+    {
+        return response()->json([
+            'TU' => TU::count(),
+            'Yandas' => Yandas::count(),
+            'NPD' => Npd::count(),
+            'BMS' => Bms::count(),
+        ]);
+    }
 }

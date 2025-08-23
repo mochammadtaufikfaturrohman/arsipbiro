@@ -8,6 +8,7 @@ return new class extends Migration {
     {
         Schema::create('yandas', function (Blueprint $table) {
             $table->id(); // Primary Key auto-increment
+            $table->string('No_Rak')->unique(); // Nomor Rak tetap ada, tapi bisa diisi manual
             $table->string('No_Arsip')->unique(); // No Arsip tetap ada, tapi bisa diisi manual
             $table->string('Nama_Lembaga');
             $table->date('Tanggal');

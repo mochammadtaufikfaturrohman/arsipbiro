@@ -22,6 +22,7 @@ class NpdController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:npd,No_Arsip',
             'Nama_Lembaga' => 'required|string|max:255',
             'Tanggal' => 'required|date',
@@ -52,6 +53,7 @@ class NpdController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:npd,No_Arsip,' . $id . ',id|max:50',
             'Nama_Lembaga' => 'required|string|max:255',
             'Tanggal' => 'required|date',

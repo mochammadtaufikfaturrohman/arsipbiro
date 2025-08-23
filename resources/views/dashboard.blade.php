@@ -42,7 +42,9 @@
                 <!-- Topbar -->
                 <div class="bg-danger text-light py-10 px-15">
                     <marquee behavior="scroll" direction="left" scrollamount="5">
-                        <strong>🔔 Pemberitahuan:</strong> Silakan baca halaman <a href="{{ route('dashboard') }}" class="text-light font-weight-bold">Panduan Arsip</a> terlebih dahulu untuk mengetahui jenis-jenis arsip yang tersedia.
+                        <strong>🔔 Pemberitahuan:</strong> Silakan baca halaman <a href="{{ route('panduan') }}"
+                            class="text-light font-weight-bold">Panduan Arsip</a> terlebih dahulu untuk mengetahui
+                        jenis-jenis arsip yang tersedia.
                     </marquee>
                 </div>
                 @include('layout.navbar')
@@ -125,116 +127,27 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
 
-                    <!-- Content Table -->
-                    <div class="col-lg-15">
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <h6 class="m-10 font-weight-bold text-primary">Dokumen Semua Divisi</h6>
-                                <div class="d-flex gap-2 mt-3">
-                                    <form action="{{ route('dashboard.filter') }}" method="GET" id="filterForm"
-                                        class="d-none d-md-flex">
-                                        <select name="kategori" id="filterKategori" class="form-control"
-                                            style="width: 160px;"
-                                            onchange="document.getElementById('filterForm').submit();">
-                                            <option value="">Pilih Kategori</option>
-                                            <option value="arsip dinamis"
-                                                {{ request('kategori') == 'arsip dinamis' ? 'selected' : '' }}>Arsip
-                                                Dinamis</option>
-                                            <option value="arsip statis"
-                                                {{ request('kategori') == 'arsip statis' ? 'selected' : '' }}>Arsip
-                                                Statis</option>
-                                            <option value="arsip vital"
-                                                {{ request('kategori') == 'arsip vital' ? 'selected' : '' }}>Arsip Vital
-                                            </option>
-                                            <option value="arsip permanen"
-                                                {{ request('kategori') == 'arsip permanen' ? 'selected' : '' }}>Arsip
-                                                Permanen</option>
-                                            <option value="arsip retensi jangka pendek"
-                                                {{ request('kategori') == 'arsip retensi jangka pendek' ? 'selected' : '' }}>
-                                                Arsip Retensi Jangka Pendek</option>
-                                            <option value="arsip retensi jangka panjang"
-                                                {{ request('kategori') == 'arsip retensi jangka panjang' ? 'selected' : '' }}>
-                                                Arsip Retensi Jangka Panjang</option>
-                                            <option value="arsip elektronik"
-                                                {{ request('kategori') == 'arsip elektronik' ? 'selected' : '' }}>Arsip
-                                                Elektronik</option>
-                                            <option value="arsip fisik"
-                                                {{ request('kategori') == 'arsip fisik' ? 'selected' : '' }}>Arsip
-                                                Fisik</option>
-                                        </select>
-                                        <select name="divisi" id="filterDivisi" class="form-control ml-2"
-                                            style="width: 160px;"
-                                            onchange="document.getElementById('filterForm').submit();">
-                                            <option value="">Pilih Divisi</option>
-                                            <option value="Sosial" {{ request('divisi') == 'Sosial' ? 'selected' : '' }}>Sosial</option>
-                                            <option value="Kesehatan" {{ request('divisi') == 'Kesehatan' ? 'selected' : '' }}>Kesehatan</option>
-                                            <option value="Pendidikan" {{ request('divisi') == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
-                                            <option value="NPD 1" {{ request('divisi') == 'NPD 1' ? 'selected' : '' }}>NPD 1</option>
-                                            <option value="NPD 2" {{ request('divisi') == 'NPD 2' ? 'selected' : '' }}>NPD 2</option>
-                                            <option value="NPD 3" {{ request('divisi') == 'NPD 3' ? 'selected' : '' }}>NPD 3</option>
-                                            <option value="Kelembagaan" {{ request('divisi') == 'Kelembagaan' ? 'selected' : '' }}>Kelembagaan</option>
-                                            <option value="Sarana Prasarana" {{ request('divisi') == 'Sarana Prasarana' ? 'selected' : '' }}>Sarana Prasarana</option>
-                                        </select>
-                                        <div class="input-group">
-                                            <input type="text" name="query" class="form-control ml-2"  placeholder="Search for..." value="{{ request('query') }}">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class="fas fa-search fa-sm"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+
+                    {{-- diagram --}}
+                    <div class="col-xl-12 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Statistik Arsip per Divisi</h6>
                             </div>
-                            <div class="table-responsive p-3">
-                                <table class="table table-striped table-bordered">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>No Arsip</th>
-                                            <th>Nama Lembaga</th>
-                                            <th>Tanggal</th>
-                                            <th>Kegiatan</th>
-                                            <th>Keterangan</th>
-                                            <th>Divisi</th>
-                                            <th>Kategori</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (['tu' => $tu, 'yandas' => $yandas, 'bms' => $bms, 'npd' => $npd ?? []] as $title => $data)
-                                            @foreach ($data as $item)
-                                                <tr>
-                                                    <td>{{ $item->No_Arsip }}</td>
-                                                    <td>{{ $item->Nama_Lembaga }}</td>
-                                                    <td>{{ $item->Tanggal }}</td>
-                                                    <td>{{ $item->Kegiatan }}</td>
-                                                    <td>{{ $item->Keterangan }}</td>
-                                                    <td>{{ $item->Divisi }}</td>
-                                                    {{-- <td>{{ $item->Divisi }}</td> --}}
-                                                    {{-- <td>{{ $item->Kategori }}</td> --}}
-                                                    <td>{{ $item->Kategori }}</td>
-
-                                                </tr>
-                                            @endforeach
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {{ $data->links() }}
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="myAreaChart"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    {{-- end content table --}}
-
-
-
-                    <div class="row">
-                    </div>
                     <!-- /.container-fluid -->
-
                 </div>
                 <!-- End of Main Content -->
-
             </div>
             <!-- End of Content Wrapper -->
             <!-- Footer -->

@@ -20,7 +20,7 @@ class BmsController extends Controller
             'No_Arsip' => 'required|string|unique:bms,No_Arsip',
             'Nama_Lembaga' => 'required|string|max:255',
             'Tanggal' => 'required|date',
-            'Kegiatan' => 'required|string',
+            'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
             'Divisi' => 'required|in:Kelembagaan,Sarana Prasarana',
             'Kategori' => 'required',
@@ -49,7 +49,7 @@ class BmsController extends Controller
             'No_Arsip' => 'required|string|unique:bms,No_Arsip,' . $id . ',id|max:50',
             'Nama_Lembaga' => 'required|string|max:255',
             'Tanggal' => 'required|date',
-            'Kegiatan' => 'required|string',
+            'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
             'Divisi' => 'required|in:Kelembagaan,Sarana Prasarana',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
@@ -111,7 +111,7 @@ class BmsController extends Controller
             $bms->where(function ($q) use ($query) {
                 $q->where('No_Arsip', 'like', "%{$query}%")
                   ->orWhere('Nama_Lembaga', 'like', "%{$query}%")
-                  ->orWhere('Kegiatan', 'like', "%{$query}%");
+                  ->orWhere('Judul_Arsip', 'like', "%{$query}%");
             });
         }
 
@@ -145,7 +145,7 @@ class BmsController extends Controller
             $bms->where(function ($q) use ($query) {
                 $q->where('No_Arsip', 'LIKE', "%{$query}%")
                     ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
-                    ->orWhere('Kegiatan', 'LIKE', "%{$query}%");
+                    ->orWhere('Judul_Arsip', 'LIKE', "%{$query}%");
             });
         }
 

@@ -76,10 +76,11 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No Arsip</th>
+                                            <th>Nomor Rak</th>
+                                            <th>Nomor Arsip</th>
                                             <th>Nama Lembaga</th>
-                                            <th>Tanggal</th>
-                                            <th>Kegiatan</th>
+                                            <th>Tanggal Upload</th>
+                                            <th>Judul Arsip</th>
                                             <th>Keterangan</th>
                                             <th>Divisi</th>
                                             <th>Kategori</th>
@@ -93,6 +94,7 @@
                                         @if (isset($npd) && $npd->count() > 0)
                                             @foreach ($npd as $item)
                                                 <tr>
+                                                    <td>{{ $item->No_Rak }}</td>
                                                     <td>{{ $item->No_Arsip }}</td>
                                                     <td>{{ $item->Nama_Lembaga }}</td>
                                                     <td>{{ $item->Tanggal }}</td>
@@ -128,7 +130,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="9" class="text-center">Tidak ada data ditemukan.</td>
+                                                <td colspan="10" class="text-center">Tidak ada data.</td>
                                             </tr>
                                         @endif
                                     </tbody>

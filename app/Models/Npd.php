@@ -17,10 +17,11 @@ class Npd extends Model
 
     protected $fillable = [
         'id', // Primary key
+        'No_Rak',
         'No_Arsip',
         'Nama_Lembaga',
         'Tanggal',
-        'Kegiatan',
+        'Judul_Kegiatan',
         'Keterangan',
         'Divisi',
         'Kategori',
