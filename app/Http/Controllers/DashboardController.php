@@ -159,11 +159,18 @@ class DashboardController extends BaseController
     // DashboardController.php
     public function chartData()
     {
-        return response()->json([
-            'TU' => TU::count(),
-            'Yandas' => Yandas::count(),
-            'NPD' => Npd::count(),
-            'BMS' => Bms::count(),
-        ]);
+        $data = [
+            'TU' => Tu::count(),
+            'Sosial' => Yandas::where('Divisi', 'Sosial')->count(),
+            'Kesehatan' => Yandas::where('Divisi', 'Kesehatan')->count(),
+            'Pendidikan' => Yandas::where('Divisi', 'Pendidikan')->count(),
+            'NPD 1' => Npd::where('Divisi', 'NPD 1')->count(),
+            'NPD 2' => Npd::where('Divisi', 'NPD 2')->count(),
+            'NPD 3' => Npd::where('Divisi', 'NPD 3')->count(),
+            'Kelembagaan' => Bms::where('Divisi', 'Kelembagaan')->count(),
+            'Sarpras' => Bms::where('Divisi', 'Sarana Prasarana')->count(),
+        ];
+
+        return response()->json($data);
     }
 }
