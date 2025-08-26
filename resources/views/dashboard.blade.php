@@ -136,7 +136,25 @@
                             <!-- Card Header -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Statistik Arsip per Divisi</h6>
+
+                                <!-- Filter Tahun & Bulan -->
+                                <div class="d-flex">
+                                    <select id="yearFilter" class="form-control mr-2">
+                                        @for ($i = 2025; $i <= date('Y') + 5; $i++)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                    </select>
+
+                                    <select id="monthFilter" class="form-control">
+                                        <option value="">Bulan</option>
+                                        @for ($m = 1; $m <= 12; $m++)
+                                            <option value="{{ $m }}">{{ date('F', mktime(0, 0, 0, $m, 1)) }}
+                                            </option>
+                                        @endfor
+                                    </select>
+                                </div>
                             </div>
+
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div class="chart-area">
@@ -145,6 +163,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->

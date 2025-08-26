@@ -157,18 +157,55 @@ class DashboardController extends BaseController
     }
 
     // DashboardController.php
-    public function chartData()
+    public function chartData(Request $request)
     {
+        $year = $request->input('year', date('Y'));   // default tahun sekarang
+        $month = $request->input('month');            // optional
+
         $data = [
-            'TU' => Tu::count(),
-            'Sosial' => Yandas::where('Divisi', 'Sosial')->count(),
-            'Kesehatan' => Yandas::where('Divisi', 'Kesehatan')->count(),
-            'Pendidikan' => Yandas::where('Divisi', 'Pendidikan')->count(),
-            'NPD 1' => Npd::where('Divisi', 'NPD 1')->count(),
-            'NPD 2' => Npd::where('Divisi', 'NPD 2')->count(),
-            'NPD 3' => Npd::where('Divisi', 'NPD 3')->count(),
-            'Kelembagaan' => Bms::where('Divisi', 'Kelembagaan')->count(),
-            'Sarpras' => Bms::where('Divisi', 'Sarana Prasarana')->count(),
+            'TU' => Tu::when($month, fn($q) => $q->whereMonth('created_at', $month))
+                ->whereYear('created_at', $year)
+                ->count(),
+
+            'Sosial' => Yandas::where('Divisi', 'Sosial')
+                ->when($month, fn($q) => $q->whereMonth('created_at', $month))
+                ->whereYear('created_at', $year)
+                ->count(),
+
+            'Kesehatan' => Yandas::where('Divisi', 'Kesehatan')
+                ->when($month, fn($q) => $q->whereMonth('created_at', $month))
+                ->whereYear('created_at', $year)
+                ->count(),
+
+            'Pendidikan' => Yandas::where('Divisi', 'Pendidikan')
+                ->when($month, fn($q) => $q->whereMonth('created_at', $month))
+                ->whereYear('created_at', $year)
+                ->count(),
+
+            'NPD 1' => Npd::where('Divisi', 'NPD 1')
+                ->when($month, fn($q) => $q->whereMonth('created_at', $month))
+                ->whereYear('created_at', $year)
+                ->count(),
+
+            'NPD 2' => Npd::where('Divisi', 'NPD 2')
+                ->when($month, fn($q) => $q->whereMonth('created_at', $month))
+                ->whereYear('created_at', $year)
+                ->count(),
+
+            'NPD 3' => Npd::where('Divisi', 'NPD 3')
+                ->when($month, fn($q) => $q->whereMonth('created_at', $month))
+                ->whereYear('created_at', $year)
+                ->count(),
+
+            'Kelembagaan' => Bms::where('Divisi', 'Kelembagaan')
+                ->when($month, fn($q) => $q->whereMonth('created_at', $month))
+                ->whereYear('created_at', $year)
+                ->count(),
+
+            'Sarpras' => Bms::where('Divisi', 'Sarana Prasarana')
+                ->when($month, fn($q) => $q->whereMonth('created_at', $month))
+                ->whereYear('created_at', $year)
+                ->count(),
         ];
 
         return response()->json($data);
