@@ -2,8 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center">
-        <img src="https://d2s1u1uyrl4yfi.cloudfront.net/birokesra/favicon/98701389f45528a5961e6cf539302550.webp"
-            alt="Biro Kesra Logo" width="60" height="50">
+        <img src="/template/img/logo.png" alt="Biro Kesra Logo" width="150" height="110">
     </a>
 
     <!-- Divider -->
