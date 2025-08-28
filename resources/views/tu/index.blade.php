@@ -174,7 +174,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data ini?
+                        Apakah Anda yakin ingin menghapus data <b>{{ $item->No_Arsip }}</b> ini?
                     </div>
                     <div class="modal-footer">
                         <form action="{{ route('tu.destroy', $item->id) }}" method="POST" style="display:inline;">
