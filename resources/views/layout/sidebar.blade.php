@@ -2,7 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center">
-        <img src="/template/img/logo.png" alt="Biro Kesra Logo" width="150" height="110">
+        <img src="/template/img/logo3.png" alt="Biro Kesra Logo" width="150" height="110">
     </a>
 
     <!-- Divider -->
@@ -16,12 +16,14 @@
         </a>
     </li>
 
+    @if  (in_array(Auth()->user()->role, ['admin', 'super admin']))
     <li class="nav-item {{ request()->routeIs('panduan') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('panduan') }}">
             <i class="fas fa-fw fa-solid fa-book"></i>
             <span>Panduan Arsip</span>
         </a>
     </li>
+    @endif
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -58,7 +60,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    @if (Auth()->user()->role == 'admin')
+    @if (Auth()->user()->role == 'super admin')
         <li class="nav-item {{ request()->routeIs('admin.*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin.index') }}">
                 <i class="fas fa-fw fa-user"></i>
