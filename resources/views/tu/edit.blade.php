@@ -19,8 +19,8 @@
         <input type="date" class="form-control" id="Tanggal" name="Tanggal" value="{{ $item->Tanggal }}" required>
     </div>
     <div class="form-group mb-3">
-        <label for="Kegiatan">Judul Arsip</label>
-        <textarea class="form-control" id="Kegiatan" name="Kegiatan" required>{{ $item->Kegiatan }}</textarea>
+        <label for="Judul_Arsip">Judul Arsip</label>
+        <textarea class="form-control" id="Judul_Arsip" name="Judul_Arsip" required>{{ $item->Judul_Arsip }}</textarea>
     </div>
     <div class="form-group mb-3">
         <label for="Keterangan">Keterangan</label>

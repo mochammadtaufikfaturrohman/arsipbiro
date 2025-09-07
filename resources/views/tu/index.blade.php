@@ -87,7 +87,7 @@
                                                     <td>{{ $item->No_Arsip }}</td>
                                                     <td>{{ $item->Nama_Lembaga }}</td>
                                                     <td>{{ $item->Tanggal }}</td>
-                                                    <td>{{ $item->Kegiatan }}</td>
+                                                    <td>{{ $item->Judul_Arsip }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td>
@@ -141,9 +141,8 @@
                 <h6><strong>No Arsip:</strong> {{ $item->No_Arsip }}</h6>
                 <h6><strong>Nama Lembaga:</strong> {{ $item->Nama_Lembaga }}</h6>
                 <h6><strong>Tanggal:</strong> {{ $item->Tanggal }}</h6>
-                <h6><strong>Kegiatan:</strong> {{ $item->Kegiatan }}</h6>
+                <h6><strong>Judul Arsip:</strong> {{ $item->Judul_Arsip }}</h6>
                 <h6><strong>Keterangan:</strong> {{ $item->Keterangan }}</h6>
-                <h6><strong>Divisi:</strong> {{ $item->Divisi }}</h6>
                 <h6><strong>Kategori:</strong> {{ $item->Kategori }}</h6>
                 @if ($item->Dokumen)
                     <div class="mt-4">

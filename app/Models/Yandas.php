@@ -20,7 +20,7 @@ class Yandas extends Model
         'No_Arsip',
         'Nama_Lembaga',
         'Tanggal',
-        'Kegiatan',
+        'Judul_Arsip',
         'Keterangan',
         'Divisi',
         'Kategori',

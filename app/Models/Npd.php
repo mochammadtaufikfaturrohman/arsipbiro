@@ -21,7 +21,7 @@ class Npd extends Model
         'No_Arsip',
         'Nama_Lembaga',
         'Tanggal',
-        'Judul_Kegiatan',
+        'Judul_Arsip',
         'Keterangan',
         'Divisi',
         'Kategori',

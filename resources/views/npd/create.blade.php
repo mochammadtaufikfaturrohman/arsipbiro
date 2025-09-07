@@ -32,8 +32,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="Kegiatan" class="form-label">Judul Arsip</label>
-            <input type="text" name="Kegiatan" id="Kegiatan" class="form-control" required>
+            <label for="Judul_Arsip" class="form-label">Judul Arsip</label>
+            <input type="text" name="Judul_Arsip" id="Judul_Arsip" class="form-control" required>
         </div>
 
         <div class="mb-3">

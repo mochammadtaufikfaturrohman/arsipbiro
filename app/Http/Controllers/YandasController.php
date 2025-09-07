@@ -26,7 +26,7 @@ class YandasController extends Controller
             'No_Arsip' => 'required|string|unique:yandas,No_Arsip',
             'Nama_Lembaga' => 'required|string|max:255',
             'Tanggal' => 'required|date',
-            'Kegiatan' => 'required|string',
+            'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
             'Divisi' => 'required|in:Sosial,Kesehatan,Pendidikan',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
@@ -57,7 +57,7 @@ class YandasController extends Controller
             'No_Arsip' => 'required|string|unique:yandas,No_Arsip,' . $id . ',id|max:50',
             'Nama_Lembaga' => 'required|string|max:255',
             'Tanggal' => 'required|date',
-            'Kegiatan' => 'required|string',
+            'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
             'Divisi' => 'required|in:Sosial,Kesehatan,Pendidikan',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
@@ -113,7 +113,7 @@ class YandasController extends Controller
         // Cari data berdasarkan No Arsip, Nama Lembaga, atau Kegiatan
         $yandas = Yandas::where('No_Arsip', 'LIKE', "%{$query}%")
             ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
-            ->orWhere('Kegiatan', 'LIKE', "%{$query}%")
+            ->orWhere('Judul_Arsip', 'LIKE', "%{$query}%")
             ->paginate(10)
             ->appends($request->all()); // Menjaga query string saat berpindah halaman
 
@@ -141,7 +141,7 @@ class YandasController extends Controller
             $yandas->where(function ($q) use ($query) {
                 $q->where('No_Arsip', 'LIKE', "%{$query}%")
                     ->orWhere('Nama_Lembaga', 'LIKE', "%{$query}%")
-                    ->orWhere('Kegiatan', 'LIKE', "%{$query}%");
+                    ->orWhere('Judul_Arsip', 'LIKE', "%{$query}%");
             });
         }
 

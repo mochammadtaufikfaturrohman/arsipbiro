@@ -211,7 +211,7 @@
                             <h6><strong>No Arsip:</strong> {{ $dokumen->No_Arsip }}</h6>
                             <h6><strong>Nama Lembaga:</strong> {{ $dokumen->Nama_Lembaga }}</h6>
                             <h6><strong>Tanggal:</strong> {{ $dokumen->Tanggal }}</h6>
-                            <h6><strong>Kegiatan:</strong> {{ $dokumen->Kegiatan }}</h6>
+                            <h6><strong>Judul Arsip:</strong> {{ $dokumen->Judul_Arsip }}</h6>
                             <h6><strong>Keterangan:</strong> {{ $dokumen->Keterangan }}</h6>
                             <h6><strong>Kategori:</strong> {{ $dokumen->Kategori }}</h6>
                             @if ($dokumen->Dokumen)
