@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                @if (Auth()->user()->role == 'admin')
+                                @if (Auth()->user()->role == 'super admin')
                                     <button type="button" class="btn btn-success"
                                         data-bs-toggle="modal"data-bs-target="#tambahArsipModal">
                                         Tambah Admin
@@ -88,6 +88,82 @@
                                                         </button>
                                                     </td>
                                                 </tr>
+
+                                                <!-- Modal Edit -->
+                                                <div class="modal fade" id="editModal{{ $item->id }}"
+                                                    tabindex="-1">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <form action="{{ route('admin.update', $item->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Edit Admin</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal">X</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="mb-3">
+                                                                        <label>Nama</label>
+                                                                        <input type="text" name="name"
+                                                                            value="{{ $item->name }}"
+                                                                            class="form-control" required>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label>Email</label>
+                                                                        <input type="email" name="email"
+                                                                            value="{{ $item->email }}"
+                                                                            class="form-control" required>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label>Password (opsional)</label>
+                                                                        <input type="password" name="password"
+                                                                            class="form-control"
+                                                                            placeholder="Kosongkan jika tidak diubah">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Batal</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Simpan</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal Edit Akhir -->
+
+                                                <!-- Modal Delete -->
+                                                <div class="modal fade" id="deleteModal{{ $item->id }}"
+                                                    tabindex="-1">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <form action="{{ route('admin.destroy', $item->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Konfirmasi Hapus</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal">X</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Apakah anda yakin ingin menghapus admin
+                                                                    <b>{{ $item->name }}</b> ?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Batal</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger">Hapus</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal Edit Akhir -->
                                             @endforeach
                                         @else
                                             <tr>
@@ -140,66 +216,6 @@
             </div>
         </div>
         {{-- modal tambah akhir --}}
-
-        <!-- Modal Edit -->
-        <div class="modal fade" id="editModal{{ $item->id }}" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="{{ route('admin.update', $item->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="modal-header">
-                            <h5 class="modal-title">Edit Admin</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label>Nama</label>
-                                <input type="text" name="name" value="{{ $item->name }}"
-                                    class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label>Email</label>
-                                <input type="email" name="email" value="{{ $item->email }}"
-                                    class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label>Password (opsional)</label>
-                                <input type="password" name="password" class="form-control"
-                                    placeholder="Kosongkan jika tidak diubah">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Delete -->
-        <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="{{ route('admin.destroy', $item->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <div class="modal-header">
-                            <h5 class="modal-title">Konfirmasi Hapus</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal">X</button>
-                        </div>
-                        <div class="modal-body">
-                            Apakah anda yakin ingin menghapus admin <b>{{ $item->name }}</b> ?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
 
         <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 
