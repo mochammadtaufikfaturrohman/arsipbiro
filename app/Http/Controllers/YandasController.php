@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Yandas;
+use App\Services\KlasifikasiService;
 
 class YandasController extends Controller
 {
+    protected $klasifikasiService;
+
+    public function __construct(KlasifikasiService $klasifikasiService)
+    {
+        $this->klasifikasiService = $klasifikasiService;
+    }
+
     public function index()
     {
         $yandas = Yandas::paginate(10);
@@ -28,6 +36,7 @@ class YandasController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Jenis_Dokumen' => 'nullable|string|max:255',
             'Divisi' => 'required|in:Sosial,Kesehatan,Pendidikan',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048'
@@ -35,11 +44,17 @@ class YandasController extends Controller
 
         $data = $request->except('dokumen');
 
+        $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
+            $request->Judul_Arsip,
+            $request->Keterangan
+        );
+
         if ($request->hasFile('dokumen')) {
             $data['Dokumen'] = $request->file('dokumen')->store('dokumen/yandas', 'public');
         }
 
         Yandas::create($data);
+
 
         return redirect()->route('yandas')->with('success', 'Data Yandas berhasil disimpan.');
     }
@@ -59,6 +74,7 @@ class YandasController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Jenis_Dokumen' => 'nullable|string|max:255',
             'Divisi' => 'required|in:Sosial,Kesehatan,Pendidikan',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048'
@@ -66,6 +82,10 @@ class YandasController extends Controller
 
         $yandas = Yandas::findOrFail($id);
         $data = $request->except('dokumen');
+        $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
+            $request->Judul_Arsip,
+            $request->Keterangan
+        );
 
         if ($request->hasFile('dokumen')) {
             if ($yandas->Dokumen && Storage::disk('public')->exists($yandas->Dokumen)) {

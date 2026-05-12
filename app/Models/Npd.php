@@ -25,6 +25,7 @@ class Npd extends Model
         'Keterangan',
         'Divisi',
         'Kategori',
+        'Jenis_Dokumen',
         'Dokumen',
     ];
 }

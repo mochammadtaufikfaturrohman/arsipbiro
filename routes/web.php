@@ -10,6 +10,10 @@ use App\Http\Controllers\BmsController;
 use App\Http\Controllers\YandasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PanduanController;
+use App\Http\Controllers\KlasifikasiController;
+
+// prediksi klasifikasi
+Route::post('/prediksi-jenis-dokumen', [KlasifikasiController::class, 'prediksi']);
 
 Route::get('/', function () {
     return view('welcome');

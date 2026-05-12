@@ -24,6 +24,7 @@ class Bms extends Model
         'Keterangan',
         'Divisi',
         'Kategori',
+        'Jenis_Dokumen',
         'Dokumen',
     ];
 }

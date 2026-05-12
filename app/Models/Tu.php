@@ -24,6 +24,7 @@ class Tu extends Model
         'Judul_Arsip',
         'Keterangan',
         'Kategori',
+        'Jenis_Dokumen',
         'Dokumen',
     ];
 }

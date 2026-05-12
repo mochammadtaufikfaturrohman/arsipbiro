@@ -7,7 +7,8 @@
     </div>
     <div class="form-group mb-3">
         <label for="No_Arsip">Nomor Arsip</label>
-        <input type="text" class="form-control" id="No_Arsip" name="No_Arsip" value="{{ $item->No_Arsip }}" required>
+        <input type="text" class="form-control" id="No_Arsip" name="No_Arsip" value="{{ $item->No_Arsip }}"
+            required>
     </div>
     <div class="form-group mb-3">
         <label for="Nama_Lembaga">Nama Lembaga</label>
@@ -20,11 +21,36 @@
     </div>
     <div class="form-group mb-3">
         <label for="Judul_Arsip">Judul Arsip</label>
-        <textarea class="form-control" id="Judul_Arsip" name="Judul_Arsip" required>{{ $item->Judul_Arsip }}</textarea>
+        <textarea class="form-control judul-arsip" id="Judul_Arsip" name="Judul_Arsip" required>{{ $item->Judul_Arsip }}</textarea>
     </div>
     <div class="form-group mb-3">
         <label for="Keterangan">Keterangan</label>
-        <textarea class="form-control" id="Keterangan" name="Keterangan">{{ $item->Keterangan }}</textarea>
+        <textarea class="form-control keterangan" id="Keterangan" name="Keterangan">{{ $item->Keterangan }}</textarea>
+    </div>
+    <div class="form-group mb-3">
+
+        <label for="Jenis_Dokumen">
+            Jenis Dokumen
+        </label>
+
+        <div class="input-group">
+
+            {{-- Spinner --}}
+            <span class="input-group-text d-none loading-spinner" id="loadingSpinnerEdit">
+
+                <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+            </span>
+
+            {{-- Hasil --}}
+            <input type="text" class="form-control jenis-dokumen" id="Jenis_Dokumen" name="Jenis_Dokumen"
+                value="{{ $item->Jenis_Dokumen }}" readonly>
+
+        </div>
+
+        <small id="statusPrediksiEdit" class="text-muted">
+            Sistem akan melakukan klasifikasi otomatis
+        </small>
+
     </div>
     <div class="form-group mb-3">
         <label for="Divisi">Divisi</label>
@@ -68,3 +94,80 @@
         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
     </div>
 </form>
+
+{{-- js --}}
+<script>
+    let timeoutEdit;
+
+    $(document).on('keyup', '.judul-arsip, .keterangan', function() {
+
+        clearTimeout(timeoutEdit);
+
+        let form = $(this).closest('form');
+
+        timeoutEdit = setTimeout(function() {
+
+            let judul = form.find('.judul-arsip').val();
+            let keterangan = form.find('.keterangan').val();
+
+            let textGabungan = judul + " " + keterangan;
+
+            if (textGabungan.trim().length < 5) {
+                return;
+            }
+
+            form.find('.loading-spinner')
+                .removeClass('d-none');
+
+            form.find('.jenis-dokumen')
+                .val('Sedang klasifikasi...');
+
+            form.find('.status-prediksi')
+                .text('AI sedang menganalisis dokumen...');
+
+            $.ajax({
+
+                url: '/prediksi-jenis-dokumen',
+
+                type: 'POST',
+
+                data: {
+
+                    _token: '{{ csrf_token() }}',
+
+                    Judul_Arsip: judul,
+
+                    Keterangan: keterangan
+                },
+
+                success: function(response) {
+
+                    form.find('.loading-spinner')
+                        .addClass('d-none');
+
+                    form.find('.jenis-dokumen')
+                        .val(response.hasil);
+
+                    form.find('.status-prediksi')
+                        .text('Klasifikasi berhasil');
+                },
+
+                error: function(xhr) {
+
+                    form.find('.loading-spinner')
+                        .addClass('d-none');
+
+                    form.find('.jenis-dokumen')
+                        .val('Gagal klasifikasi');
+
+                    form.find('.status-prediksi')
+                        .text('Terjadi kesalahan');
+
+                    console.log(xhr.responseText);
+                }
+            });
+
+        }, 800);
+
+    });
+</script>
