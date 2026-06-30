@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Tu;
+use App\Services\KlasifikasiService;
 
 class TuController extends Controller
 {
+    protected $klasifikasiService;
+
+    public function __construct(KlasifikasiService $klasifikasiService)
+    {
+        $this->klasifikasiService = $klasifikasiService;
+    }
     public function index()
     {
         $tu = Tu::paginate(10);
@@ -28,11 +35,16 @@ class TuController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Jenis_Dokumen' => 'nullable|string|max:255',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048'
         ]);
 
         $data = $request->except('dokumen');
+        $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
+            $request->Judul_Arsip,
+            $request->Keterangan
+        );
 
         if ($request->hasFile('dokumen')) {
             $data['Dokumen'] = $request->file('dokumen')->store('dokumen/tu', 'public');
@@ -58,12 +70,18 @@ class TuController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Jenis_Dokumen' => 'nullable|string|max:255',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048'
         ]);
 
         $tu = Tu::findOrFail($id);
         $data = $request->except('dokumen');
+
+        $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
+            $request->Judul_Arsip,
+            $request->Keterangan
+        );
 
         if ($request->hasFile('dokumen')) {
             if ($tu->Dokumen && Storage::disk('public')->exists($tu->Dokumen)) {

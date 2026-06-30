@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bms;
 use Illuminate\Support\Facades\Storage;
+use App\Services\KlasifikasiService;
+
 
 class BmsController extends Controller
 {
+    protected $klasifikasiService;
+
+    public function __construct(KlasifikasiService $klasifikasiService)
+    {
+        $this->klasifikasiService = $klasifikasiService;
+    }
     public function index()
     {
         $bms = Bms::paginate(10);
@@ -22,12 +30,20 @@ class BmsController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Jenis_Dokumen' => 'nullable|string|max:255',
             'Divisi' => 'required|in:Kelembagaan,Sarana Prasarana',
             'Kategori' => 'required',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048',
         ]);
 
         $data = $request->all();
+
+        // $data = $request->except('dokumen');
+
+        $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
+            $request->Judul_Arsip,
+            $request->Keterangan
+        );
 
         if ($request->hasFile('dokumen')) {
             // Buat folder jika belum ada
@@ -51,6 +67,7 @@ class BmsController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Jenis_Dokumen' => 'nullable|string|max:255',
             'Divisi' => 'required|in:Kelembagaan,Sarana Prasarana',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048'
@@ -58,6 +75,13 @@ class BmsController extends Controller
 
         $bms = Bms::findOrFail($id);
         $data = $request->all();
+
+        // $data = $request->except('dokumen');
+
+        $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
+            $request->Judul_Arsip,
+            $request->Keterangan
+        );
 
         if ($request->hasFile('dokumen')) {
             // Buat folder jika belum ada
@@ -110,8 +134,8 @@ class BmsController extends Controller
         if ($query) {
             $bms->where(function ($q) use ($query) {
                 $q->where('No_Arsip', 'like', "%{$query}%")
-                  ->orWhere('Nama_Lembaga', 'like', "%{$query}%")
-                  ->orWhere('Judul_Arsip', 'like', "%{$query}%");
+                    ->orWhere('Nama_Lembaga', 'like', "%{$query}%")
+                    ->orWhere('Judul_Arsip', 'like', "%{$query}%");
             });
         }
 

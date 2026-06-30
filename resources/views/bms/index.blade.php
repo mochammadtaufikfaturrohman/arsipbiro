@@ -106,6 +106,7 @@
                                             <th>Tanggal Upload</th>
                                             <th>Judul Arsip</th>
                                             <th>Keterangan</th>
+                                            <th>Jenis Dokumen</th>
                                             <th>Divisi</th>
                                             <th>Kategori</th>
                                             <th>Dokumen</th>
@@ -124,6 +125,7 @@
                                                     <td>{{ $item->Tanggal }}</td>
                                                     <td>{{ $item->Judul_Arsip }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
+                                                    <td>{{ $item->Jenis_Dokumen }}</td>
                                                     <td>{{ $item->Divisi }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td>
@@ -213,6 +215,8 @@
                             <h6><strong>Tanggal:</strong> {{ $dokumen->Tanggal }}</h6>
                             <h6><strong>Judul Arsip:</strong> {{ $dokumen->Judul_Arsip }}</h6>
                             <h6><strong>Keterangan:</strong> {{ $dokumen->Keterangan }}</h6>
+                            <h6><strong>Jenis Dokumen:</strong> {{ $dokumen->Jenis_Dokumen }}</h6>
+                            <h6><strong>Divisi:</strong> {{ $dokumen->Divisi }}</h6>
                             <h6><strong>Kategori:</strong> {{ $dokumen->Kategori }}</h6>
                             @if ($dokumen->Dokumen)
                                 <div class="mt-4">

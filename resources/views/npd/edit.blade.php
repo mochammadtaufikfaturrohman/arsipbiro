@@ -6,15 +6,17 @@
         <label for="No_Rak">Nomor Rak</label>
         <input type="text" class="form-control" id="No_Rak" name="No_Rak" value="{{ $item->No_Rak }}" required>
     </div>
-    
+
     <div class="form-group mb-3">
         <label for="No_Arsip">Nomor Arsip</label>
-        <input type="text" class="form-control" id="No_Arsip" name="No_Arsip" value="{{ $item->No_Arsip }}" required>
+        <input type="text" class="form-control" id="No_Arsip" name="No_Arsip" value="{{ $item->No_Arsip }}"
+            required>
     </div>
 
     <div class="form-group mb-3">
         <label for="Nama_Lembaga">Nama Lembaga</label>
-        <input type="text" class="form-control" id="Nama_Lembaga" name="Nama_Lembaga" value="{{ $item->Nama_Lembaga }}" required>
+        <input type="text" class="form-control" id="Nama_Lembaga" name="Nama_Lembaga"
+            value="{{ $item->Nama_Lembaga }}" required>
     </div>
 
     <div class="form-group mb-3">
@@ -24,48 +26,166 @@
 
     <div class="form-group mb-3">
         <label for="Judul_Arsip">Judul Arsip</label>
-        <textarea class="form-control" id="Judul_Arsip" name="Judul_Arsip" required>{{ $item->Judul_Arsip }}</textarea>
+
+        <textarea class="form-control judul-arsip" id="Judul_Arsip" name="Judul_Arsip" required>{{ $item->Judul_Arsip }}</textarea>
     </div>
 
     <div class="form-group mb-3">
         <label for="Keterangan">Keterangan</label>
-        <textarea class="form-control" id="Keterangan" name="Keterangan">{{ $item->Keterangan }}</textarea>
-    </div>
 
+        <textarea class="form-control keterangan" id="Keterangan" name="Keterangan">{{ $item->Keterangan }}</textarea>
+    </div>
     <div class="form-group mb-3">
-        <label for="Divisi">Divisi</label>
-        <select class="form-control" id="Divisi" name="Divisi" required>
-            <option value="NPD 1" {{ $item->Divisi == 'NPD 1' ? 'selected' : '' }}>NPD 1</option>
-            <option value="NPD 2" {{ $item->Divisi == 'NPD 2' ? 'selected' : '' }}>NPD 2</option>
-            <option value="NPD 3" {{ $item->Divisi == 'NPD 3' ? 'selected' : '' }}>NPD 3</option>
-        </select>
-    </div>
 
-    <div class="form-group mb-3">
-        <label for="Kategori">Kategori</label>
-        <select class="form-control" id="Kategori" name="Kategori" required>
-            <option value="Arsip Dinamis" {{ $item->Kategori == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis</option>
-            <option value="Arsip Statis" {{ $item->Kategori == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis</option>
-            <option value="Arsip Vital" {{ $item->Kategori == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital</option>
-            <option value="Arsip Fisik" {{ $item->Kategori == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik</option>
-            <option value="Arsip Permanen" {{ $item->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip Permanen</option>
-            <option value="Arsip Retensi Jangka Pendek" {{ $item->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka Pendek</option>
-            <option value="Arsip Retensi Jangka Panjang" {{ $item->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka Panjang</option>
-            <option value="Arsip Elektronik" {{ $item->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip Elektronik</option>
-        </select>
-    </div>
+        <label for="Jenis_Dokumen">
+            Jenis Dokumen
+        </label>
 
-    <div class="form-group mb-3"> 
-        <label for="dokumen">Dokumen</label>
-        @if ($item->dokumen)
-            <p>Dokumen saat ini: <a href="{{ route('npd.download', $item->id) }}">{{ basename($item->dokumen) }}</a></p>
-        @endif
-        <input type="file" class="form-control" id="dokumen" name="dokumen" accept=".pdf,.doc,.docx">
-        <small class="text-muted">Biarkan kosong jika tidak ingin mengubah dokumen</small>
-    </div>
+        <div class="input-group">
 
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-    </div>
+            {{-- Spinner --}}
+            <span class="input-group-text d-none loading-spinner" id="loadingSpinnerEdit">
+
+                <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+            </span>
+
+            {{-- Hasil --}}
+            <input type="text" class="form-control jenis-dokumen" id="Jenis_Dokumen" name="Jenis_Dokumen"
+                value="{{ $item->Jenis_Dokumen }}" readonly>
+
+        </div>
+
+        <small class="text-muted status-prediksi">
+            Sistem akan melakukan klasifikasi otomatis
+        </small>
+
+
+        <div class="form-group mb-3">
+            <label for="Divisi">Divisi</label>
+            <select class="form-control" id="Divisi" name="Divisi" required>
+                <option value="NPD 1" {{ $item->Divisi == 'NPD 1' ? 'selected' : '' }}>NPD 1</option>
+                <option value="NPD 2" {{ $item->Divisi == 'NPD 2' ? 'selected' : '' }}>NPD 2</option>
+                <option value="NPD 3" {{ $item->Divisi == 'NPD 3' ? 'selected' : '' }}>NPD 3</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Kategori">Kategori</label>
+            <select class="form-control" id="Kategori" name="Kategori" required>
+                <option value="Arsip Dinamis" {{ $item->Kategori == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis
+                </option>
+                <option value="Arsip Statis" {{ $item->Kategori == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis
+                </option>
+                <option value="Arsip Vital" {{ $item->Kategori == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital
+                </option>
+                <option value="Arsip Fisik" {{ $item->Kategori == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik
+                </option>
+                <option value="Arsip Permanen" {{ $item->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip
+                    Permanen
+                </option>
+                <option value="Arsip Retensi Jangka Pendek"
+                    {{ $item->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka
+                    Pendek
+                </option>
+                <option value="Arsip Retensi Jangka Panjang"
+                    {{ $item->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka
+                    Panjang
+                </option>
+                <option value="Arsip Elektronik" {{ $item->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip
+                    Elektronik</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="dokumen">Dokumen</label>
+            @if ($item->dokumen)
+                <p>Dokumen saat ini: <a
+                        href="{{ route('npd.download', $item->id) }}">{{ basename($item->dokumen) }}</a>
+                </p>
+            @endif
+            <input type="file" class="form-control" id="dokumen" name="dokumen" accept=".pdf,.doc,.docx">
+            <small class="text-muted">Biarkan kosong jika tidak ingin mengubah dokumen</small>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        </div>
 </form>
+
+{{-- js --}}
+<script>
+    let timeoutEdit;
+
+    $(document).on('keyup', '.judul-arsip, .keterangan', function() {
+
+        clearTimeout(timeoutEdit);
+
+        let form = $(this).closest('form');
+
+        timeoutEdit = setTimeout(function() {
+
+            let judul = form.find('.judul-arsip').val();
+            let keterangan = form.find('.keterangan').val();
+
+            let textGabungan = judul + " " + keterangan;
+
+            if (textGabungan.trim().length < 5) {
+                return;
+            }
+
+            form.find('.loading-spinner')
+                .removeClass('d-none');
+
+            form.find('.jenis-dokumen')
+                .val('Sedang klasifikasi...');
+
+            form.find('.status-prediksi')
+                .text('AI sedang menganalisis dokumen...');
+
+            $.ajax({
+
+                url: '/prediksi-jenis-dokumen',
+
+                type: 'POST',
+
+                data: {
+
+                    _token: '{{ csrf_token() }}',
+
+                    Judul_Arsip: judul,
+
+                    Keterangan: keterangan
+                },
+
+                success: function(response) {
+
+                    form.find('.loading-spinner')
+                        .addClass('d-none');
+
+                    form.find('.jenis-dokumen')
+                        .val(response.hasil);
+
+                    form.find('.status-prediksi')
+                        .text('Klasifikasi berhasil');
+                },
+
+                error: function(xhr) {
+
+                    form.find('.loading-spinner')
+                        .addClass('d-none');
+
+                    form.find('.jenis-dokumen')
+                        .val('Gagal klasifikasi');
+
+                    form.find('.status-prediksi')
+                        .text('Terjadi kesalahan');
+
+                    console.log(xhr.responseText);
+                }
+            });
+
+        }, 800);
+
+    });
+</script>

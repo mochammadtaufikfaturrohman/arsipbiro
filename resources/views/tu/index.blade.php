@@ -73,6 +73,7 @@
                                             <th>Tanggal Upload</th>
                                             <th>Judul Arsip</th>
                                             <th>Keterangan</th>
+                                            <th>Jenis Dokumen</th>
                                             <th>Kategori</th>
                                             <th>Dokumen</th>
                                             @if  (in_array(Auth()->user()->role, ['admin', 'super admin']))
@@ -89,6 +90,7 @@
                                                     <td>{{ $item->Tanggal }}</td>
                                                     <td>{{ $item->Judul_Arsip }}</td>
                                                     <td>{{ $item->Keterangan }}</td>
+                                                    <td>{{ $item->Jenis_Dokumen }}</td>
                                                     <td>{{ $item->Kategori }}</td>
                                                     <td>
                                                         <a href="#" class="btn btn-primary btn-sm"
@@ -143,6 +145,7 @@
                 <h6><strong>Tanggal:</strong> {{ $item->Tanggal }}</h6>
                 <h6><strong>Judul Arsip:</strong> {{ $item->Judul_Arsip }}</h6>
                 <h6><strong>Keterangan:</strong> {{ $item->Keterangan }}</h6>
+                <h6><strong>Jenis Dokumen:</strong> {{ $item->Jenis_Dokumen }}</h6>
                 <h6><strong>Kategori:</strong> {{ $item->Kategori }}</h6>
                 @if ($item->Dokumen)
                     <div class="mt-4">

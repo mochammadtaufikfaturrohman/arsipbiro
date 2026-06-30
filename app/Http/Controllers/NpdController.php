@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Npd;
+use App\Services\KlasifikasiService;
 
 class NpdController extends Controller
 {
+    protected $klasifikasiService;
+
+    public function __construct(KlasifikasiService $klasifikasiService)
+    {
+        $this->klasifikasiService = $klasifikasiService;
+    }
     public function index()
     {
         $npd = Npd::paginate(10);
@@ -28,12 +35,18 @@ class NpdController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Jenis_Dokumen' => 'nullable|string|max:255',
             'Divisi' => 'required|in:NPD 1,NPD 2,NPD 3',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048'
         ]);
 
         $data = $request->except('dokumen');
+
+        $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
+            $request->Judul_Arsip,
+            $request->Keterangan
+        );
 
         if ($request->hasFile('dokumen')) {
             $data['Dokumen'] = $request->file('dokumen')->store('dokumen/npd', 'public');
@@ -59,6 +72,7 @@ class NpdController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Jenis_Dokumen' => 'nullable|string|max:255',
             'Divisi' => 'required|in:NPD 1,NPD 2,NPD 3',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048'
@@ -66,6 +80,11 @@ class NpdController extends Controller
 
         $item = Npd::findOrFail($id);
         $data = $request->except('dokumen');
+
+        $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
+            $request->Judul_Arsip,
+            $request->Keterangan
+        );
 
         if ($request->hasFile('dokumen')) {
             if ($item->dokumen && Storage::disk('public')->exists($item->dokumen)) {
@@ -96,21 +115,21 @@ class NpdController extends Controller
     public function download($id)
     {
         $data = Npd::findOrFail($id);
-    
+
         if (!$data->Dokumen) {
             return redirect()->back()->with('error', 'File tidak tersedia.');
         }
-    
+
         $path = storage_path('app/public/' . $data->Dokumen);
 
-    
+
         if (!file_exists($path)) {
             return redirect()->back()->with('error', 'File tidak ditemukan di server.');
         }
-    
+
         return response()->download($path);
     }
-    
+
     public function search(Request $request)
     {
         $query = $request->input('query');
