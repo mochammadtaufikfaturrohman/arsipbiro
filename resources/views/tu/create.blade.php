@@ -98,112 +98,69 @@
     </form>
 
 
+   {{-- js --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        let timeout = null;
+        let timeout;
 
         function prediksiDokumen() {
 
-            let judul = $('#Judul_Arsip').val();
-            let keterangan = $('#Keterangan').val();
+            let keterangan = $("#Keterangan").val();
 
-            // Gabungkan text
-            let textGabungan = judul + " " + keterangan;
+            if (keterangan.trim().length < 5) {
 
-            // Jangan prediksi kalau terlalu pendek
-            if (textGabungan.trim().length < 5) {
+                $("#Jenis_Dokumen").val("");
 
-                $('#Jenis_Dokumen').val('');
-                $('#statusPrediksi')
-                    .text('Masukkan judul atau keterangan dokumen');
+                $("#statusPrediksi").text("Masukkan keterangan dokumen");
 
                 return;
+
             }
 
-            /*
-            |--------------------------------------------------------------------------
-            | TAMPILKAN LOADING
-            |--------------------------------------------------------------------------
-            */
+            $("#loadingSpinner").removeClass("d-none");
 
-            $('#loadingSpinner').removeClass('d-none');
-
-            $('#Jenis_Dokumen')
-                .val('Sedang melakukan klasifikasi...');
-
-            $('#statusPrediksi')
-                .text('AI sedang menganalisis dokumen...');
-
-            /*
-            |--------------------------------------------------------------------------
-            | AJAX REQUEST
-            |--------------------------------------------------------------------------
-            */
+            $("#Jenis_Dokumen").val("Sedang melakukan klasifikasi...");
 
             $.ajax({
 
                 url: '/prediksi-jenis-dokumen',
 
-                type: 'POST',
+                method: 'POST',
 
                 data: {
 
-                    _token: '{{ csrf_token() }}',
-
-                    Judul_Arsip: judul,
+                    _token: "{{ csrf_token() }}",
 
                     Keterangan: keterangan
-                },
-
-                success: function(response) {
-
-                    /*
-                    |--------------------------------------------------------------------------
-                    | HASIL BERHASIL
-                    |--------------------------------------------------------------------------
-                    */
-
-                    $('#loadingSpinner').addClass('d-none');
-
-                    $('#Jenis_Dokumen')
-                        .val(response.hasil);
-
-                    $('#statusPrediksi')
-                        .text('Klasifikasi berhasil');
 
                 },
 
-                error: function(xhr) {
+                success: function(res) {
 
-                    /*
-                    |--------------------------------------------------------------------------
-                    | JIKA ERROR
-                    |--------------------------------------------------------------------------
-                    */
+                    $("#loadingSpinner").addClass("d-none");
 
-                    $('#loadingSpinner').addClass('d-none');
+                    $("#Jenis_Dokumen").val(res.hasil);
 
-                    $('#Jenis_Dokumen')
-                        .val('Gagal klasifikasi');
+                    $("#statusPrediksi").text("Klasifikasi berhasil");
 
-                    $('#statusPrediksi')
-                        .text('Terjadi kesalahan saat klasifikasi');
+                },
 
-                    console.log(xhr.responseText);
+                error: function() {
+
+                    $("#loadingSpinner").addClass("d-none");
+
+                    $("#Jenis_Dokumen").val("Tidak Diketahui");
+
+                    $("#statusPrediksi").text("Terjadi kesalahan.");
+
                 }
+
             });
+
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | DEBOUNCE
-        |--------------------------------------------------------------------------
-        | Agar request tidak terus menerus saat mengetik
-        |--------------------------------------------------------------------------
-        */
-
-        $('#Judul_Arsip, #Keterangan').on('keyup', function() {
+        $("#Keterangan").on("keyup", function() {
 
             clearTimeout(timeout);
 
@@ -211,7 +168,7 @@
 
                 prediksiDokumen();
 
-            }, 800);
+            }, 700);
 
         });
     </script>

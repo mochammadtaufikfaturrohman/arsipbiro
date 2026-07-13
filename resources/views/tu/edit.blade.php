@@ -93,3 +93,104 @@
             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
         </div>
 </form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    // Hindari event terdaftar berkali-kali
+    $(document).off("keyup", ".keterangan");
+
+    let typingTimer;
+
+    $(document).on("keyup", ".keterangan", function() {
+
+        const textarea = $(this);
+
+        clearTimeout(typingTimer);
+
+        typingTimer = setTimeout(function() {
+
+            prediksiDokumen(textarea);
+
+        }, 700);
+
+    });
+
+    function prediksiDokumen(textarea) {
+
+        const form = textarea.closest("form");
+
+        const spinner = form.find(".loading-spinner");
+
+        const hasil = form.find(".jenis-dokumen");
+
+        const status = form.find(".status-prediksi");
+
+        const keterangan = textarea.val().trim();
+
+        if (keterangan.length < 5) {
+
+            hasil.val("");
+
+            status.text("Masukkan minimal 5 karakter.");
+
+            return;
+
+        }
+
+        spinner.removeClass("d-none");
+
+        hasil.val("Sedang melakukan klasifikasi...");
+
+        status.text("Sedang memproses...");
+
+        $.ajax({
+
+            url: "{{ url('/prediksi-jenis-dokumen') }}",
+
+            type: "POST",
+
+            data: {
+
+                _token: "{{ csrf_token() }}",
+
+                Keterangan: keterangan
+
+            },
+
+            success: function(res) {
+
+                spinner.addClass("d-none");
+
+                if (res.hasil) {
+
+                    hasil.val(res.hasil);
+
+                    status.text("Klasifikasi berhasil.");
+
+                } else {
+
+                    hasil.val("Tidak Diketahui");
+
+                    status.text("Gagal klasifikasi.");
+
+                }
+
+            },
+
+            error: function(xhr) {
+
+                spinner.addClass("d-none");
+
+                hasil.val("Tidak Diketahui");
+
+                console.log(xhr.responseText);
+
+                status.text("Gagal klasifikasi.");
+
+            }
+
+        });
+
+    }
+</script>

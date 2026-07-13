@@ -17,7 +17,6 @@ class KlasifikasiController extends Controller
     public function prediksi(Request $request)
     {
         $hasil = $this->klasifikasiService->klasifikasi(
-            $request->Judul_Arsip,
             $request->Keterangan
         );
 

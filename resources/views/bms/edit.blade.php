@@ -32,8 +32,8 @@
 
     <div class="form-group mb-3">
         <label for="Keterangan">Keterangan</label>
-
-        <textarea class="form-control keterangan" id="Keterangan" name="Keterangan">{{ $item->Keterangan }}</textarea>
+        {{-- <textarea class="form-control keterangan" name="Keterangan">{{ $item->Keterangan }}</textarea> --}}
+         <textarea class="form-control keterangan" id="Keterangan" name="Keterangan">{{ $item->Keterangan }}</textarea>
     </div>
     <div class="form-group mb-3">
 
@@ -44,21 +44,20 @@
         <div class="input-group">
 
             {{-- Spinner --}}
-            <span class="input-group-text d-none loading-spinner" id="loadingSpinnerEdit">
+            <span class="input-group-text d-none loading-spinner">
 
                 <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
             </span>
 
             {{-- Hasil --}}
             <input type="text" class="form-control jenis-dokumen" id="Jenis_Dokumen" name="Jenis_Dokumen"
-                value="{{ $item->Jenis_Dokumen }}" readonly>
-
+                value="{{ $item->Jenis_Dokumen }}" readonly> 
+            
         </div>
 
         <small class="text-muted status-prediksi">
             Sistem akan melakukan klasifikasi otomatis
         </small>
-
     </div>
     <div class="form-group mb-3">
         <label for="Divisi">Divisi</label>
@@ -103,78 +102,103 @@
 </form>
 
 {{-- js --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-    let timeoutEdit;
+    // Hindari event terdaftar berkali-kali
+    $(document).off("keyup", ".keterangan");
 
-    $(document).on('keyup', '.judul-arsip, .keterangan', function() {
+    let typingTimer;
 
-        clearTimeout(timeoutEdit);
+    $(document).on("keyup", ".keterangan", function() {
 
-        let form = $(this).closest('form');
+        const textarea = $(this);
 
-        timeoutEdit = setTimeout(function() {
+        clearTimeout(typingTimer);
 
-            let judul = form.find('.judul-arsip').val();
-            let keterangan = form.find('.keterangan').val();
+        typingTimer = setTimeout(function() {
 
-            let textGabungan = judul + " " + keterangan;
+            prediksiDokumen(textarea);
 
-            if (textGabungan.trim().length < 5) {
-                return;
-            }
-
-            form.find('.loading-spinner')
-                .removeClass('d-none');
-
-            form.find('.jenis-dokumen')
-                .val('Sedang klasifikasi...');
-
-            form.find('.status-prediksi')
-                .text('AI sedang menganalisis dokumen...');
-
-            $.ajax({
-
-                url: '/prediksi-jenis-dokumen',
-
-                type: 'POST',
-
-                data: {
-
-                    _token: '{{ csrf_token() }}',
-
-                    Judul_Arsip: judul,
-
-                    Keterangan: keterangan
-                },
-
-                success: function(response) {
-
-                    form.find('.loading-spinner')
-                        .addClass('d-none');
-
-                    form.find('.jenis-dokumen')
-                        .val(response.hasil);
-
-                    form.find('.status-prediksi')
-                        .text('Klasifikasi berhasil');
-                },
-
-                error: function(xhr) {
-
-                    form.find('.loading-spinner')
-                        .addClass('d-none');
-
-                    form.find('.jenis-dokumen')
-                        .val('Gagal klasifikasi');
-
-                    form.find('.status-prediksi')
-                        .text('Terjadi kesalahan');
-
-                    console.log(xhr.responseText);
-                }
-            });
-
-        }, 800);
+        }, 700);
 
     });
+
+    function prediksiDokumen(textarea) {
+
+        const form = textarea.closest("form");
+
+        const spinner = form.find(".loading-spinner");
+
+        const hasil = form.find(".jenis-dokumen");
+
+        const status = form.find(".status-prediksi");
+
+        const keterangan = textarea.val().trim();
+
+        if (keterangan.length < 5) {
+
+            hasil.val("");
+
+            status.text("Masukkan minimal 5 karakter.");
+
+            return;
+
+        }
+
+        spinner.removeClass("d-none");
+
+        hasil.val("Sedang melakukan klasifikasi...");
+
+        status.text("Sedang memproses...");
+
+        $.ajax({
+
+            url: "{{ url('/prediksi-jenis-dokumen') }}",
+
+            type: "POST",
+
+            data: {
+
+                _token: "{{ csrf_token() }}",
+
+                Keterangan: keterangan
+
+            },
+
+            success: function(res) {
+
+                spinner.addClass("d-none");
+
+                if (res.hasil) {
+
+                    hasil.val(res.hasil);
+
+                    status.text("Klasifikasi berhasil.");
+
+                } else {
+
+                    hasil.val("Tidak Diketahui");
+
+                    status.text("Gagal klasifikasi.");
+
+                }
+
+            },
+
+            error: function(xhr) {
+
+                spinner.addClass("d-none");
+
+                hasil.val("Tidak Diketahui");
+
+                console.log(xhr.responseText);
+
+                status.text("Gagal klasifikasi.");
+
+            }
+
+        });
+
+    }
 </script>

@@ -106,123 +106,77 @@
 </form>
 
 
-{{-- JS --}}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- js --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
+    <script>
+        let timeout;
 
-    let timeout = null;
+        function prediksiDokumen() {
 
-    function prediksiDokumen() {
+            let keterangan = $("#Keterangan").val();
 
-        let judul = $('#Judul_Arsip').val();
-        let keterangan = $('#Keterangan').val();
+            if (keterangan.trim().length < 5) {
 
-        // Gabungkan text
-        let textGabungan = judul + " " + keterangan;
+                $("#Jenis_Dokumen").val("");
 
-        // Jangan prediksi kalau terlalu pendek
-        if (textGabungan.trim().length < 5) {
+                $("#statusPrediksi").text("Masukkan keterangan dokumen");
 
-            $('#Jenis_Dokumen').val('');
-            $('#statusPrediksi')
-                .text('Masukkan judul atau keterangan dokumen');
+                return;
 
-            return;
+            }
+
+            $("#loadingSpinner").removeClass("d-none");
+
+            $("#Jenis_Dokumen").val("Sedang melakukan klasifikasi...");
+
+            $.ajax({
+
+                url: '/prediksi-jenis-dokumen',
+
+                method: 'POST',
+
+                data: {
+
+                    _token: "{{ csrf_token() }}",
+
+                    Keterangan: keterangan
+
+                },
+
+                success: function(res) {
+
+                    $("#loadingSpinner").addClass("d-none");
+
+                    $("#Jenis_Dokumen").val(res.hasil);
+
+                    $("#statusPrediksi").text("Klasifikasi berhasil");
+
+                },
+
+                error: function() {
+
+                    $("#loadingSpinner").addClass("d-none");
+
+                    $("#Jenis_Dokumen").val("Tidak Diketahui");
+
+                    $("#statusPrediksi").text("Terjadi kesalahan.");
+
+                }
+
+            });
+
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | TAMPILKAN LOADING
-        |--------------------------------------------------------------------------
-        */
+        $("#Keterangan").on("keyup", function() {
 
-        $('#loadingSpinner').removeClass('d-none');
+            clearTimeout(timeout);
 
-        $('#Jenis_Dokumen')
-            .val('Sedang melakukan klasifikasi...');
+            timeout = setTimeout(function() {
 
-        $('#statusPrediksi')
-            .text('AI sedang menganalisis dokumen...');
+                prediksiDokumen();
 
-        /*
-        |--------------------------------------------------------------------------
-        | AJAX REQUEST
-        |--------------------------------------------------------------------------
-        */
+            }, 700);
 
-        $.ajax({
-
-            url: '/prediksi-jenis-dokumen',
-
-            type: 'POST',
-
-            data: {
-
-                _token: '{{ csrf_token() }}',
-
-                Judul_Arsip: judul,
-
-                Keterangan: keterangan
-            },
-
-            success: function(response) {
-
-                /*
-                |--------------------------------------------------------------------------
-                | HASIL BERHASIL
-                |--------------------------------------------------------------------------
-                */
-
-                $('#loadingSpinner').addClass('d-none');
-
-                $('#Jenis_Dokumen')
-                    .val(response.hasil);
-
-                $('#statusPrediksi')
-                    .text('Klasifikasi berhasil');
-
-            },
-
-            error: function(xhr) {
-
-                /*
-                |--------------------------------------------------------------------------
-                | JIKA ERROR
-                |--------------------------------------------------------------------------
-                */
-
-                $('#loadingSpinner').addClass('d-none');
-
-                $('#Jenis_Dokumen')
-                    .val('Gagal klasifikasi');
-
-                $('#statusPrediksi')
-                    .text('Terjadi kesalahan saat klasifikasi');
-
-                console.log(xhr.responseText);
-            }
         });
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | DEBOUNCE
-    |--------------------------------------------------------------------------
-    | Agar request tidak terus menerus saat mengetik
-    |--------------------------------------------------------------------------
-    */
-
-    $('#Judul_Arsip, #Keterangan').on('keyup', function() {
-
-        clearTimeout(timeout);
-
-        timeout = setTimeout(function() {
-
-            prediksiDokumen();
-
-        }, 800);
-
-    });
-
-</script>
+    </script>

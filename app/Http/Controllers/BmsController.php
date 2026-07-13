@@ -41,7 +41,6 @@ class BmsController extends Controller
         // $data = $request->except('dokumen');
 
         $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
-            $request->Judul_Arsip,
             $request->Keterangan
         );
 
@@ -79,7 +78,6 @@ class BmsController extends Controller
         // $data = $request->except('dokumen');
 
         $data['Jenis_Dokumen'] = $this->klasifikasiService->klasifikasi(
-            $request->Judul_Arsip,
             $request->Keterangan
         );
 

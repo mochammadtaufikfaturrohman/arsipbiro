@@ -4,24 +4,31 @@ namespace App\Services;
 
 class KlasifikasiService
 {
-    public function klasifikasi($Judul_Arsip, $Keterangan)
+    public function klasifikasi($keterangan)
     {
-        $text = $Judul_Arsip . ' ' . $Keterangan;
+        if (empty(trim($keterangan))) {
+            return "Tidak Diketahui";
+        }
 
         $python = base_path('ml/venv/Scripts/python.exe');
-
         $script = base_path('ml/predict.py');
 
-        $escapedText = escapeshellarg($text);
+        $escapedText = escapeshellarg($keterangan);
 
-        $command = "\"$python\" \"$script\" $escapedText";
+        $command = "\"{$python}\" \"{$script}\" {$escapedText}";
 
         $output = shell_exec($command);
 
         if (!$output) {
-            return 'Tidak Diketahui';
+            return "Tidak Diketahui";
         }
 
-        return trim($output);
+        $hasil = trim($output);
+
+        if ($hasil == "ERROR") {
+            return "Tidak Diketahui";
+        }
+
+        return $hasil;
     }
 }
