@@ -50,7 +50,6 @@
 
                 {{-- Spinner Loading --}}
                 <span class="input-group-text d-none" id="loadingSpinner">
-
                     <div class="spinner-border spinner-border-sm text-primary" role="status">
                     </div>
 
@@ -59,7 +58,6 @@
                 {{-- Input Hasil --}}
                 <input type="text" name="Jenis_Dokumen" id="Jenis_Dokumen" class="form-control"
                     placeholder="Menunggu klasifikasi..." readonly>
-
             </div>
 
             {{-- Status --}}
@@ -108,73 +106,72 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        let timeout;
+        $(document).ready(function() {
 
-        function prediksiDokumen() {
+            let timeout;
 
-            let keterangan = $("#Keterangan").val();
+            function prediksiDokumen() {
 
-            if (keterangan.trim().length < 5) {
+                let keterangan = $("#Keterangan").val();
 
-                $("#Jenis_Dokumen").val("");
+                if (keterangan.trim().length < 5) {
 
-                $("#statusPrediksi").text("Masukkan keterangan dokumen");
+                    $("#Jenis_Dokumen").val("");
 
-                return;
+                    $("#statusPrediksi").text("Masukkan keterangan dokumen");
+
+                    return;
+                }
+
+                $("#loadingSpinner").removeClass("d-none");
+
+                $("#Jenis_Dokumen").val("Sedang melakukan klasifikasi...");
+
+                $.ajax({
+
+                    url: '/prediksi-jenis-dokumen',
+
+                    method: 'POST',
+
+                    data: {
+
+                        _token: "{{ csrf_token() }}",
+
+                        Keterangan: keterangan
+
+                    },
+
+                    success: function(res) {
+
+                        $("#loadingSpinner").addClass("d-none");
+
+                        $("#Jenis_Dokumen").val(res.hasil);
+
+                        $("#statusPrediksi").text("Klasifikasi berhasil");
+
+                    },
+
+                    error: function() {
+
+                        $("#loadingSpinner").addClass("d-none");
+
+                        $("#Jenis_Dokumen").val("Tidak Diketahui");
+
+                        $("#statusPrediksi").text("Terjadi kesalahan.");
+
+                    }
+
+                });
 
             }
 
-            $("#loadingSpinner").removeClass("d-none");
+            $("#Keterangan").on("keyup", function() {
 
-            $("#Jenis_Dokumen").val("Sedang melakukan klasifikasi...");
+                clearTimeout(timeout);
 
-            $.ajax({
-
-                url: '/prediksi-jenis-dokumen',
-
-                method: 'POST',
-
-                data: {
-
-                    _token: "{{ csrf_token() }}",
-
-                    Keterangan: keterangan
-
-                },
-
-                success: function(res) {
-
-                    $("#loadingSpinner").addClass("d-none");
-
-                    $("#Jenis_Dokumen").val(res.hasil);
-
-                    $("#statusPrediksi").text("Klasifikasi berhasil");
-
-                },
-
-                error: function() {
-
-                    $("#loadingSpinner").addClass("d-none");
-
-                    $("#Jenis_Dokumen").val("Tidak Diketahui");
-
-                    $("#statusPrediksi").text("Terjadi kesalahan.");
-
-                }
+                timeout = setTimeout(prediksiDokumen, 700);
 
             });
-
-        }
-
-        $("#Keterangan").on("keyup", function() {
-
-            clearTimeout(timeout);
-
-            timeout = setTimeout(function() {
-
-                prediksiDokumen();
-
-            }, 700);
 
         });
     </script>

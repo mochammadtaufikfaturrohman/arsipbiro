@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Yandas;
 use App\Services\KlasifikasiService;
 
@@ -14,6 +15,13 @@ class YandasController extends Controller
     public function __construct(KlasifikasiService $klasifikasiService)
     {
         $this->klasifikasiService = $klasifikasiService;
+    }
+    // hanya yandas
+    private function authorizeYandas()
+    {
+        if (!in_array(Auth::user()->role, ['admin_yandas', 'super_admin'])) {
+            abort(403);
+        }
     }
 
     public function index()
@@ -29,6 +37,7 @@ class YandasController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorizeYandas();
         $request->validate([
             'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:yandas,No_Arsip',
@@ -67,6 +76,7 @@ class YandasController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorizeYandas();
         $request->validate([
             'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:yandas,No_Arsip,' . $id . ',id|max:50',
@@ -102,6 +112,7 @@ class YandasController extends Controller
 
     public function destroy($id)
     {
+        $this->authorizeYandas();
         $yandas = Yandas::findOrFail($id);
 
         if ($yandas->Dokumen && Storage::disk('public')->exists($yandas->Dokumen)) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bms;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Services\KlasifikasiService;
 
 
@@ -16,6 +17,17 @@ class BmsController extends Controller
     {
         $this->klasifikasiService = $klasifikasiService;
     }
+    // hanya bms
+    private function authorizeBms()
+    {
+        if (
+            Auth::user()->role != 'admin_bms' &&
+            Auth::user()->role != 'super_admin'
+        ) {
+            abort(403, 'Anda tidak memiliki hak mengelola arsip BMS.');
+        }
+    }
+
     public function index()
     {
         $bms = Bms::paginate(10);
@@ -24,6 +36,7 @@ class BmsController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorizeBms();
         $request->validate([
             'No_Arsip' => 'required|string|unique:bms,No_Arsip',
             'Nama_Lembaga' => 'required|string|max:255',
@@ -60,6 +73,7 @@ class BmsController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorizeBms();
         $request->validate([
             'No_Arsip' => 'required|string|unique:bms,No_Arsip,' . $id . ',id|max:50',
             'Nama_Lembaga' => 'required|string|max:255',
@@ -97,6 +111,7 @@ class BmsController extends Controller
 
     public function destroy($id)
     {
+        $this->authorizeBms();
         $bms = Bms::findOrFail($id);
 
         // Hapus file dokumen jika ada

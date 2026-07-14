@@ -30,7 +30,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex justify-content-between align-items-center">
                             <h6 class="m-0 font-weight-bold text-primary">Dokumen Non-Pelayanan Dasar</h6>
-                            @if (in_array(Auth()->user()->role, ['admin', 'super admin']))
+                            @if (in_array(Auth()->user()->role, ['admin_npd', 'super admin']))
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahArsipModal">
                                     <i class="fas fa-plus"></i> Arsip
                                 </button>
@@ -86,7 +86,7 @@
                                             <th>Divisi</th>
                                             <th>Kategori</th>
                                             <th>Dokumen</th>
-                                            @if (in_array(Auth()->user()->role, ['admin', 'super admin']))
+                                            @if (in_array(Auth()->user()->role, ['admin_npd', 'super admin']))
                                                 <th>Aksi</th>
                                             @endif
                                         </tr>
@@ -114,7 +114,7 @@
                                                             <i class="fas fa-download"></i>
                                                         </a>
                                                     </td>
-                                                    @if  (in_array(Auth()->user()->role, ['admin', 'super admin']))
+                                                    @if  (in_array(Auth()->user()->role, ['admin_npd', 'super admin']))
                                                         <td class="text-nowrap">
                                                             <button type="button" class="btn btn-warning btn-sm me-2"
                                                                 data-bs-toggle="modal"

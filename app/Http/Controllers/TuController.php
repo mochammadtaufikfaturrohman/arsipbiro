@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Tu;
 use App\Services\KlasifikasiService;
 
@@ -15,6 +16,15 @@ class TuController extends Controller
     {
         $this->klasifikasiService = $klasifikasiService;
     }
+
+    // hanya tu
+    private function authorizeTu()
+    {
+        if (!in_array(Auth::user()->role, ['admin_tu', 'super_admin'])) {
+            abort(403);
+        }
+    }
+
     public function index()
     {
         $tu = Tu::paginate(10);
@@ -28,6 +38,8 @@ class TuController extends Controller
 
     public function store(Request $request)
     {
+
+        $this->authorizeTu();
         $request->validate([
             'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:tu,No_Arsip',
@@ -35,6 +47,7 @@ class TuController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Divisi' => 'required|in:Perencanaan,Kepegawaian,Pimpinan,Keuangan,Pengadaan & Aset',
             'Jenis_Dokumen' => 'nullable|string|max:255',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048'
@@ -63,6 +76,7 @@ class TuController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorizeTu();
         $request->validate([
             'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:tu,No_Arsip,' . $id . ',id|max:50',
@@ -70,6 +84,7 @@ class TuController extends Controller
             'Tanggal' => 'required|date',
             'Judul_Arsip' => 'required|string',
             'Keterangan' => 'nullable|string',
+            'Divisi' => 'required|in:Perencanaan,Kepegawaian,Pimpinan,Keuangan,Pengadaan & Aset',
             'Jenis_Dokumen' => 'nullable|string|max:255',
             'Kategori' => 'required|in:Arsip Dinamis,Arsip Statis,Arsip Vital,Arsip Fisik,Arsip Permanen,Arsip Retensi Jangka Pendek,Arsip Retensi Jangka Panjang,Arsip Elektronik',
             'dokumen' => 'nullable|file|mimes:pdf|max:5048'
@@ -98,6 +113,7 @@ class TuController extends Controller
 
     public function destroy($id)
     {
+        $this->authorizeTu();
         $tu = Tu::findOrFail($id);
 
         if ($tu->Dokumen && Storage::disk('public')->exists($tu->Dokumen)) {
@@ -139,6 +155,7 @@ class TuController extends Controller
     public function filter(Request $request)
     {
         $kategori = $request->input('kategori');
+        $divisi = $request->input('divisi');
         $query = $request->input('query');
 
         // Filter dan cari data berdasarkan kategori dan kata kunci
@@ -146,6 +163,11 @@ class TuController extends Controller
 
         if ($kategori) {
             $tu->where('Kategori', $kategori);
+        }
+
+        if ($divisi) {
+
+            $tu->where('Divisi', $divisi);
         }
 
         if ($query) {

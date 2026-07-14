@@ -207,6 +207,16 @@
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" name="password" required>
                             </div>
+                            <div class="mb-3">
+                                <label for="role" class="form-label">Role</label>
+                                <select class="form-select" name="role" required>
+                                    <option value="">Pilih Role</option>
+                                    <option value="admin_bms">Admin BMS</option>
+                                    <option value="admin_yandas">Admin Yandas</option>
+                                    <option value="admin_tu">Admin Tata Usaha</option>
+                                    <option value="admin_npd">Admin Non Pelayanan Dasar</option>
+                                    <option value="super admin">Super Admin</option>
+                                </select>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Simpan</button>

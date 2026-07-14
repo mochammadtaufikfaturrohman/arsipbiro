@@ -54,44 +54,58 @@
             Sistem akan melakukan klasifikasi otomatis
         </small>
 
-        <div class="form-group mb-3">
-            <label for="Kategori">Kategori</label>
-            <select class="form-control" id="Kategori" name="Kategori" required>
-                <option value="Arsip Dinamis" {{ $item->Kategori == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis
-                </option>
-                <option value="Arsip Statis" {{ $item->Kategori == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis
-                </option>
-                <option value="Arsip Vital" {{ $item->Kategori == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital
-                </option>
-                <option value="Arsip Fisik" {{ $item->Kategori == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik
-                </option>
-                <option value="Arsip Permanen" {{ $item->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip
-                    Permanen
-                </option>
-                <option value="Arsip Retensi Jangka Pendek"
-                    {{ $item->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka
-                    Pendek
-                </option>
-                <option value="Arsip Retensi Jangka Panjang"
-                    {{ $item->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka
-                    Panjang
-                </option>
-                <option value="Arsip Elektronik" {{ $item->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip
-                    Elektronik</option>
-            </select>
-        </div>
-        <div class="form-group mb-3">
-            <label for="dokumen">Dokumen</label>
-            @if ($item->dokumen)
-                <p>Dokumen saat ini: {{ basename($item->dokumen) }}</p>
-            @endif
-            <input type="file" class="form-control" id="dokumen" name="dokumen">
-            <small class="text-muted">Biarkan kosong jika tidak ingin mengubah dokumen</small>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="Divisi">Divisi</label>
+        <select class="form-control" id="Divisi" name="Divisi" required>
+            <option value="Perencanaan" {{ $item->Divisi == 'Perencanaan' ? 'selected' : '' }}>Perencanaan</option>
+            <option value="Kepegawaian" {{ $item->Divisi == 'Kepegawaian' ? 'selected' : '' }}>Kepegawaian</option>
+            <option value="Pimpinan" {{ $item->Divisi == 'Pimpinan' ? 'selected' : '' }}>Pimpinan</option>
+            <option value="Keuangan" {{ $item->Divisi == 'Keuangan' ? 'selected' : '' }}>Keuangan</option>
+            <option value="Pengadaan & Aset" {{ $item->Divisi == 'Pengadaan & Aset' ? 'selected' : '' }}>Pengadaan & Aset
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="Kategori">Kategori</label>
+        <select class="form-control" id="Kategori" name="Kategori" required>
+            <option value="Arsip Dinamis" {{ $item->Kategori == 'Arsip Dinamis' ? 'selected' : '' }}>Arsip Dinamis
+            </option>
+            <option value="Arsip Statis" {{ $item->Kategori == 'Arsip Statis' ? 'selected' : '' }}>Arsip Statis
+            </option>
+            <option value="Arsip Vital" {{ $item->Kategori == 'Arsip Vital' ? 'selected' : '' }}>Arsip Vital
+            </option>
+            <option value="Arsip Fisik" {{ $item->Kategori == 'Arsip Fisik' ? 'selected' : '' }}>Arsip Fisik
+            </option>
+            <option value="Arsip Permanen" {{ $item->Kategori == 'Arsip Permanen' ? 'selected' : '' }}>Arsip
+                Permanen
+            </option>
+            <option value="Arsip Retensi Jangka Pendek"
+                {{ $item->Kategori == 'Arsip Retensi Jangka Pendek' ? 'selected' : '' }}>Arsip Retensi Jangka
+                Pendek
+            </option>
+            <option value="Arsip Retensi Jangka Panjang"
+                {{ $item->Kategori == 'Arsip Retensi Jangka Panjang' ? 'selected' : '' }}>Arsip Retensi Jangka
+                Panjang
+            </option>
+            <option value="Arsip Elektronik" {{ $item->Kategori == 'Arsip Elektronik' ? 'selected' : '' }}>Arsip
+                Elektronik</option>
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="dokumen">Dokumen</label>
+        @if ($item->dokumen)
+            <p>Dokumen saat ini: {{ basename($item->dokumen) }}</p>
+        @endif
+        <input type="file" class="form-control" id="dokumen" name="dokumen">
+        <small class="text-muted">Biarkan kosong jika tidak ingin mengubah dokumen</small>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+    </div>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

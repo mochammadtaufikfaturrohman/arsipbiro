@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Npd;
 use App\Services\KlasifikasiService;
 
@@ -15,6 +16,15 @@ class NpdController extends Controller
     {
         $this->klasifikasiService = $klasifikasiService;
     }
+
+    // hanya npd
+    private function authorizeNpd()
+    {
+        if (!in_array(Auth::user()->role, ['admin_npd', 'super_admin'])) {
+            abort(403);
+        }
+    }
+
     public function index()
     {
         $npd = Npd::paginate(10);
@@ -28,6 +38,7 @@ class NpdController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorizeNpd();
         $request->validate([
             'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:npd,No_Arsip',
@@ -65,6 +76,7 @@ class NpdController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorizeNpd();
         $request->validate([
             'No_Rak' => 'required|string|max:25',
             'No_Arsip' => 'required|string|unique:npd,No_Arsip,' . $id . ',id|max:50',
@@ -101,6 +113,7 @@ class NpdController extends Controller
 
     public function destroy($id)
     {
+        $this->authorizeNpd();
         $item = Npd::findOrFail($id);
 
         if ($item->dokumen && Storage::disk('public')->exists($item->dokumen)) {

@@ -11,7 +11,13 @@ class AdminController extends Controller
     // Tampilkan semua admin
     public function index()
     {
-        $users = User::where('role', 'admin')->get();
+        // $users = User::where('role', 'admin')->get();
+        $users = User::whereIn('role', [
+            'admin_tu',
+            'admin_npd',
+            'admin_yandas',
+            'admin_bms'
+        ])->get();
         return view('admin.index', compact('users'));
     }
 
@@ -22,19 +28,21 @@ class AdminController extends Controller
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
+            'role' => 'required|in:admin_tu,admin_npd,admin_yandas,admin_bms',
+
         ]);
 
         User::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
-            'role'     => 'admin',
+            'role'     => $request->role,
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Admin berhasil ditambahkan!');
     }
 
-     // Update admin
+    // Update admin
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -43,11 +51,13 @@ class AdminController extends Controller
             'name'  => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:6', // boleh kosong
+            'role' => 'required|in:admin_tu,admin_npd,admin_yandas,admin_bms',
         ]);
 
         $data = [
             'name'  => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
         ];
 
         if ($request->filled('password')) {

@@ -23,6 +23,7 @@ class Tu extends Model
         'Tanggal',
         'Judul_Arsip',
         'Keterangan',
+        'Divisi',
         'Kategori',
         'Jenis_Dokumen',
         'Dokumen',

@@ -64,7 +64,7 @@
         </div>
 
         {{-- Status --}}
-        <small id="statusPrediksi" class="text-muted">
+        <small class="status-prediksi text-muted">
             Sistem akan melakukan klasifikasi otomatis
         </small>
 
@@ -107,9 +107,11 @@
 
 
 {{-- js --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
+<script>
+    $(document).ready(function() {
+
         let timeout;
 
         function prediksiDokumen() {
@@ -123,7 +125,6 @@
                 $("#statusPrediksi").text("Masukkan keterangan dokumen");
 
                 return;
-
             }
 
             $("#loadingSpinner").removeClass("d-none");
@@ -172,11 +173,9 @@
 
             clearTimeout(timeout);
 
-            timeout = setTimeout(function() {
-
-                prediksiDokumen();
-
-            }, 700);
+            timeout = setTimeout(prediksiDokumen, 700);
 
         });
-    </script>
+
+    });
+</script>
